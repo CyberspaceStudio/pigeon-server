@@ -1,0 +1,17 @@
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com/qingyuan/course.pojo
+
+wx:
+  appid: wx6b1087ac6340c5cb
+  secret: 97466ec125a4ee8bf7193818906f547e
+  templateId:
+  url: https://api.weixin.qq.com/sns/jscode2session?appid=${wx.appid}&secret=${wx.secret}&grant_type=authorization_code&js_code=
+
+spring:
+  datasource:
+    username: root
+    password: shumaosha2
+    url: jdbc:mysql://127.0.0.1:3306/course_test?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+

@@ -4,25 +4,12 @@
     <resultMap id="User" type="com.qingyuan.pigeon.pojo.User">
         <id column="user_id" property="userId" jdbcType="INTEGER"/>
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
-        <result column="openid" property="openid" jdbcType="VARCHAR"/>
         <result column="user_tel" property="userTel" jdbcType="VARCHAR"/>
         <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
         <result column="userImage_url" property="userImageUrl" jdbcType="VARCHAR"/>
+        <result column="pigeonEgg_counts" property="pigeonEggCounts" jdbcType="INTEGER"/>
     </resultMap>
 
-    <insert id="insertUser" useGeneratedKeys="true" keyProperty="userId">
-        INSERT INTO  user_message(openid) VALUES (#{openid,jdbcType=VARCHAR})
-    </insert>
 
-
-    <select id="getUserByUserId"  resultMap="User">
-        SELECT user_id,user_name,openid,user_tel,user_sex,user_authority,userImage_url
-        FROM user_message WHERE user_id = #{userId,jdbcType=INTEGER}
-    </select>
-
-    <select id="getUserByopenid" resultMap="User">
-        SELECT user_id,user_name,openid,user_tel,user_sex,user_authority,userImage_url
-        FROM user_message WHERE openid = #{openid,jdbcType=VARCHAR}
-    </select>
 
 </mapper>

@@ -21,11 +21,12 @@ public class UserController {
 
     /**
      * 登录
-     * @param code
+     * @param userTel 手机号
+     * @param userPwd 密码
      * @return
      */
     @PostMapping("/login")
-    public UniversalResponseBody<TokenPO> userLogin(String code){
+    public UniversalResponseBody<TokenPO> userLogin(String userTel,String userPwd){
         return null;
     }
 

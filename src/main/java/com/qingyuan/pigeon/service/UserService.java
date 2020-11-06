@@ -12,8 +12,9 @@ public interface UserService {
 
     /**
      * 用户登录
-     * @param code
+     * @param userTel 用户电话
+     * @param userPwd 用户密码
      * @return
      */
-    public UniversalResponseBody<TokenPO> userLogin(String code);
+    public UniversalResponseBody<TokenPO> userLogin(String userTel,String userPwd);
 }

@@ -46,15 +46,16 @@ public class Task {
      */
     private Integer taskStatusId;
 
+    //经纬度的定义字段类型使用 decimal(10,6) ， 在Java 中映射成Double.
     /**
-     * 签到经度
+     * 签到经度  一共10位，小数点后有6位
      */
-    private String checkLongitude;
+    private Double checkLongitude;
 
     /**
-     * 签到纬度
+     * 签到纬度 一共10位，小数点后有6位
      */
-    private String checkLatitude;
+    private Double checkLatitude;
 
     /**
      * 任务类型

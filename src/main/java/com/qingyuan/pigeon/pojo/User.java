@@ -16,11 +16,6 @@ public class User {
     private Integer userId;
 
     /**
-     * openid
-     */
-    private String openid;
-
-    /**
      * 用户名
      */
     private String userName;
@@ -42,11 +37,8 @@ public class User {
 
 
     /**
-     * 用户分数
+     * 用户鸽子蛋数量
      */
-   private Integer userScore;
+   private Integer pigeonEggCounts;
 
-    public User(String openid) {
-        this.openid = openid;
-    }
 }

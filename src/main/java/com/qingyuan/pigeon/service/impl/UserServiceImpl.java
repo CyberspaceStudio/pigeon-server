@@ -58,4 +58,17 @@ public class UserServiceImpl implements UserService {
         }
         return new UniversalResponseBody<String>(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
     }
+
+    @Override
+    public UniversalResponseBody checkVerificationCode(String userTel, String code) {
+        // 通过手机号获取验证码
+        String verifyCode = redisUtil.getValue("user-verifyCode-" + userTel);
+
+        // 校验验证码
+        if (verifyCode.equals(code)) {
+            return new UniversalResponseBody(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
+        }
+
+        return new UniversalResponseBody(ResponseResultEnum.VERITY_CODE_EXPIRED_OR_INCORRECT.getCode(), ResponseResultEnum.VERITY_CODE_EXPIRED_OR_INCORRECT.getMsg());
+    }
 }

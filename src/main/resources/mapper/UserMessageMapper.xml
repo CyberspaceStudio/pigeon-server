@@ -7,7 +7,7 @@
         <result column="user_tel" property="userTel" jdbcType="VARCHAR"/>
         <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
         <result column="userImage_url" property="userImageUrl" jdbcType="VARCHAR"/>
-        <result column="pigeonEgg_counts" property="pigeonEggCounts" jdbcType="INTEGER"/>
+        <result column="pigeonEgg_counts" property="pigeonEggCount" jdbcType="INTEGER"/>
     </resultMap>
 
 

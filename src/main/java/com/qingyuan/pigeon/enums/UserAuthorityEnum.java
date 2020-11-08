@@ -5,19 +5,43 @@ package com.qingyuan.pigeon.enums;
  * @author 24605
  */
 public enum UserAuthorityEnum {
-    ADMIN(0,"管理员");
+    SUPPER_ADMIN(0,"超级管理员"),
+    TEAM_LEADER(1,"队长"),
+    TEAM_ADMIN(2,"管理员"),
+    TEAM_MEMBER(3,"团队成员");
 
     /**
      * 用户权限id
      */
-    private Integer UserAuthorityId;
+    private Integer userAuthorityId;
 
 
-    private String UserAuthority;
+    /**
+     * 用户权限
+     */
+    private String userAuthority;
 
 
-    UserAuthorityEnum(Integer UserAuthorityId, String UserAuthority) {
-        UserAuthorityId = UserAuthorityId;
-        UserAuthority = UserAuthority;
+    UserAuthorityEnum(Integer userAuthorityId, String userAuthority) {
+        this.userAuthorityId= userAuthorityId;
+        this.userAuthority = userAuthority;
+    }
+
+
+    public Integer getUserAuthorityId() {
+        return userAuthorityId;
+    }
+
+    public void setUserAuthorityId(Integer userAuthorityId) {
+        this.userAuthorityId = userAuthorityId;
+    }
+
+    public String getUserAuthority() {
+        return userAuthority;
+    }
+
+    public void setUserAuthority(String userAuthority) {
+        this.userAuthority = userAuthority;
     }
 }
+

@@ -16,5 +16,12 @@ public interface UserService {
      * @param userPwd 用户密码
      * @return
      */
-    public UniversalResponseBody<TokenPO> userLogin(String userTel,String userPwd);
+    UniversalResponseBody<TokenPO> userLogin(String userTel,String userPwd);
+
+    /**
+     * 发送验证码
+     * @param userTel
+     * @return
+     */
+    UniversalResponseBody<String> sendVerificationCode(String userTel);
 }

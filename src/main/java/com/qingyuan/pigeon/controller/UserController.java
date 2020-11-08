@@ -2,12 +2,16 @@ package com.qingyuan.pigeon.controller;
 
 import com.qingyuan.pigeon.pojo.PO.TokenPO;
 import com.qingyuan.pigeon.pojo.User;
+import com.qingyuan.pigeon.service.UserService;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.annotation.Resource;
 
 /**
  * 用户相关接口
@@ -18,6 +22,23 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+
+    @Resource
+    @Qualifier("userServiceImpl")
+    private UserService userService;
+
+    /**
+     * 用户注册
+     * @param userTel
+     * @param userPwd
+     * @return
+     */
+    @PostMapping("/register")
+    public UniversalResponseBody<User> userRegister(String userTel,String userPwd){
+        return null;
+    }
+
 
     /**
      * 登录
@@ -58,6 +79,28 @@ public class UserController {
      */
     @PostMapping("/avatar")
     public UniversalResponseBody<String> updateUserAvatar(MultipartFile multipartFile,Integer userId){
+        return null;
+    }
+
+
+    /**
+     * 发送验证码
+     * @param userTel
+     * @return
+     */
+    @PostMapping("/verifycode/send")
+    public UniversalResponseBody sendVerificationCode(String userTel){
+        return userService.sendVerificationCode(userTel);
+    }
+
+    /**
+     * 校验验证码
+     * @param userTel
+     * @param code
+     * @return
+     */
+    @PostMapping("/verifycode/check")
+    public UniversalResponseBody checkVerificationCode(String userTel,String code){
         return null;
     }
 }

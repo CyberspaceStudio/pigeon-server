@@ -3,6 +3,8 @@ package com.qingyuan.pigeon.pojo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * 任务
  * @program: pigeon_server
@@ -14,51 +16,67 @@ public class Task {
 
 
     /**
-     * 任务id
+     * 任务id(数据库自动递增生成)
      */
     private Integer taskId;
 
     /**
+     * 任务名称
+     */
+    private String taskName;
+
+    /**
+     * 所属团队id
+     */
+    private Integer teamId;
+
+    /**
      * 任务人数下限
      */
-    private Integer taskCountMin;
+    private Integer memberCountMin;
 
     /**
      * 任务人数上限
      */
-    private Integer taskCountMax;
+    private Integer memberCountMax;
+
+
+    /**
+     * 任务活动地点
+     */
+    private String taskActivityLocation;
 
     /**
      * 任务开始时间
      */
     @JsonFormat(locale = "yyyy-MM-dd HH:mm")
-    private String taskStartTime;
+    private Date taskStartTime;
 
     /**
      * 任务结束时间
      */
     @JsonFormat(locale = "yyyy-MM-dd HH:mm")
-    private String taskEndTime;
+    private Date taskEndTime;
 
 
     /**
-     * 任务状态
+     * 任务状态(此项在插入数据库时会默认为0即创建完成)
      */
     private Integer taskStatusId;
 
-    //经纬度的定义字段类型使用 decimal(10,6) ， 在Java 中映射成Double.
+    //经纬度的定义字段类型使用 decimal(10,7) ， 在Java 中映射成Double.
     /**
-     * 签到经度  一共10位，小数点后有6位
+     * 签到经度  一共10位，小数点后有7位
      */
     private Double checkLongitude;
 
     /**
-     * 签到纬度 一共10位，小数点后有6位
+     * 签到纬度 一共10位，小数点后有7位
      */
     private Double checkLatitude;
 
     /**
      * 任务类型
      */
-    private String taskType;
+    private String activityType;
 }

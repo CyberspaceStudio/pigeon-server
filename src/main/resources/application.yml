@@ -2,16 +2,36 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com/qingyuan/course.pojo
 
-wx:
-  appid: wx6b1087ac6340c5cb
-  secret: 97466ec125a4ee8bf7193818906f547e
-  templateId:
-  url: https://api.weixin.qq.com/sns/jscode2session?appid=${wx.appid}&secret=${wx.secret}&grant_type=authorization_code&js_code=
+aliyun:
+  verifyCodeTemplateCode: SMS_205431840
+  SignName: 鸽子窝
+  accessKeySecret: VZEiKwqQnYtvK9up6FdUOolgeRdLbx
+  accessKeyId: LTAI4FtHHhFxRXNGn8EGCY4r
 
 spring:
+  profiles:
+    active: dev
   datasource:
     username: root
-    password: shumaosha2
-    url: jdbc:mysql://127.0.0.1:3306/course_test?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    password: Gzsnb@666
+    url: jdbc:mysql://39.96.114.221:3306/pigeon?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
-
+  redis:
+    database: 0
+    password: Gzsnb@666
+    host: 39.96.114.221
+---
+spring:
+  profiles: release
+logging:
+  file:
+    name: ./a-pigeon/pigeon.log
+---
+spring:
+  profiles: dev
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java #重启目录
+      exclude: WEB-INF/**
+---

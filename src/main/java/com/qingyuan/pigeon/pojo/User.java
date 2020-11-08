@@ -11,7 +11,7 @@ import lombok.Data;
 public class User {
 
     /**
-     * 用户id
+     * 用户id(数据库自动递增生成)
      */
     private Integer userId;
 
@@ -39,6 +39,6 @@ public class User {
     /**
      * 用户鸽子蛋数量
      */
-   private Integer pigeonEggCounts;
+   private Integer pigeonEggCount;
 
 }

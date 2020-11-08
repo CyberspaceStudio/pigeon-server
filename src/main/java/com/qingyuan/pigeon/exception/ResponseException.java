@@ -1,4 +1,4 @@
-package com.qingyuan.pigeon.utils;
+package com.qingyuan.pigeon.exception;
 
 /**
  * @author 郭树耸

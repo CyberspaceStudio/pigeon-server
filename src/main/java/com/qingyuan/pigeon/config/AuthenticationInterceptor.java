@@ -2,12 +2,12 @@ package com.qingyuan.pigeon.config;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTDecodeException;
-import com.qingyuan.course.utils.ResponseException;
 import com.qingyuan.pigeon.annoation.PassToken;
 import com.qingyuan.pigeon.annoation.UserLogin;
 import com.qingyuan.pigeon.enums.ResponseResultEnum;
 import com.qingyuan.pigeon.mapper.UserMessageMapper;
 import com.qingyuan.pigeon.pojo.User;
+import com.qingyuan.pigeon.exception.ResponseException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;

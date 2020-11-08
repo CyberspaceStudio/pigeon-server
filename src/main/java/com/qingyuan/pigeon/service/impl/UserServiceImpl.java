@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
         randomInt += 100000;
         String verifyCode  = String.valueOf(randomInt);
         try{
-            if(!redisUtil.getAndSet("user-verifyCode-"+userTel, verifyCode)){
+            if(!redisUtil.getAndSetByTime("user-verifyCode-"+userTel, verifyCode,5*60)){
                 return new UniversalResponseBody<String>(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
             }
             if(messageUtil.sendVerifyCode(userTel,verifyCode)){

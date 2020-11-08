@@ -30,7 +30,25 @@ public class RedisUtil{
     public boolean setValue(String key, String value) {
         boolean result = false;
         try {
-            stringRedisTemplate.opsForValue().set(key, value,2*60, TimeUnit.SECONDS);
+            stringRedisTemplate.opsForValue().set(key, value);
+            result = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * 设置缓存
+     *
+     * @param key
+     * @param value
+     * @return
+     */
+    public boolean setValueByTime(String key, String value) {
+        boolean result = false;
+        try {
+            stringRedisTemplate.opsForValue().set(key, value,5*60, TimeUnit.SECONDS);
             result = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,12 +66,30 @@ public class RedisUtil{
     }
 
     /**
+     * 更新缓存并设置过期时间(单位:秒)
+     * @param key
+     * @param value
+     * @param times
+     * @return
+     */
+    public boolean getAndSetByTime(String key, String value,Integer times) {
+        boolean result = false;
+        try {
+            stringRedisTemplate.opsForValue().set(key, value,times, TimeUnit.SECONDS);
+            result = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
      * 更新缓存
      */
     public boolean getAndSet(String key, String value) {
         boolean result = false;
         try {
-            stringRedisTemplate.opsForValue().set(key, value,2*60, TimeUnit.SECONDS);
+            stringRedisTemplate.opsForValue().set(key, value);
             result = true;
         } catch (Exception e) {
             e.printStackTrace();

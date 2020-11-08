@@ -100,7 +100,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/verifycode/check")
-    public UniversalResponseBody checkVerificationCode(String userTel,String code){
-        return null;
+    public UniversalResponseBody checkVerificationCode(String userTel,String code) {
+        return userService.checkVerificationCode(userTel, code);
     }
 }

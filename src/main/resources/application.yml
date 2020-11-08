@@ -9,8 +9,6 @@ aliyun:
   accessKeyId: LTAI4FtHHhFxRXNGn8EGCY4r
 
 spring:
-  profiles:
-    active: dev
   datasource:
     username: root
     password: Gzsnb@666
@@ -20,18 +18,6 @@ spring:
     database: 0
     password: Gzsnb@666
     host: 39.96.114.221
----
-spring:
-  profiles: release
 logging:
   file:
     name: ./a-pigeon/pigeon.log
----
-spring:
-  profiles: dev
-  devtools:
-    restart:
-      enabled: true
-      additional-paths: src/main/java #重启目录
-      exclude: WEB-INF/**
----

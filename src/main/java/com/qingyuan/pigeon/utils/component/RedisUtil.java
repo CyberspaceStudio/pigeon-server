@@ -5,6 +5,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Redis操作工具类
@@ -29,7 +30,7 @@ public class RedisUtil{
     public boolean setValue(String key, String value) {
         boolean result = false;
         try {
-            stringRedisTemplate.opsForValue().set(String.valueOf(key), value);
+            stringRedisTemplate.opsForValue().set(key, value,2*60, TimeUnit.SECONDS);
             result = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,7 +53,7 @@ public class RedisUtil{
     public boolean getAndSet(String key, String value) {
         boolean result = false;
         try {
-            stringRedisTemplate.opsForValue().getAndSet(key, value);
+            stringRedisTemplate.opsForValue().set(key, value,2*60, TimeUnit.SECONDS);
             result = true;
         } catch (Exception e) {
             e.printStackTrace();

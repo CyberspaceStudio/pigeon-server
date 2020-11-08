@@ -8,5 +8,5 @@ ADD target/pigeon-0.0.1-SNAPSHOT.jar app.jar
 ## 声明服务运行在8080端口
 EXPOSE 8080
 ## 指定docker容器启动时运行jar包
-ENTRYPOINT ["nohup","java","-jar","/app.jar" ,"-spring.profiles.active=release"]
+ENTRYPOINT ["nohup","java","-jar","/app.jar"]
 

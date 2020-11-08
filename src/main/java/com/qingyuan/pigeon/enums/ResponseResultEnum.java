@@ -22,7 +22,6 @@ public enum ResponseResultEnum {
     USER_LOGIN_ERROR(0, "账号不存在或密码错误"),
     USER_NO_TOKEN(0, "用户token为空"),
     USER_NO_PERMISSION(0, "用户权限不足"),
-    CODE_IS_INVALID(0, "code无效"),
     USER_LOGIN_SUCCESS(1, "登录成功");
 
 

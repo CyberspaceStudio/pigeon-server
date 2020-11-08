@@ -27,7 +27,7 @@ public class MessageUtil {
 
     private static final String accessKeySecret = "VZEiKwqQnYtvK9up6FdUOolgeRdLbx";
 
-    private static final String verifyCodeTemplateCode = "SMS_205431840";
+    private static final String verifyCodeTemplateCode = "SMS_205436878";
 
     private static final String Domain = "dysmsapi.aliyuncs.com";
 

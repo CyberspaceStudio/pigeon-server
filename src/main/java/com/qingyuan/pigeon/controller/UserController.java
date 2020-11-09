@@ -72,7 +72,7 @@ public class UserController {
     }
 
     /**
-     * 更新用户头像
+     * 上传用户头像
      * @param multipartFile
      * @param userId
      * @return 用户头像路径

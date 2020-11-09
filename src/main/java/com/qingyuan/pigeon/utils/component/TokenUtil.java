@@ -20,7 +20,7 @@ public class TokenUtil {
      * @param userId
      * @return
      */
-    public String TokenByUserId(Integer userId) {
+    public  String tokenByUserId(Integer userId) {
         String token = "";
         /**
          * Algorithm.HMAC256():使用HS256生成token,密钥则是用户的密码，唯一密钥的话可以保存在服务端。
@@ -32,15 +32,4 @@ public class TokenUtil {
         return token;
     }
 
-    public String tokenByDepartmentId(Integer departmentId) {
-        String token = "";
-        /**
-         * Algorithm.HMAC256():使用HS256生成token,密钥则是用户的密码，唯一密钥的话可以保存在服务端。
-         * withAudience()存入需要保存在token的信息，这里我把用户ID存入token中
-         * 小程序登录没有密码
-         */
-        token = JWT.create().withAudience(String.valueOf(departmentId))
-                .sign(Algorithm.HMAC256(String.valueOf(departmentId)));
-        return token;
-    }
 }

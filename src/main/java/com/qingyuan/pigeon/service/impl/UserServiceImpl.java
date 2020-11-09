@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
         String verifyCode = redisUtil.getValue("user-verifyCode-" + userTel);
 
         // 校验验证码
-        if (verifyCode.equals(code)) {
+        if (verifyCode!=null &&verifyCode.equals(code)) {
             return new UniversalResponseBody(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
         }
 

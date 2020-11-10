@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * 用户相关接口
@@ -29,6 +31,7 @@ public class UserController {
      * @param userTel
      * @param userPwd
      * @return
+     * @apiNote 已上线
      */
     @PostMapping("/register")
     public UniversalResponseBody<TokenPO> userRegister(String userTel,String userPwd){
@@ -40,27 +43,29 @@ public class UserController {
      * @param userTel 手机号
      * @param userPwd 密码
      * @return
+     * @apiNote 已上线
      */
     @PostMapping("/login")
     public UniversalResponseBody<TokenPO> userLogin(String userTel,String userPwd){
-        return null;
+        return userService.userLogin(userTel,userPwd);
     }
 
     /**
      * 更新用户信息
      * @param user
      * @return
-     * @apiNote 此接口不更新用户的userImageUrl的值,更新用户头像请调用更新用户头像的接口
+     * @apiNote 已上线,此接口不更新用户的userImageUrl的值,更新用户头像请调用更新用户头像的接口
      */
     @PostMapping("/message")
     public UniversalResponseBody<User> updateUserMessage(User user){
-        return null;
+        return userService.updateUserMessage(user);
     }
 
     /**
      * 通过id获取用户信息
      * @param userId 用户id
      * @return
+     * @apiNote 已上线
      */
     @GetMapping("/message/id")
     public UniversalResponseBody<User> getUserMessageById(Integer userId){
@@ -71,6 +76,7 @@ public class UserController {
      * 通过手机号获取用户信息
      * @param userTel
      * @return
+     * @apiNote 已上线
      */
     @GetMapping("/message/tel")
     public UniversalResponseBody<User> getUserMessageByTel(String userTel){
@@ -82,7 +88,7 @@ public class UserController {
      * @param multipartFile
      * @param userId
      * @return 用户头像路径
-     * @apiNote 图片最大为5MB, 默认用户头像为https://minimalist.net.cn/image-pigeon/user-avatar/default.png
+     * @apiNote 已上线,图片最大为5MB, 默认用户头像为https://minimalist.net.cn/image-pigeon/user-avatar/default.png
      */
     @PostMapping("/avatar")
     public UniversalResponseBody<String> updateUserAvatar(MultipartFile multipartFile,Integer userId){
@@ -94,6 +100,7 @@ public class UserController {
      * 发送验证码
      * @param userTel
      * @return
+     * @apiNote 已上线
      */
     @PostMapping("/verifycode/send")
     public UniversalResponseBody sendVerificationCode(String userTel){
@@ -105,6 +112,7 @@ public class UserController {
      * @param userTel
      * @param code
      * @return
+     * @apiNote 已上线
      */
     @PostMapping("/verifycode/check")
     public UniversalResponseBody checkVerificationCode(String userTel,String code) {

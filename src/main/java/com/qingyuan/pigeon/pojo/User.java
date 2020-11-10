@@ -45,4 +45,9 @@ public class User {
      * 用户密码
      */
     private String userPwd;
+
+    /**
+     * 个性签名
+     */
+    private String userIntroduction;
 }

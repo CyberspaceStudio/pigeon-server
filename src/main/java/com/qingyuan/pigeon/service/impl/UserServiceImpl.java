@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.io.File;
-import java.nio.file.Paths;
 import java.util.Random;
 
 /**
@@ -46,7 +45,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UniversalResponseBody<TokenPO> userLogin(String userTel, String userPwd) {
-        return null;
+        User userByTel = userMessageMapper.getUserByTel(userTel);
+        try{
+            // 输入的userPwd加密
+            String userPwdEncode = passwordEncodeUtil.encodeByMD5(userPwd);
+            System.out.println(userPwd + userTel);
+            if (userByTel == null  || !userPwdEncode.equals(userByTel.getUserPwd())){
+                return new UniversalResponseBody<>(ResponseResultEnum.USER_LOGIN_ERROR.getCode(),ResponseResultEnum.USER_LOGIN_ERROR.getMsg());
+            }else{
+                TokenPO tokenPO = new TokenPO(tokenUtil.tokenByUserId(userByTel.getUserId()),userByTel);
+                return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(),tokenPO);
+            }
+        }catch (Exception e){
+            return  new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+        }
     }
 
     @Override
@@ -97,13 +109,15 @@ public class UserServiceImpl implements UserService {
         user.setUserImageUrl(DEFAULT_USER_IMAGE_URL);
         user.setUserName("pigeon_" + generateUsernameUtil.generateUsername());
         try {
+            //加密密码
             user.setUserPwd(passwordEncodeUtil.encodeByMD5(userPwd));
         } catch (Exception e) {
             return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
         }
-
+        //插入用户
         int affectedRow = userMessageMapper.insertUser(user);
         if (affectedRow > 0) {
+            //生成token,并和user包装成TokenPO对象
             TokenPO tokenPO = new TokenPO(tokenUtil.tokenByUserId(user.getUserId()), user);
             return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), tokenPO);
         }
@@ -117,9 +131,7 @@ public class UserServiceImpl implements UserService {
             return new UniversalResponseBody<User>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(),user);
         }else{
             return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
-
         }
-
     }
 
     @Override
@@ -129,7 +141,6 @@ public class UserServiceImpl implements UserService {
             return new UniversalResponseBody<User>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(),user);
         }else{
             return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
-
         }
     }
 
@@ -148,5 +159,22 @@ public class UserServiceImpl implements UserService {
         userMessageMapper.updateUserImageUrl(imageUrl,userId);
         log.info("用户上传头像，访问路径为" + imageUrl);
         return new UniversalResponseBody<String>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(),imageUrl);
+    }
+
+    @Override
+    public UniversalResponseBody<User> updateUserMessage(User user) {
+        if(user.getUserId() ==null){
+            log.error("更新用户信息时,userId为空"+ user.toString());
+            return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
+        }
+        int result = userMessageMapper.updateUserMessage(user);
+        try {
+            if (result>=0) {
+                return new UniversalResponseBody(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
     }
 }

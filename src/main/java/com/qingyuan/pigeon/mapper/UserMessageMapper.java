@@ -41,4 +41,11 @@ public interface UserMessageMapper {
      * @return
      */
     int updateUserImageUrl(String userImageUrl,Integer userId);
+
+    /**
+     * 更新用户信息
+     * @param user
+     * @return
+     */
+    int updateUserMessage(User user);
 }

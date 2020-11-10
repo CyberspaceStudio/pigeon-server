@@ -9,6 +9,7 @@
         <result column="userImage_url" property="userImageUrl" jdbcType="VARCHAR"/>
         <result column="pigeonEgg_count" property="pigeonEggCount" jdbcType="INTEGER"/>
         <result column="user_pwd" property="userPwd" jdbcType="VARCHAR"/>
+        <result column="user_introduction" property="userIntroduction" jdbcType="VARCHAR"/>
     </resultMap>
 
     <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="userId">
@@ -35,6 +36,9 @@
             <if test="userPwd != null">
                 user_pwd,
             </if>
+            <if test="userIntroduction!=null">
+                user_introduction
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="userId != null">
@@ -58,6 +62,9 @@
             <if test="userPwd != null">
                 #{userPwd,jdbcType=VARCHAR},
             </if>
+            <if test="userIntroduction!=null">
+                #{userIntroduction,jdbcType=VARCHAR}
+            </if>
         </trim>
     </insert>
     <update id="updateUserImageUrl">
@@ -66,14 +73,31 @@
     </update>
 
     <select id="getUserByTel" parameterType="java.lang.String" resultMap="User">
-        select user_id,user_name,user_tel,user_sex,userImage_url,pigeonEgg_count,user_pwd
+        select user_id,user_name,user_tel,user_sex,userImage_url,pigeonEgg_count,user_pwd,user_introduction
         from pigeon.user
         where user_tel = #{userTel,jdbcType=VARCHAR}
     </select>
     <select id="getUserById" resultType="com.qingyuan.pigeon.pojo.User" resultMap="User">
-        select user_id,user_name,user_tel,user_sex,userImage_url,pigeonEgg_count,user_pwd
+        select user_id,user_name,user_tel,user_sex,userImage_url,pigeonEgg_count,user_pwd,user_introduction
         from pigeon.user
         where user_id = #{userId,jdbcType=INTEGER}
     </select>
+
+    <update id="updateUserMessage">
+    UPDATE user SET
+    <if test="userName!=null">
+        user_name =#{userName},
+    </if>
+    <if test="userTel!=null">
+        user_tel =#{userTel},
+    </if>
+    <if test="userSex!=null">
+        user_sex =#{userSex},
+    </if>
+    <if test="userIntroduction!=null">
+        user_introduction = #{userIntroduction}
+    </if>
+    WHERE user_id =#{userId}
+    </update>
 
 </mapper>

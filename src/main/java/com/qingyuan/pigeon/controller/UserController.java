@@ -59,11 +59,11 @@ public class UserController {
 
     /**
      * 通过id获取用户信息
-     * @param userId
+     * @param userId 用户id
      * @return
      */
     @GetMapping("/message/{id}")
-    public UniversalResponseBody<User> getUserMessageById(@PathVariable Integer userId){
+    public UniversalResponseBody<User> getUserMessageById(@PathVariable("id")Integer userId){
         return userService.getUserMessageById(userId);
     }
 

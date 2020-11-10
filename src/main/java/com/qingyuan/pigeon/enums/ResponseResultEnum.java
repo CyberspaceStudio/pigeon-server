@@ -17,12 +17,17 @@ public enum ResponseResultEnum {
     PARAM_IS_BLANK(0, "参数为空"),
     PARAM_TYPE_BIND_ERROR(0, "参数类型错误"),
     /**
-     * 用户错误
+     * 登录注册错误
      */
     USER_LOGIN_ERROR(0, "账号不存在或密码错误"),
+<<<<<<< HEAD
     USER_NO_TOKEN(0, "用户token为空"),
     USER_NO_PERMISSION(0, "用户权限 不足"),
     USER_LOGIN_SUCCESS(1, "登录成功"),
+=======
+    USER_NO_TOKEN(0, "登录失效,请重新登录"),
+    USER_NO_PERMISSION(0, "用户权限不足"),
+>>>>>>> e3b30d588096fb55ec2fe22f0eabaa0cee0fd388
     VERITY_CODE_EXPIRED_OR_INCORRECT(0, "验证码不正确或已失效");
 
 

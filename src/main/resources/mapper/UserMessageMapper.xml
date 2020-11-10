@@ -76,4 +76,13 @@
         where user_id = #{userId,jdbcType=INTEGER}
     </select>
 
+    <update id="updateUserMessage">
+    UPDATE User
+    SET user_name=#{userName},
+    user_tel=#{userTel},
+    user_sex=#{userSex},
+    pigeonEgg_counts=#{pegionEggCounts}
+    WHERE user_id=#{userId}
+    </update>
+
 </mapper>

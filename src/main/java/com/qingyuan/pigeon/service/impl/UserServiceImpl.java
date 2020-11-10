@@ -40,8 +40,9 @@ public class UserServiceImpl implements UserService {
     @Resource
     private GenerateUsernameUtil generateUsernameUtil;
 
-    private static final String USER_AVATAR_DIR_PATH = "./a-pigeon/image-pigeon/user-avatar/";
+    private static final String USER_AVATAR_DIR_PATH = "/a-pigeon/image-pigeon/user-avatar/";
     private static  final String USER_IMAGE_URL = "https://minimalist.net.cn/image-pigeon/user-avatar/";
+    private static  final String DEFAULT_USER_IMAGE_URL = "https://minimalist.net.cn/image-pigeon/user-avatar/default.png";
 
     @Override
     public UniversalResponseBody<TokenPO> userLogin(String userTel, String userPwd) {
@@ -93,6 +94,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setUserTel(userTel);
         user.setPigeonEggCount(0);
+        user.setUserImageUrl(DEFAULT_USER_IMAGE_URL);
         user.setUserName("pigeon_" + generateUsernameUtil.generateUsername());
         try {
             user.setUserPwd(passwordEncodeUtil.encodeByMD5(userPwd));

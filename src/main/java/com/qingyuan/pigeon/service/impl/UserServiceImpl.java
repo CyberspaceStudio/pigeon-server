@@ -102,4 +102,16 @@ public class UserServiceImpl implements UserService {
         }
         return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
     }
+
+    @Override
+    public UniversalResponseBody<User> getUserMessageById(Integer userId) {
+        User user = userMessageMapper.getUserById(userId);
+        if (user != null){
+            return new UniversalResponseBody<User>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(),user);
+        }else{
+            return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+
+        }
+
+    }
 }

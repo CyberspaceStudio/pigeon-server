@@ -2,6 +2,7 @@ package com.qingyuan.pigeon.service;
 
 
 import com.qingyuan.pigeon.pojo.PO.TokenPO;
+import com.qingyuan.pigeon.pojo.User;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
 
 import java.security.NoSuchAlgorithmException;
@@ -46,4 +47,11 @@ public interface UserService {
      * @return
      */
     UniversalResponseBody<TokenPO> userRegister(String userTel, String userPwd);
+
+    /**
+     * 根据id获取用户信息
+     * @param userId
+     * @return
+     */
+    UniversalResponseBody<User> getUserMessageById(Integer userId);
 }

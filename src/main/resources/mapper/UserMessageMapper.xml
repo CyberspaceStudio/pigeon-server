@@ -66,5 +66,10 @@
         from pigeon.user
         where user_tel = #{userTel,jdbcType=VARCHAR}
     </select>
+    <select id="getUserById" resultType="com.qingyuan.pigeon.pojo.User" resultMap="User">
+        select user_id,user_name,user_tel,user_sex,userImage_url,pigeonEgg_count,user_pwd
+        from pigeon.user
+        where user_id = #{userId,jdbcType=INTEGER}
+    </select>
 
 </mapper>

@@ -147,4 +147,16 @@ public class UserServiceImpl implements UserService {
         log.info("用户上传头像，访问路径为" + imageUrl);
         return new UniversalResponseBody<String>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(),imageUrl);
     }
+
+    @Override
+    public UniversalResponseBody<User> updateUserMessage(User user) {
+        Integer result = userMessageMapper.updateUserMessage(user);
+        try {
+            if (result<0){
+                return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
+            }}catch (Exception e){
+            e.printStackTrace();
+        }
+        return new UniversalResponseBody(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
+    }
 }

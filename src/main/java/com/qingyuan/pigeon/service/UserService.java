@@ -4,6 +4,7 @@ package com.qingyuan.pigeon.service;
 import com.qingyuan.pigeon.pojo.PO.TokenPO;
 import com.qingyuan.pigeon.pojo.User;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.security.NoSuchAlgorithmException;
@@ -70,4 +71,12 @@ public interface UserService {
      * @return
      */
     UniversalResponseBody<String> updateUserAvatar(MultipartFile multipartFile, Integer userId);
+
+    /**
+     * 更新用户信息
+     * @param user
+     * @return
+     * @apiNote 此接口不更新用户的userImageUrl的值,更新用户头像请调用更新用户头像的接口
+     */
+    UniversalResponseBody<User> updateUserMessage(User user);
 }

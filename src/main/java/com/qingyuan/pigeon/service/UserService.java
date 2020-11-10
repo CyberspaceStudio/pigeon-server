@@ -7,6 +7,7 @@ import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
 /**

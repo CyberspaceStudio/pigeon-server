@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * 用户相关接口
@@ -43,7 +45,7 @@ public class UserController {
      */
     @PostMapping("/login")
     public UniversalResponseBody<TokenPO> userLogin(String userTel,String userPwd){
-        return null;
+        return userService.userLogin(userTel,userPwd);
     }
 
     /**

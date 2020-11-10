@@ -8,13 +8,16 @@ import com.qingyuan.pigeon.service.UserService;
 import com.qingyuan.pigeon.utils.component.*;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import lombok.extern.slf4j.Slf4j;
+import org.graalvm.compiler.lir.LIRInstruction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.nio.file.Paths;
+import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
 /**
@@ -46,7 +49,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UniversalResponseBody<TokenPO> userLogin(String userTel, String userPwd) {
-        return null;
+        User userByTel = userMessageMapper.getUserByTel(userTel);
+        try{
+            // 输入的userPwd加密
+            String userPwdEncode = passwordEncodeUtil.encodeByMD5(userPwd);
+            if (!userPwdEncode.equals(userByTel.getUserPwd())){
+                return new UniversalResponseBody<>(ResponseResultEnum.USER_LOGIN_ERROR.getCode(),ResponseResultEnum.USER_LOGIN_ERROR.getMsg());
+            }else{
+                TokenPO tokenPO = new TokenPO(tokenUtil.tokenByUserId(userByTel.getUserId()),userByTel);
+                return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(),tokenPO);
+            }
+        }catch (Exception e){
+            return  new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+        }
     }
 
     @Override

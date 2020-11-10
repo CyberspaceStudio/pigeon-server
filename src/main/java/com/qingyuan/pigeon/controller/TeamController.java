@@ -72,7 +72,7 @@ public class TeamController {
     /**
      * 上传团队头像
      * @param multipartFile
-     * @param userId
+     * @param teamId
      * @return 团队头像路径
      */
     @PostMapping("/avatar")

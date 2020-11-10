@@ -50,6 +50,7 @@ public class UserController {
      * 更新用户信息
      * @param user
      * @return
+     * @apiNote 此接口不更新用户的userImageUrl的值,更新用户头像请调用更新用户头像的接口
      */
     @PostMapping("/message")
     public UniversalResponseBody<User> updateUserMessage(User user){
@@ -61,9 +62,19 @@ public class UserController {
      * @param userId 用户id
      * @return
      */
-    @GetMapping("/message")
+    @GetMapping("/message/id")
     public UniversalResponseBody<User> getUserMessageById(Integer userId){
         return userService.getUserMessageById(userId);
+    }
+
+    /**
+     * 通过手机号获取用户信息
+     * @param userTel
+     * @return
+     */
+    @GetMapping("/message/tel")
+    public UniversalResponseBody<User> getUserMessageByTel(String userTel){
+        return userService.getUserMessageByTel(userTel);
     }
 
     /**
@@ -71,10 +82,11 @@ public class UserController {
      * @param multipartFile
      * @param userId
      * @return 用户头像路径
+     * @apiNote 图片最大为5MB, 默认用户头像为https://minimalist.net.cn/image-pigeon/user-avatar/default.png
      */
     @PostMapping("/avatar")
     public UniversalResponseBody<String> updateUserAvatar(MultipartFile multipartFile,Integer userId){
-        return null;
+        return userService.updateUserAvatar(multipartFile,userId);
     }
 
 

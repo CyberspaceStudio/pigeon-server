@@ -10,8 +10,11 @@ import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.Random;
 
 /**
@@ -36,6 +39,9 @@ public class UserServiceImpl implements UserService {
     private PasswordEncodeUtil passwordEncodeUtil;
     @Resource
     private GenerateUsernameUtil generateUsernameUtil;
+
+    private static final String USER_AVATAR_DIR_PATH = "./a-pigeon/image-pigeon/user-avatar/";
+    private static  final String USER_IMAGE_URL = "https://minimalist.net.cn/image-pigeon/user-avatar/";
 
     @Override
     public UniversalResponseBody<TokenPO> userLogin(String userTel, String userPwd) {
@@ -97,7 +103,6 @@ public class UserServiceImpl implements UserService {
         int affectedRow = userMessageMapper.insertUser(user);
         if (affectedRow > 0) {
             TokenPO tokenPO = new TokenPO(tokenUtil.tokenByUserId(user.getUserId()), user);
-
             return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), tokenPO);
         }
         return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
@@ -113,5 +118,33 @@ public class UserServiceImpl implements UserService {
 
         }
 
+    }
+
+    @Override
+    public UniversalResponseBody<User> getUserMessageByTel(String userTel) {
+        User user = userMessageMapper.getUserByTel(userTel);
+        if (user != null){
+            return new UniversalResponseBody<User>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(),user);
+        }else{
+            return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+
+        }
+    }
+
+    @Override
+    public UniversalResponseBody<String> updateUserAvatar(MultipartFile multipartFile, Integer userId) {
+        String newFileName = userId + ".png";
+        String filePath = USER_AVATAR_DIR_PATH +newFileName;
+        log.info("用户上传头像,路径为"+ filePath);
+        try{
+            multipartFile.transferTo(new File(filePath));
+        }catch (Exception e){
+            e.printStackTrace();
+            return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+        }
+        String imageUrl = USER_IMAGE_URL + newFileName;
+        userMessageMapper.updateUserImageUrl(imageUrl,userId);
+        log.info("用户上传头像，访问路径为" + imageUrl);
+        return new UniversalResponseBody<String>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(),imageUrl);
     }
 }

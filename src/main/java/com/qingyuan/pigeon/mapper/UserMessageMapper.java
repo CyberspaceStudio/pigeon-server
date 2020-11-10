@@ -33,4 +33,12 @@ public interface UserMessageMapper {
      */
     User getUserById(Integer userId);
 
+
+    /**
+     * 更新用户头像路径
+     * @param userImageUrl
+     * @param userId
+     * @return
+     */
+    int updateUserImageUrl(String userImageUrl,Integer userId);
 }

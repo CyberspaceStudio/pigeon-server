@@ -60,6 +60,10 @@
             </if>
         </trim>
     </insert>
+    <update id="updateUserImageUrl">
+        UPDATE user SET userImage_url = #{userImageUrl,jdbcType=VARCHAR}
+        WHERE user_id  = #{userId,jdbcType=INTEGER}
+    </update>
 
     <select id="getUserByTel" parameterType="java.lang.String" resultMap="User">
         select user_id,user_name,user_tel,user_sex,userImage_url,pigeonEgg_count,user_pwd

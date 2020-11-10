@@ -68,8 +68,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                     log.error("token解析出错,访问路径为"+request.getRequestURL());
                     throw new RuntimeException("401");
                 }
-//                User user = userMessageMapper.getUserByUserId(userId);
-                User user = null;
+                User user = userMessageMapper.getUserById(userId);
                 if (user == null) {
                     //用户不存在
                     log.error("用户不存在,访问路径为"+request.getRequestURL());

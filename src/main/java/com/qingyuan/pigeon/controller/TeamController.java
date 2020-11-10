@@ -27,10 +27,10 @@ public class TeamController {
      * 新建团队
      * @param team
      * @return
-     * @apiNote 团队头像路径==调用上传图片的接口后，得到服务器返回的路径
+     * @apiNote 此接口中teamImageUrl不用填写
      */
     @PostMapping("/create")
-    public UniversalResponseBody<Team> createTeam(Team team){
+    public UniversalResponseBody<Team> createTeam(Team team,MultipartFile multipartFile){
         return null;
     }
 
@@ -70,7 +70,7 @@ public class TeamController {
     }
 
     /**
-     * 上传团队头像
+     * 更新团队头像
      * @param multipartFile
      * @param teamId
      * @return 团队头像路径

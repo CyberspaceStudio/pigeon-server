@@ -97,13 +97,15 @@ public class UserServiceImpl implements UserService {
         user.setUserImageUrl(DEFAULT_USER_IMAGE_URL);
         user.setUserName("pigeon_" + generateUsernameUtil.generateUsername());
         try {
+            //加密密码
             user.setUserPwd(passwordEncodeUtil.encodeByMD5(userPwd));
         } catch (Exception e) {
             return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
         }
-
+        //插入用户
         int affectedRow = userMessageMapper.insertUser(user);
         if (affectedRow > 0) {
+            //生成token,并和user包装成TokenPO对象
             TokenPO tokenPO = new TokenPO(tokenUtil.tokenByUserId(user.getUserId()), user);
             return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), tokenPO);
         }
@@ -117,9 +119,7 @@ public class UserServiceImpl implements UserService {
             return new UniversalResponseBody<User>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(),user);
         }else{
             return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
-
         }
-
     }
 
     @Override
@@ -129,7 +129,6 @@ public class UserServiceImpl implements UserService {
             return new UniversalResponseBody<User>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(),user);
         }else{
             return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
-
         }
     }
 

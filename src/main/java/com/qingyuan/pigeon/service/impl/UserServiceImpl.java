@@ -152,7 +152,7 @@ public class UserServiceImpl implements UserService {
     public UniversalResponseBody<User> updateUserMessage(User user) {
         Integer result = userMessageMapper.updateUserMessage(user);
         try {
-            if (result<0){
+            if (result<0) {
                 return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
             }}catch (Exception e){
             e.printStackTrace();

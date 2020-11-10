@@ -54,7 +54,7 @@ public class UserController {
      */
     @PostMapping("/message")
     public UniversalResponseBody<User> updateUserMessage(User user){
-        return null;
+        return userService.updateUserMessage(user);
     }
 
     /**
@@ -64,7 +64,7 @@ public class UserController {
      */
     @GetMapping("/message/id")
     public UniversalResponseBody<User> getUserMessageById(Integer userId){
-        return userService.getUserMessageById(userId);
+        return null;
     }
 
     /**

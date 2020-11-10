@@ -62,8 +62,8 @@ public class UserController {
      * @param userId 用户id
      * @return
      */
-    @GetMapping("/message/{id}")
-    public UniversalResponseBody<User> getUserMessageById(@PathVariable("id")Integer userId){
+    @GetMapping("/message")
+    public UniversalResponseBody<User> getUserMessageById(Integer userId){
         return userService.getUserMessageById(userId);
     }
 

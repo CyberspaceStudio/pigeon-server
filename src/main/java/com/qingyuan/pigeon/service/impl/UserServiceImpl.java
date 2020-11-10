@@ -3,6 +3,7 @@ package com.qingyuan.pigeon.service.impl;
 import com.qingyuan.pigeon.enums.ResponseResultEnum;
 import com.qingyuan.pigeon.mapper.UserMessageMapper;
 import com.qingyuan.pigeon.pojo.PO.TokenPO;
+import com.qingyuan.pigeon.pojo.User;
 import com.qingyuan.pigeon.service.UserService;
 import com.qingyuan.pigeon.utils.component.MessageUtil;
 import com.qingyuan.pigeon.utils.component.RedisUtil;
@@ -70,5 +71,19 @@ public class UserServiceImpl implements UserService {
         }
 
         return new UniversalResponseBody(ResponseResultEnum.VERITY_CODE_EXPIRED_OR_INCORRECT.getCode(), ResponseResultEnum.VERITY_CODE_EXPIRED_OR_INCORRECT.getMsg());
+    }
+
+
+
+    @Override
+    public UniversalResponseBody<User> getUserMessageById(Integer userId) {
+        //通过id查询信息
+        User userByUserId = userMessageMapper.getUserByUserId(userId);
+        //查询失败
+        if (userByUserId==null){
+            return new UniversalResponseBody<User>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+        }
+        return new UniversalResponseBody<User>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(),userByUserId);
+
     }
 }

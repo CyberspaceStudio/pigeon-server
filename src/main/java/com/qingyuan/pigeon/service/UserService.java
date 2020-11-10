@@ -2,13 +2,14 @@ package com.qingyuan.pigeon.service;
 
 
 import com.qingyuan.pigeon.pojo.PO.TokenPO;
+import com.qingyuan.pigeon.pojo.User;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
 
 /**
  * 用户相关接口
  * @author GuoShuSong
  */
-public interface UserService {
+public interface UserService  {
 
     /**
      * 用户登录
@@ -35,4 +36,15 @@ public interface UserService {
      * @return
      */
     UniversalResponseBody checkVerificationCode(String userTel, String code);
+
+    /**
+     *通过id获取用户信息
+     *
+     * @param userId
+     * @return
+     */
+    UniversalResponseBody<User> getUserMessageById(Integer userId);
+
+
+
 }

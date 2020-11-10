@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.qingyuan.course.mapper.UserMessageMapper">
+<mapper namespace="com.qingyuan.pigeon.mapper.UserMessageMapper">
     <resultMap id="User" type="com.qingyuan.pigeon.pojo.User">
         <id column="user_id" property="userId" jdbcType="INTEGER"/>
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
@@ -9,7 +9,10 @@
         <result column="userImage_url" property="userImageUrl" jdbcType="VARCHAR"/>
         <result column="pigeonEgg_counts" property="pigeonEggCount" jdbcType="INTEGER"/>
     </resultMap>
-
-
-
+    <select id="getUserByUserId" resultType="com.qingyuan.pigeon.pojo.User" resultMap="User">
+        select user_id,user_name,user_sex,user_tel,userImage_url,pigeonEgg_count,user_pwd
+        from pigeon.user
+        where user_id = #{userId}
+    </select>
 </mapper>
+

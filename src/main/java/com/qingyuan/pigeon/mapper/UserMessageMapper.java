@@ -7,7 +7,7 @@ import com.qingyuan.pigeon.pojo.User;
  * 对应实体类:User
  * @author GuoShuSong
  */
-public interface UserMessageMapper {
+public interface UserMessageMapper  {
 
     /**
      * 根据用户id获取用户信息
@@ -15,5 +15,6 @@ public interface UserMessageMapper {
      * @return
      */
     User getUserByUserId(Integer userId);
+
 
 }

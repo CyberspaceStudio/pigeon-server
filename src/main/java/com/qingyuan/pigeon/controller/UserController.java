@@ -5,10 +5,7 @@ import com.qingyuan.pigeon.pojo.User;
 import com.qingyuan.pigeon.service.UserService;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -22,7 +19,6 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-
 
     @Resource
     @Qualifier("userServiceImpl")
@@ -62,13 +58,13 @@ public class UserController {
     }
 
     /**
-     * 获取用户信息
+     * 通过id获取用户信息
      * @param userId
      * @return
      */
-    @GetMapping("/message")
-    public UniversalResponseBody<User> getUserMessage(Integer userId){
-        return null;
+    @GetMapping("/message/{id}")
+    public UniversalResponseBody<User> getUserMessageById(@PathVariable Integer userId){
+        return userService.getUserMessageById(userId);
     }
 
     /**

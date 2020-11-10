@@ -1,6 +1,6 @@
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com/qingyuan/course.pojo
+  type-aliases-package: com/qingyuan/pigeon.pojo
 
 aliyun:
   verifyCodeTemplateCode: SMS_205431840

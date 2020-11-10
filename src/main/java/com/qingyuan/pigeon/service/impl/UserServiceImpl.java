@@ -3,13 +3,13 @@ package com.qingyuan.pigeon.service.impl;
 import com.qingyuan.pigeon.enums.ResponseResultEnum;
 import com.qingyuan.pigeon.mapper.UserMessageMapper;
 import com.qingyuan.pigeon.pojo.PO.TokenPO;
+import com.qingyuan.pigeon.pojo.User;
 import com.qingyuan.pigeon.service.UserService;
-import com.qingyuan.pigeon.utils.component.MessageUtil;
-import com.qingyuan.pigeon.utils.component.RedisUtil;
-import com.qingyuan.pigeon.utils.component.TokenUtil;
+import com.qingyuan.pigeon.utils.component.*;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Random;
@@ -27,11 +27,15 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserMessageMapper userMessageMapper;
     @Resource
-    private TokenUtil tokenutil;
+    private TokenUtil tokenUtil;
     @Resource
     private RedisUtil redisUtil;
     @Resource
     private MessageUtil messageUtil;
+    @Resource
+    private PasswordEncodeUtil passwordEncodeUtil;
+    @Resource
+    private GenerateUsernameUtil generateUsernameUtil;
 
     @Override
     public UniversalResponseBody<TokenPO> userLogin(String userTel, String userPwd) {
@@ -42,7 +46,7 @@ public class UserServiceImpl implements UserService {
     public UniversalResponseBody<String> sendVerificationCode(String userTel) {
         // 通过一定规则生成otp验证码
         Random random = new Random();
-        // 随机生成了五位数验证码(10000 ~ 99999)
+        // 随机生成了六位数验证码(100000 ~ 999999)
         int randomInt = random.nextInt(899999);
         randomInt += 100000;
         String verifyCode  = String.valueOf(randomInt);
@@ -70,5 +74,32 @@ public class UserServiceImpl implements UserService {
         }
 
         return new UniversalResponseBody(ResponseResultEnum.VERITY_CODE_EXPIRED_OR_INCORRECT.getCode(), ResponseResultEnum.VERITY_CODE_EXPIRED_OR_INCORRECT.getMsg());
+    }
+
+    @Override
+    @Transactional
+    public UniversalResponseBody<TokenPO> userRegister(String userTel, String userPwd) {
+        User userByTel = userMessageMapper.getUserByTel(userTel);
+        if (userByTel != null) {
+            return new UniversalResponseBody<>(ResponseResultEnum.USER_IS_EXISTED.getCode(), ResponseResultEnum.USER_IS_EXISTED.getMsg());
+        }
+
+        User user = new User();
+        user.setUserTel(userTel);
+        user.setPigeonEggCount(0);
+        user.setUserName("pigeon_" + generateUsernameUtil.generateUsername());
+        try {
+            user.setUserPwd(passwordEncodeUtil.encodeByMD5(userPwd));
+        } catch (Exception e) {
+            return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
+        }
+
+        int affectedRow = userMessageMapper.insertUser(user);
+        if (affectedRow > 0) {
+            TokenPO tokenPO = new TokenPO(tokenUtil.tokenByUserId(user.getUserId()), user);
+
+            return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), tokenPO);
+        }
+        return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
     }
 }

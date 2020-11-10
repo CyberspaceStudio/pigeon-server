@@ -35,10 +35,9 @@ public class UserController {
      * @return
      */
     @PostMapping("/register")
-    public UniversalResponseBody<User> userRegister(String userTel,String userPwd){
-        return null;
+    public UniversalResponseBody<TokenPO> userRegister(String userTel,String userPwd){
+        return userService.userRegister(userTel, userPwd);
     }
-
 
     /**
      * 登录

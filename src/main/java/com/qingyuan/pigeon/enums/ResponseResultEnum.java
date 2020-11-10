@@ -22,7 +22,8 @@ public enum ResponseResultEnum {
     USER_LOGIN_ERROR(0, "账号不存在或密码错误"),
     USER_NO_TOKEN(0, "登录失效,请重新登录"),
     USER_NO_PERMISSION(0, "用户权限不足"),
-    VERITY_CODE_EXPIRED_OR_INCORRECT(0, "验证码不正确或已失效");
+    VERITY_CODE_EXPIRED_OR_INCORRECT(0, "验证码不正确或已失效"),
+    USER_IS_EXISTED(0, "用户已存在");
 
 
     /**

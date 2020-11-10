@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -52,6 +53,30 @@ public class TeamController {
      */
     @GetMapping("/members")
     public UniversalResponseBody<List<User>> getTeamUsers(Integer teamId){
+        return null;
+    }
+
+
+    /**
+     * 添加管理员
+     * @param teamId
+     * @param userTel
+     * @return
+     * @apiNote 此接口在添加完成管理员后会将所有管理员的用户信息返回
+     */
+    @PostMapping("/admin")
+    public UniversalResponseBody<List<User>> addTeamAdmin(Integer teamId,String userTel){
+        return null;
+    }
+
+    /**
+     * 上传团队头像
+     * @param multipartFile
+     * @param teamId
+     * @return 团队头像路径
+     */
+    @PostMapping("/avatar")
+    public UniversalResponseBody<String> updateUserAvatar(MultipartFile multipartFile, Integer teamId){
         return null;
     }
 }

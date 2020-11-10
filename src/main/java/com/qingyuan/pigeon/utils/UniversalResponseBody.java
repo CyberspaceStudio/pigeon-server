@@ -5,6 +5,7 @@ package com.qingyuan.pigeon.utils;
  * @version 1.0
  * @date 2020/2/1 13:36
  */
+
 public class UniversalResponseBody<T> {
 
     /**

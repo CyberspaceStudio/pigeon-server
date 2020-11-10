@@ -2,7 +2,11 @@ package com.qingyuan.pigeon.service;
 
 
 import com.qingyuan.pigeon.pojo.PO.TokenPO;
+import com.qingyuan.pigeon.pojo.User;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.security.NoSuchAlgorithmException;
 
 /**
  * 用户相关接口
@@ -35,4 +39,35 @@ public interface UserService {
      * @return
      */
     UniversalResponseBody checkVerificationCode(String userTel, String code);
+
+    /**
+     * 用户注册
+     *
+     * @param userTel
+     * @param userPwd
+     * @return
+     */
+    UniversalResponseBody<TokenPO> userRegister(String userTel, String userPwd);
+
+    /**
+     * 根据id获取用户信息
+     * @param userId
+     * @return
+     */
+    UniversalResponseBody<User> getUserMessageById(Integer userId);
+
+    /**
+     * 根据手机号获取用户信息
+     * @param userTel
+     * @return
+     */
+    UniversalResponseBody<User> getUserMessageByTel(String userTel);
+
+    /**
+     * 更新用户头像
+     * @param multipartFile
+     * @param userId
+     * @return
+     */
+    UniversalResponseBody<String> updateUserAvatar(MultipartFile multipartFile, Integer userId);
 }

@@ -41,4 +41,8 @@ public class User {
      */
    private Integer pigeonEggCount;
 
+    /**
+     * 用户密码
+     */
+    private String userPwd;
 }

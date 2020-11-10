@@ -5,10 +5,7 @@ import com.qingyuan.pigeon.pojo.User;
 import com.qingyuan.pigeon.service.UserService;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -23,7 +20,6 @@ import javax.annotation.Resource;
 @RequestMapping("/user")
 public class UserController {
 
-
     @Resource
     @Qualifier("userServiceImpl")
     private UserService userService;
@@ -35,10 +31,9 @@ public class UserController {
      * @return
      */
     @PostMapping("/register")
-    public UniversalResponseBody<User> userRegister(String userTel,String userPwd){
-        return null;
+    public UniversalResponseBody<TokenPO> userRegister(String userTel,String userPwd){
+        return userService.userRegister(userTel, userPwd);
     }
-
 
     /**
      * 登录
@@ -55,6 +50,7 @@ public class UserController {
      * 更新用户信息
      * @param user
      * @return
+     * @apiNote 此接口不更新用户的userImageUrl的值,更新用户头像请调用更新用户头像的接口
      */
     @PostMapping("/message")
     public UniversalResponseBody<User> updateUserMessage(User user){
@@ -62,24 +58,35 @@ public class UserController {
     }
 
     /**
-     * 获取用户信息
-     * @param userId
+     * 通过id获取用户信息
+     * @param userId 用户id
      * @return
      */
-    @GetMapping("/message")
-    public UniversalResponseBody<User> getUserMessage(Integer userId){
-        return null;
+    @GetMapping("/message/id")
+    public UniversalResponseBody<User> getUserMessageById(Integer userId){
+        return userService.getUserMessageById(userId);
     }
 
     /**
-     * 更新用户头像
+     * 通过手机号获取用户信息
+     * @param userTel
+     * @return
+     */
+    @GetMapping("/message/tel")
+    public UniversalResponseBody<User> getUserMessageByTel(String userTel){
+        return userService.getUserMessageByTel(userTel);
+    }
+
+    /**
+     * 上传用户头像
      * @param multipartFile
      * @param userId
      * @return 用户头像路径
+     * @apiNote 图片最大为5MB, 默认用户头像为https://minimalist.net.cn/image-pigeon/user-avatar/default.png
      */
     @PostMapping("/avatar")
     public UniversalResponseBody<String> updateUserAvatar(MultipartFile multipartFile,Integer userId){
-        return null;
+        return userService.updateUserAvatar(multipartFile,userId);
     }
 
 

@@ -1,36 +1,104 @@
-2020-11-08 19:36:37.441  INFO 13064 --- [restartedMain] com.qingyuan.pigeon.PigeonApplication    : Starting PigeonApplication on DESKTOP-TCVN29S with PID 13064 (D:\JavaProject\pigeon_server\target\classes started by 24605 in D:\JavaProject\pigeon_server)
-2020-11-08 19:36:37.443  INFO 13064 --- [restartedMain] com.qingyuan.pigeon.PigeonApplication    : The following profiles are active: dev
-2020-11-08 19:36:37.496  INFO 13064 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\24605\.m2\repository\com\sun\xml\bind\jaxb-impl\2.1\jaxb-impl-2.1.jar referenced one or more files that do not exist: file:/C:/Users/24605/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jaxb-api.jar,file:/C:/Users/24605/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/activation.jar,file:/C:/Users/24605/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jsr173_1.0_api.jar,file:/C:/Users/24605/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jaxb1-impl.jar
-2020-11-08 19:36:37.619  INFO 13064 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-11-08 19:36:37.619  INFO 13064 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-11-08 19:36:38.234  INFO 13064 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2020-11-08 19:36:38.235  INFO 13064 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2020-11-08 19:36:38.264  INFO 13064 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15ms. Found 0 Redis repository interfaces.
-2020-11-08 19:36:38.825  INFO 13064 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-11-08 19:36:38.835  INFO 13064 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-11-08 19:36:38.836  INFO 13064 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
-2020-11-08 19:36:38.934  INFO 13064 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-11-08 19:36:38.935  INFO 13064 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1316 ms
-2020-11-08 19:36:39.547  INFO 13064 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-11-08 19:36:39.834  INFO 13064 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-11-08 19:36:39.875  INFO 13064 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2020-11-08 19:36:39.888  INFO 13064 --- [restartedMain] com.qingyuan.pigeon.PigeonApplication    : Started PigeonApplication in 3.479 seconds (JVM running for 5.026)
-2020-11-08 19:36:50.797  INFO 13064 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-11-08 19:36:50.799  INFO 13064 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-11-08 19:36:50.807  INFO 13064 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
-2020-11-08 20:24:37.830  INFO 11396 --- [main] c.q.pigeon.PigeonApplicationTests        : Starting PigeonApplicationTests on DESKTOP-TCVN29S with PID 11396 (started by 24605 in D:\JavaProject\pigeon_server)
-2020-11-08 20:24:37.832  INFO 11396 --- [main] c.q.pigeon.PigeonApplicationTests        : No active profile set, falling back to default profiles: default
-2020-11-08 20:24:38.687  INFO 11396 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2020-11-08 20:24:38.699  INFO 11396 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2020-11-08 20:24:38.734  INFO 11396 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19ms. Found 0 Redis repository interfaces.
-2020-11-08 20:24:41.204  INFO 11396 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-11-08 20:24:41.948  INFO 11396 --- [main] c.q.pigeon.PigeonApplicationTests        : Started PigeonApplicationTests in 4.642 seconds (JVM running for 6.45)
-2020-11-08 20:24:46.337  INFO 11396 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2020-11-08 20:31:47.479  INFO 19100 --- [main] c.q.pigeon.PigeonApplicationTests        : Starting PigeonApplicationTests on DESKTOP-TCVN29S with PID 19100 (started by 24605 in D:\JavaProject\pigeon_server)
-2020-11-08 20:31:47.480  INFO 19100 --- [main] c.q.pigeon.PigeonApplicationTests        : No active profile set, falling back to default profiles: default
-2020-11-08 20:31:48.266  INFO 19100 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2020-11-08 20:31:48.269  INFO 19100 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2020-11-08 20:31:48.305  INFO 19100 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17ms. Found 0 Redis repository interfaces.
-2020-11-08 20:31:50.132  INFO 19100 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-11-08 20:31:50.759  INFO 19100 --- [main] c.q.pigeon.PigeonApplicationTests        : Started PigeonApplicationTests in 3.76 seconds (JVM running for 5.168)
-2020-11-08 20:31:53.868  INFO 19100 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-10 09:54:24.332  INFO 22720 --- [restartedMain] com.qingyuan.pigeon.PigeonApplication    : Starting PigeonApplication on LAPTOP-FK5UTLDU with PID 22720 (D:\java\MyProject\pigeon-server\target\classes started by 四十五邱星星呐 in D:\java\MyProject\pigeon-server)
+2020-11-10 09:54:24.343  INFO 22720 --- [restartedMain] com.qingyuan.pigeon.PigeonApplication    : No active profile set, falling back to default profiles: default
+2020-11-10 09:54:24.412  INFO 22720 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in D:\environment\apache-maven-3.6.3\maven-repo\com\sun\xml\bind\jaxb-impl\2.1\jaxb-impl-2.1.jar referenced one or more files that do not exist: file:/D:/environment/apache-maven-3.6.3/maven-repo/com/sun/xml/bind/jaxb-impl/2.1/jaxb-api.jar,file:/D:/environment/apache-maven-3.6.3/maven-repo/com/sun/xml/bind/jaxb-impl/2.1/activation.jar,file:/D:/environment/apache-maven-3.6.3/maven-repo/com/sun/xml/bind/jaxb-impl/2.1/jsr173_1.0_api.jar,file:/D:/environment/apache-maven-3.6.3/maven-repo/com/sun/xml/bind/jaxb-impl/2.1/jaxb1-impl.jar
+2020-11-10 09:54:24.413  INFO 22720 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-11-10 09:54:24.413  INFO 22720 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-11-10 09:54:25.167  INFO 22720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-11-10 09:54:25.169  INFO 22720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-11-10 09:54:25.206  INFO 22720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20ms. Found 0 Redis repository interfaces.
+2020-11-10 09:54:25.825  INFO 22720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-11-10 09:54:25.841  INFO 22720 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-11-10 09:54:25.841  INFO 22720 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-11-10 09:54:25.960  INFO 22720 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-11-10 09:54:25.961  INFO 22720 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1548 ms
+2020-11-10 09:54:27.088  INFO 22720 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-10 09:54:27.446  INFO 22720 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-11-10 09:54:27.480  INFO 22720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-10 09:54:27.494  INFO 22720 --- [restartedMain] com.qingyuan.pigeon.PigeonApplication    : Started PigeonApplication in 3.696 seconds (JVM running for 5.049)
+2020-11-10 09:54:50.329  INFO 22720 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-11-10 09:54:50.330  INFO 22720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-11-10 09:54:50.336  INFO 22720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2020-11-10 09:54:50.364  INFO 22720 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-11-10 09:55:02.735  INFO 22720 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-11-10 10:14:51.020  INFO 17504 --- [restartedMain] com.qingyuan.pigeon.PigeonApplication    : Starting PigeonApplication on DESKTOP-TCVN29S with PID 17504 (D:\JavaProject\pigeon_server\target\classes started by 24605 in D:\JavaProject\pigeon_server)
+2020-11-10 10:14:51.024  INFO 17504 --- [restartedMain] com.qingyuan.pigeon.PigeonApplication    : No active profile set, falling back to default profiles: default
+2020-11-10 10:14:51.145  INFO 17504 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\24605\.m2\repository\com\sun\xml\bind\jaxb-impl\2.1\jaxb-impl-2.1.jar referenced one or more files that do not exist: file:/C:/Users/24605/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jaxb-api.jar,file:/C:/Users/24605/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/activation.jar,file:/C:/Users/24605/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jsr173_1.0_api.jar,file:/C:/Users/24605/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jaxb1-impl.jar
+2020-11-10 10:14:51.145  INFO 17504 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-11-10 10:14:51.145  INFO 17504 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-11-10 10:14:52.005  INFO 17504 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-11-10 10:14:52.009  INFO 17504 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-11-10 10:14:52.040  INFO 17504 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18ms. Found 0 Redis repository interfaces.
+2020-11-10 10:14:53.132  INFO 17504 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-11-10 10:14:53.143  INFO 17504 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-11-10 10:14:53.143  INFO 17504 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-11-10 10:14:53.394  INFO 17504 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-11-10 10:14:53.395  INFO 17504 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2249 ms
+2020-11-10 10:14:55.767  INFO 17504 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-10 10:14:56.334  INFO 17504 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-11-10 10:14:56.388  INFO 17504 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-10 10:14:56.427  INFO 17504 --- [restartedMain] com.qingyuan.pigeon.PigeonApplication    : Started PigeonApplication in 6.192 seconds (JVM running for 9.206)
+2020-11-10 10:19:21.371  INFO 17504 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-11-10 10:19:21.373  INFO 17504 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-11-10 10:19:21.403  INFO 17504 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 30 ms
+2020-11-10 10:19:31.044  INFO 17504 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-11-10 10:19:31.719  INFO 17504 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-11-10 10:20:16.978  INFO 10360 --- [restartedMain] com.qingyuan.pigeon.PigeonApplication    : Starting PigeonApplication on DESKTOP-TCVN29S with PID 10360 (D:\JavaProject\pigeon_server\target\classes started by 24605 in D:\JavaProject\pigeon_server)
+2020-11-10 10:20:16.982  INFO 10360 --- [restartedMain] com.qingyuan.pigeon.PigeonApplication    : No active profile set, falling back to default profiles: default
+2020-11-10 10:20:17.053  INFO 10360 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\24605\.m2\repository\com\sun\xml\bind\jaxb-impl\2.1\jaxb-impl-2.1.jar referenced one or more files that do not exist: file:/C:/Users/24605/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jaxb-api.jar,file:/C:/Users/24605/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/activation.jar,file:/C:/Users/24605/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jsr173_1.0_api.jar,file:/C:/Users/24605/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jaxb1-impl.jar
+2020-11-10 10:20:17.054  INFO 10360 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-11-10 10:20:17.054  INFO 10360 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-11-10 10:20:17.691  INFO 10360 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-11-10 10:20:17.694  INFO 10360 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-11-10 10:20:17.722  INFO 10360 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15ms. Found 0 Redis repository interfaces.
+2020-11-10 10:20:18.167  INFO 10360 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-11-10 10:20:18.176  INFO 10360 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-11-10 10:20:18.176  INFO 10360 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-11-10 10:20:18.267  INFO 10360 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-11-10 10:20:18.268  INFO 10360 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1214 ms
+2020-11-10 10:20:18.962  INFO 10360 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-10 10:20:19.277  INFO 10360 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-11-10 10:20:19.319  INFO 10360 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-10 10:20:19.334  INFO 10360 --- [restartedMain] com.qingyuan.pigeon.PigeonApplication    : Started PigeonApplication in 2.8 seconds (JVM running for 4.139)
+2020-11-10 10:20:26.612  INFO 10360 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-11-10 10:20:26.614  INFO 10360 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-11-10 10:20:26.621  INFO 10360 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2020-11-10 10:20:26.652  INFO 10360 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-11-10 10:20:27.027  INFO 10360 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-11-10 10:21:00.560  INFO 11724 --- [restartedMain] com.qingyuan.pigeon.PigeonApplication    : Starting PigeonApplication on DESKTOP-TCVN29S with PID 11724 (D:\JavaProject\pigeon_server\target\classes started by 24605 in D:\JavaProject\pigeon_server)
+2020-11-10 10:21:00.563  INFO 11724 --- [restartedMain] com.qingyuan.pigeon.PigeonApplication    : No active profile set, falling back to default profiles: default
+2020-11-10 10:21:00.618  INFO 11724 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\24605\.m2\repository\com\sun\xml\bind\jaxb-impl\2.1\jaxb-impl-2.1.jar referenced one or more files that do not exist: file:/C:/Users/24605/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jaxb-api.jar,file:/C:/Users/24605/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/activation.jar,file:/C:/Users/24605/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jsr173_1.0_api.jar,file:/C:/Users/24605/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1/jaxb1-impl.jar
+2020-11-10 10:21:00.619  INFO 11724 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-11-10 10:21:00.620  INFO 11724 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-11-10 10:21:01.272  INFO 11724 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-11-10 10:21:01.273  INFO 11724 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-11-10 10:21:01.296  INFO 11724 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12ms. Found 0 Redis repository interfaces.
+2020-11-10 10:21:01.720  INFO 11724 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-11-10 10:21:01.727  INFO 11724 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-11-10 10:21:01.728  INFO 11724 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-11-10 10:21:01.818  INFO 11724 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-11-10 10:21:01.819  INFO 11724 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1199 ms
+2020-11-10 10:21:02.451  INFO 11724 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-10 10:21:02.699  INFO 11724 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-11-10 10:21:02.734  INFO 11724 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-10 10:21:02.748  INFO 11724 --- [restartedMain] com.qingyuan.pigeon.PigeonApplication    : Started PigeonApplication in 2.557 seconds (JVM running for 3.776)
+2020-11-10 10:21:05.172  INFO 11724 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-11-10 10:21:05.174  INFO 11724 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-11-10 10:21:05.182  INFO 11724 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2020-11-10 10:21:05.213  INFO 11724 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-11-10 10:21:05.567  INFO 11724 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-11-10 11:07:05.773  INFO 16856 --- [main] c.q.pigeon.PigeonApplicationTests        : Starting PigeonApplicationTests on DESKTOP-TCVN29S with PID 16856 (started by 24605 in D:\JavaProject\pigeon_server)
+2020-11-10 11:07:05.775  INFO 16856 --- [main] c.q.pigeon.PigeonApplicationTests        : No active profile set, falling back to default profiles: default
+2020-11-10 11:07:06.644  INFO 16856 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-11-10 11:07:06.678  INFO 16856 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-11-10 11:07:06.715  INFO 16856 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21ms. Found 0 Redis repository interfaces.
+2020-11-10 11:07:09.373  INFO 16856 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-10 11:07:11.011  INFO 16856 --- [main] c.q.pigeon.PigeonApplicationTests        : Started PigeonApplicationTests in 5.745 seconds (JVM running for 7.542)
+2020-11-10 11:07:14.913  INFO 16856 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-10 11:08:15.008  INFO 8140 --- [main] c.q.pigeon.PigeonApplicationTests        : Starting PigeonApplicationTests on DESKTOP-TCVN29S with PID 8140 (started by 24605 in D:\JavaProject\pigeon_server)
+2020-11-10 11:08:15.010  INFO 8140 --- [main] c.q.pigeon.PigeonApplicationTests        : No active profile set, falling back to default profiles: default
+2020-11-10 11:08:15.848  INFO 8140 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-11-10 11:08:15.851  INFO 8140 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-11-10 11:08:15.884  INFO 8140 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17ms. Found 0 Redis repository interfaces.
+2020-11-10 11:08:17.932  INFO 8140 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-10 11:08:18.606  INFO 8140 --- [main] c.q.pigeon.PigeonApplicationTests        : Started PigeonApplicationTests in 4.12 seconds (JVM running for 5.687)
+2020-11-10 11:08:22.124  INFO 8140 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'

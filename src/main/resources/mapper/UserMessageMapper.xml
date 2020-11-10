@@ -1,15 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.qingyuan.course.mapper.UserMessageMapper">
+<mapper namespace="com.qingyuan.pigeon.mapper.UserMessageMapper">
     <resultMap id="User" type="com.qingyuan.pigeon.pojo.User">
         <id column="user_id" property="userId" jdbcType="INTEGER"/>
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
         <result column="user_tel" property="userTel" jdbcType="VARCHAR"/>
         <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
         <result column="userImage_url" property="userImageUrl" jdbcType="VARCHAR"/>
-        <result column="pigeonEgg_counts" property="pigeonEggCount" jdbcType="INTEGER"/>
+        <result column="pigeonEgg_count" property="pigeonEggCount" jdbcType="INTEGER"/>
+        <result column="user_pwd" property="userPwd" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="userId">
+        insert into pigeon.user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="userTel != null">
+                user_tel,
+            </if>
+            <if test="userSex != null">
+                user_sex,
+            </if>
+            <if test="userImageUrl != null">
+                userImage_url,
+            </if>
+            <if test="pigeonEggCount != null">
+                pigeonEgg_count,
+            </if>
+            <if test="userPwd != null">
+                user_pwd,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userTel != null">
+                #{userTel,jdbcType=VARCHAR},
+            </if>
+            <if test="userSex != null">
+                #{userSex,jdbcType=VARCHAR},
+            </if>
+            <if test="userImageUrl != null">
+                #{userImageUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="pigeonEggCount != null">
+                #{pigeonEggCount,jdbcType=INTEGER},
+            </if>
+            <if test="userPwd != null">
+                #{userPwd,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateUserImageUrl">
+        UPDATE user SET userImage_url = #{userImageUrl,jdbcType=VARCHAR}
+        WHERE user_id  = #{userId,jdbcType=INTEGER}
+    </update>
 
+    <select id="getUserByTel" parameterType="java.lang.String" resultMap="User">
+        select user_id,user_name,user_tel,user_sex,userImage_url,pigeonEgg_count,user_pwd
+        from pigeon.user
+        where user_tel = #{userTel,jdbcType=VARCHAR}
+    </select>
+    <select id="getUserById" resultType="com.qingyuan.pigeon.pojo.User" resultMap="User">
+        select user_id,user_name,user_tel,user_sex,userImage_url,pigeonEgg_count,user_pwd
+        from pigeon.user
+        where user_id = #{userId,jdbcType=INTEGER}
+    </select>
 
 </mapper>

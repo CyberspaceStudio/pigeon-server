@@ -1,6 +1,6 @@
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com/qingyuan/course.pojo
+  type-aliases-package: com/qingyuan/pigeon.pojo
 
 aliyun:
   verifyCodeTemplateCode: SMS_205431840
@@ -18,6 +18,10 @@ spring:
     database: 0
     password: Gzsnb@666
     host: 39.96.114.221
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 5MB
 logging:
   file:
     name: ./a-pigeon/pigeon.log

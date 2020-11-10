@@ -1,9 +1,7 @@
 package com.qingyuan.pigeon.mapper;
 
 import com.qingyuan.pigeon.pojo.User;
-import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * 对应数据库: user
@@ -48,7 +46,6 @@ public interface UserMessageMapper {
      * 更新用户信息
      * @param user
      * @return
-     * @apiNote 此接口不更新用户的userImageUrl的值,更新用户头像请调用更新用户头像的接口
      */
     int updateUserMessage(User user);
 }

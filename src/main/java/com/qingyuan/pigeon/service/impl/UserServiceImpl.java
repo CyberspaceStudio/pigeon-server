@@ -8,16 +8,12 @@ import com.qingyuan.pigeon.service.UserService;
 import com.qingyuan.pigeon.utils.component.*;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import lombok.extern.slf4j.Slf4j;
-import org.graalvm.compiler.lir.LIRInstruction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.nio.file.Paths;
-import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
 /**
@@ -53,7 +49,8 @@ public class UserServiceImpl implements UserService {
         try{
             // 输入的userPwd加密
             String userPwdEncode = passwordEncodeUtil.encodeByMD5(userPwd);
-            if (!userPwdEncode.equals(userByTel.getUserPwd())){
+            System.out.println(userPwd + userTel);
+            if (userByTel == null  || !userPwdEncode.equals(userByTel.getUserPwd())){
                 return new UniversalResponseBody<>(ResponseResultEnum.USER_LOGIN_ERROR.getCode(),ResponseResultEnum.USER_LOGIN_ERROR.getMsg());
             }else{
                 TokenPO tokenPO = new TokenPO(tokenUtil.tokenByUserId(userByTel.getUserId()),userByTel);
@@ -166,13 +163,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UniversalResponseBody<User> updateUserMessage(User user) {
-        Integer result = userMessageMapper.updateUserMessage(user);
+        if(user.getUserId() ==null){
+            log.error("更新用户信息时,userId为空"+ user.toString());
+            return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
+        }
+        int result = userMessageMapper.updateUserMessage(user);
         try {
-            if (result<0) {
-                return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
-            }}catch (Exception e){
+            if (result>=0) {
+                return new UniversalResponseBody(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
+            }
+        }catch (Exception e){
             e.printStackTrace();
         }
-        return new UniversalResponseBody(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg());
+        return new UniversalResponseBody(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
     }
 }

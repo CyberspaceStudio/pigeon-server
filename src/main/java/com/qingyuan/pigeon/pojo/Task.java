@@ -60,7 +60,7 @@ public class Task {
 
 
     /**
-     * 任务状态(此项在插入数据库时会默认为0即创建完成)
+     * 任务状态(此项在插入数据库时会默认为0即任务已创建)
      */
     private Integer taskStatusId;
 
@@ -79,4 +79,9 @@ public class Task {
      * 任务类型
      */
     private String activityType;
+
+    /**
+     * 任务报名人数
+     */
+    private Integer taskApplyCount;
 }

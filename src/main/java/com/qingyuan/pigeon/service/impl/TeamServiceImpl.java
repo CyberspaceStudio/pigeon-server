@@ -43,6 +43,9 @@ public class TeamServiceImpl  implements TeamService {
     public UniversalResponseBody<List<User>> getTeamMembers(Integer teamId) {
         try{
             List<Integer> userIds = teamMapper.getTeamUserIds(teamId);
+            if(userIds == null){
+                return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
+            }
             List<User> users = new LinkedList<>();
             for (Integer userId:
                     userIds ) {

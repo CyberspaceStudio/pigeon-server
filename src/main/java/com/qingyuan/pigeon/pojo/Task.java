@@ -31,15 +31,9 @@ public class Task {
     private Integer teamId;
 
     /**
-     * 任务人数下限
-     */
-    private Integer memberCountMin;
-
-    /**
      * 任务人数上限
      */
     private Integer memberCountMax;
-
 
     /**
      * 任务活动地点
@@ -58,11 +52,10 @@ public class Task {
     @JsonFormat(locale = "yyyy-MM-dd HH:mm")
     private Date taskEndTime;
 
-
     /**
-     * 任务状态(此项在插入数据库时会默认为0即任务已创建)
+     * 任务状态(此项在插入数据库时会默认 已创建)
      */
-    private Integer taskStatusId;
+    private String taskStatus;
 
     //经纬度的定义字段类型使用 decimal(10,7) ， 在Java 中映射成Double.
     /**

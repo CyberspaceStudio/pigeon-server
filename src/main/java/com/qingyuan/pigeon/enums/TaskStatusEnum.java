@@ -5,9 +5,8 @@ package com.qingyuan.pigeon.enums;
  * @author 24605
  */
 public enum TaskStatusEnum {
-    TASK_CREATED(0,"任务已创建"),
-    TASK_MEMBER_MAX(1,"任务已满员"),
-    TASK_EXPIRED(2,"任务已过期");
+    TASK_CREATED(0,"已创建"),
+    TASK_EXPIRED(2,"已过期");
 
     /**
      * 活动状态对应的id

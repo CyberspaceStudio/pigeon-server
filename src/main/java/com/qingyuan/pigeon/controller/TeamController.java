@@ -2,6 +2,7 @@ package com.qingyuan.pigeon.controller;
 
 import com.qingyuan.pigeon.pojo.Team;
 import com.qingyuan.pigeon.pojo.User;
+import com.qingyuan.pigeon.service.TeamService;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 
@@ -23,6 +25,9 @@ import java.util.List;
 public class TeamController {
 
 
+    @Resource
+    private TeamService teamService;
+
     /**
      * 新建团队
      * @param team
@@ -31,7 +36,7 @@ public class TeamController {
      */
     @PostMapping("/create")
     public UniversalResponseBody<Team> createTeam(Team team,MultipartFile multipartFile){
-        return null;
+        return teamService.createTeam(team, multipartFile);
     }
 
     /**

@@ -40,4 +40,9 @@ public class Team {
      * 团队头像路径
      */
     private String  teamAvatarUrl;
+
+    /**
+     * 团队报名人数
+     */
+    private Integer teamApplyCount;
 }

@@ -84,4 +84,16 @@ public class TeamController {
     public UniversalResponseBody<String> updateUserAvatar(MultipartFile multipartFile, Integer teamId){
         return null;
     }
+
+
+    /**
+     * 根据活动类型获取团队信息
+     * @param userId
+     * @param activityType 详情见活动类型字典数据
+     * @return
+     */
+    @GetMapping("/type")
+    public UniversalResponseBody<List<Team>> getTeamsByType(Integer userId,String activityType){
+        return null;
+    }
 }

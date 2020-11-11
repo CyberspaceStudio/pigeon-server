@@ -73,7 +73,7 @@ public class TeamServiceImpl  implements TeamService {
             return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
         }
 
-        String imageUrl = USER_IMAGE_URL + filePath;
+        String imageUrl = USER_IMAGE_URL + teamFileName;
         team.setTeamAvatarUrl(imageUrl);
         int i = teamMapper.updateTeamAvatar(team.getTeamId(), imageUrl);
         if (i > 0) {

@@ -10,7 +10,7 @@
         <result column="teamAvatar_url" property="teamAvatarUrl" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <insert id="createTeam" parameterType="Team" useGeneratedKeys="true" keyProperty="teamId">
+    <insert id="createTeam" parameterType="com.qingyuan.pigeon.pojo.Team" useGeneratedKeys="true" keyProperty="teamId">
         insert into pigeon.team
         (team_id, team_name, activity_type, memberCount_max, team_introduction, teamAvatar_url)
         values (#{teamId,jdbcType=INTEGER},#{teamName,jdbcType=VARCHAR},#{activityType,jdbcType=VARCHAR},#{memberCountMax,jdbcType=VARCHAR},#{teamIntroduction,jdbcType=VARCHAR},#{teamAvatarUrl,jdbcType=VARCHAR})
@@ -21,5 +21,10 @@
         set teamAvatar_url = #{avatarUrl,jdbcType=VARCHAR}
         where team_id = #{teamId,jdbcType=INTEGER}
     </update>
+    <select id="getTeamUserIds" resultType="java.lang.Integer">
+        select user_id
+        from pigeon.team_member
+        where team_id = #{teamId, jdbcType = INTEGER}
+    </select>
 
 </mapper>

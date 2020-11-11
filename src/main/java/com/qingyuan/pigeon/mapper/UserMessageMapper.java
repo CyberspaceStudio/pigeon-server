@@ -48,4 +48,5 @@ public interface UserMessageMapper {
      * @return
      */
     int updateUserMessage(User user);
+
 }

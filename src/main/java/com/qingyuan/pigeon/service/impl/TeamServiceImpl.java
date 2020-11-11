@@ -2,7 +2,9 @@ package com.qingyuan.pigeon.service.impl;
 
 import com.qingyuan.pigeon.enums.ResponseResultEnum;
 import com.qingyuan.pigeon.mapper.TeamMapper;
+import com.qingyuan.pigeon.mapper.UserMessageMapper;
 import com.qingyuan.pigeon.pojo.Team;
+import com.qingyuan.pigeon.pojo.User;
 import com.qingyuan.pigeon.service.TeamService;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * 团队相关接口
@@ -32,6 +36,24 @@ public class TeamServiceImpl  implements TeamService {
 
     @Resource
     private TeamMapper teamMapper;
+    @Resource
+    private UserMessageMapper userMessageMapper;
+
+    @Override
+    public UniversalResponseBody<List<User>> getTeamMembers(Integer teamId) {
+        try{
+            List<Integer> userIds = teamMapper.getTeamUserIds(teamId);
+            List<User> users = new LinkedList<>();
+            for (Integer userId:
+                    userIds ) {
+                users.add(userMessageMapper.getUserById(userId));
+            }
+            return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), users);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
+    }
 
     @Override
     public UniversalResponseBody<Team> createTeam(Team team, MultipartFile multipartFile) {

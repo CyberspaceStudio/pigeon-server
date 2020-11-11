@@ -58,7 +58,7 @@ public class TeamController {
      */
     @GetMapping("/members")
     public UniversalResponseBody<List<User>> getTeamUsers(Integer teamId){
-        return null;
+        return teamService.getTeamMembers(teamId);
     }
 
 

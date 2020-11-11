@@ -24,7 +24,7 @@ public class TaskController {
      * 新增任务
      * @param task
      * @return
-     * @apiNote taskId以及taskStatusId不用填写
+     * @apiNote taskId以及taskStatus不用填写
      */
     @PostMapping("/add")
     public UniversalResponseBody<Task> addTask(Task task){

@@ -58,6 +58,6 @@ public interface TeamMapper {
      * @param activityType 详情见活动类型字典数据
      * @return
      */
-    Team getTeamsByType(Integer teamId, String activityType);
+    Team getTeamsByIdType(Integer teamId, String activityType);
 
 }

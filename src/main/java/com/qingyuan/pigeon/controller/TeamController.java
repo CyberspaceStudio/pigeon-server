@@ -97,20 +97,22 @@ public class TeamController {
         return teamService.getTeamsByType(userId, activityType);
     }
 
+
     /**
      * 根据TeamId获取团队
      * @param teamId
-     * @return
+     * @return 返回结果 成功(保证返回数据不为空) 失败
      */
     @GetMapping("/id")
     public UniversalResponseBody<Team> getTeamById(Integer teamId){
-        return teamService.getTeamById(teamId);
+        return teamService.getTeamByTeamId(teamId);
     }
 
     /**
      * 查询用户的所有团队
      * @param userId
      * @return
+     * @apiNote 返回结果 未参加任何团队 成功
      */
     @GetMapping("/user/id")
     public UniversalResponseBody<List<Team>> getTeamsByUserId(Integer userId){

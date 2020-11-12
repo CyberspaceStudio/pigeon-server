@@ -16,6 +16,7 @@ public enum ResponseResultEnum {
     PARAM_IS_INVALID(0, "参数无效"),
     PARAM_IS_BLANK(0, "参数为空"),
     PARAM_TYPE_BIND_ERROR(0, "参数类型错误"),
+    RESULT_IS_NULL(2,"查询结果为空"),
     /**
      * 登录注册错误
      */
@@ -24,6 +25,7 @@ public enum ResponseResultEnum {
     USER_NO_PERMISSION(0, "用户权限不足"),
     VERITY_CODE_EXPIRED_OR_INCORRECT(0, "验证码不正确或已失效"),
     USER_IS_EXISTED(0, "用户已存在"),
+    USER_NOT_HAVE_TEAM(0,"未参加任何团队"),
     /**
      * 团队相关错误
      */

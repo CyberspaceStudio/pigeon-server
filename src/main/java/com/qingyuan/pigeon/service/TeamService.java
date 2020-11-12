@@ -50,7 +50,7 @@ public interface TeamService {
      * @param teamId
      * @return
      */
-    UniversalResponseBody<Team> getTeamById(Integer teamId);
+    UniversalResponseBody<Team> getTeamByTeamId(Integer teamId);
 
     /**
      * 查询用户的所有团队

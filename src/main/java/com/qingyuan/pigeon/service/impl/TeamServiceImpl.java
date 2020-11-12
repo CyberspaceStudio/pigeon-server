@@ -101,25 +101,29 @@ public class TeamServiceImpl implements TeamService {
     public UniversalResponseBody<List<User>> getTeamUsers(Integer teamId) {
         // 通过teamId来查找成员
         List<User> users = userMessageMapper.getUsersByTeamId(teamId);
-        return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), users);
+        if (users != null){
+            return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), users);
+        }
+        return new UniversalResponseBody<>(ResponseResultEnum.RESULT_IS_NULL.getCode(),ResponseResultEnum.RESULT_IS_NULL.getMsg(),null);
     }
 
     @Override
     public UniversalResponseBody<List<Team>> getTeamsByType(Integer userId, String activityType) {
         List<Integer> teamIds = teamMapper.getTeamsByUserId(userId);
+        if (teamIds == null || teamIds.isEmpty()){
+            return new UniversalResponseBody<>(ResponseResultEnum.USER_NOT_HAVE_TEAM.getCode(),ResponseResultEnum.USER_NOT_HAVE_TEAM.getMsg(),null);
+        }
         List<Team> teams = new LinkedList<>();
         for (Integer teamId:
              teamIds) {
-            teams.add(teamMapper.getTeamsByType(teamId, activityType));
+            teams.add(teamMapper.getTeamsByIdType(teamId, activityType));
         }
-        if (teams != null){
-            return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), teams);
-        }
-        return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+        return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), teams);
     }
 
     @Override
-    public UniversalResponseBody<Team> getTeamById(Integer teamId) {
+    public UniversalResponseBody<Team> getTeamByTeamId(Integer teamId) {
+        //根据团队id查询团队
         Team team = teamMapper.getTeamById(teamId);
         if (team != null){
             return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), team);
@@ -129,15 +133,18 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public UniversalResponseBody<List<Team>> getTeamsByUserId(Integer userId) {
+        //查询用户的团队
         List<Integer> teamIds = teamMapper.getTeamsByUserId(userId);
+        if (teamIds == null || teamIds.isEmpty()){
+            return new UniversalResponseBody<>(ResponseResultEnum.USER_NOT_HAVE_TEAM.getCode(),ResponseResultEnum.USER_NOT_HAVE_TEAM.getMsg(),null);
+        }
         List<Team> teams = new LinkedList<>();
         for (Integer teamId: teamIds
              ) {
             teams.add(teamMapper.getTeamById(teamId));
         }
-        if (teams != null){
-            return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), teams);
-        }
-        return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+        //如果进行到这一步，则说明teamIds不为空，肯定能查出对应的团队
+        //所以不用考虑返回结果为空的情况
+        return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), teams);
     }
 }

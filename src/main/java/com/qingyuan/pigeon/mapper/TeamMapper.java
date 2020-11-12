@@ -2,8 +2,12 @@ package com.qingyuan.pigeon.mapper;
 
 
 import com.qingyuan.pigeon.pojo.Team;
+import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 /**
  * 对应数据库:team team_member
@@ -28,7 +32,7 @@ public interface TeamMapper {
     int updateTeamAvatar(Integer teamId, String avatarUrl);
 
     /**
-     * 通过teamId来查找团队
+     * 通过teamId来获取团队
      * @param teamId
      * @return
      */
@@ -40,4 +44,20 @@ public interface TeamMapper {
      * @return
      */
     int updateTeamApplyCount(@Param("teamId") Integer teamId, @Param("teamApplyCount") Integer teamApplyCount);
+
+    /**
+     * 通过 userId 查询所有团队信息
+     * @param userId
+     * @return
+     */
+    List<Integer> getTeamsByUserId(Integer userId);
+
+    /**
+     * 根据活动类型获取团队信息
+     * @param teamId
+     * @param activityType 详情见活动类型字典数据
+     * @return
+     */
+    Team getTeamsByType(Integer teamId, String activityType);
+
 }

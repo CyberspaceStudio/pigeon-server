@@ -94,7 +94,7 @@ public class TeamController {
      */
     @GetMapping("/type")
     public UniversalResponseBody<List<Team>> getTeamsByType(Integer userId,String activityType){
-        return null;
+        return teamService.getTeamsByType(userId, activityType);
     }
 
     /**
@@ -104,17 +104,18 @@ public class TeamController {
      */
     @GetMapping("/id")
     public UniversalResponseBody<Team> getTeamById(Integer teamId){
-        return null;
+        return teamService.getTeamById(teamId);
     }
 
     /**
      * 查询用户的所有团队
      * @param userId
-     * @param teamId
      * @return
      */
     @GetMapping("/user/id")
-    public UniversalResponseBody<List<Team>> getTeamsByUserId(Integer userId,Integer teamId){
-        return null;
+    public UniversalResponseBody<List<Team>> getTeamsByUserId(Integer userId){
+        return teamService.getTeamsByUserId(userId);
     }
+
+
 }

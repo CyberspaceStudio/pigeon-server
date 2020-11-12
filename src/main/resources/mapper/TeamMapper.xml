@@ -22,6 +22,7 @@
         set teamAvatar_url = #{avatarUrl,jdbcType=VARCHAR}
         where team_id = #{teamId,jdbcType=INTEGER}
     </update>
+
     <select id="getTeamUserIds" resultType="java.lang.Integer">
         select user_id
         from pigeon.team_member
@@ -32,6 +33,18 @@
         select team_id, team_name, activity_type, memberCount_max, team_introduction, teamAvatar_url, teamApply_count
         from pigeon.team
         where team_id = #{teamId,jdbcType=INTEGER} limit 1
+    </select>
+
+    <select id="getTeamsByUserId" resultType="java.lang.Integer">
+        select team_id
+        from pegion.team_member
+        where user_id = #{userId, jdbcType = INTEGER}
+    </select>
+
+    <select id="getTeamsByType" resultType="com.qingyuan.pigeon.pojo.Team">
+        select team_id, team_name, activity_type, memberCount_max, team_introduction, teamAvatar_url, teamApply_count
+        from pigeon.team
+        where activity_type = #{activityType, jdbcType=VARCHAR}
     </select>
 
     <update id="updateTeamApplyCount">

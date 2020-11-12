@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -101,5 +102,42 @@ public class TeamServiceImpl implements TeamService {
         // 通过teamId来查找成员
         List<User> users = userMessageMapper.getUsersByTeamId(teamId);
         return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), users);
+    }
+
+    @Override
+    public UniversalResponseBody<List<Team>> getTeamsByType(Integer userId, String activityType) {
+        List<Integer> teamIds = teamMapper.getTeamsByUserId(userId);
+        List<Team> teams = new LinkedList<>();
+        for (Integer teamId:
+             teamIds) {
+            teams.add(teamMapper.getTeamsByType(teamId, activityType));
+        }
+        if (teams != null){
+            return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), teams);
+        }
+        return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+    }
+
+    @Override
+    public UniversalResponseBody<Team> getTeamById(Integer teamId) {
+        Team team = teamMapper.getTeamById(teamId);
+        if (team != null){
+            return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), team);
+        }
+        return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+    }
+
+    @Override
+    public UniversalResponseBody<List<Team>> getTeamsByUserId(Integer userId) {
+        List<Integer> teamIds = teamMapper.getTeamsByUserId(userId);
+        List<Team> teams = new LinkedList<>();
+        for (Integer teamId: teamIds
+             ) {
+            teams.add(teamMapper.getTeamById(teamId));
+        }
+        if (teams != null){
+            return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), teams);
+        }
+        return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
     }
 }

@@ -3,8 +3,7 @@ package com.qingyuan.pigeon.mapper;
 
 import com.qingyuan.pigeon.pojo.Team;
 import org.apache.ibatis.annotations.Mapper;
-
-import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 对应数据库:team team_member
@@ -29,9 +28,16 @@ public interface TeamMapper {
     int updateTeamAvatar(Integer teamId, String avatarUrl);
 
     /**
-     * 获取团队成员
+     * 通过teamId来查找团队
      * @param teamId
      * @return
      */
-    List<Integer> getTeamUserIds(Integer teamId);
+    Team getTeamById(Integer teamId);
+
+    /**
+     * 更新团队申请人数
+     * @param teamApplyCount
+     * @return
+     */
+    int updateTeamApplyCount(@Param("teamId") Integer teamId, @Param("teamApplyCount") Integer teamApplyCount);
 }

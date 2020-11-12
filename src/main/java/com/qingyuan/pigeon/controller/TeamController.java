@@ -47,7 +47,7 @@ public class TeamController {
      */
     @PostMapping("/apply")
     public UniversalResponseBody<Team> applyTeam(Integer teamId,Integer userId){
-        return null;
+        return teamService.applyTeam(teamId, userId);
     }
 
 
@@ -58,7 +58,7 @@ public class TeamController {
      */
     @GetMapping("/members")
     public UniversalResponseBody<List<User>> getTeamUsers(Integer teamId){
-        return teamService.getTeamMembers(teamId);
+        return teamService.getTeamUsers(teamId);
     }
 
 
@@ -96,14 +96,4 @@ public class TeamController {
     public UniversalResponseBody<List<Team>> getTeamsByType(Integer userId,String activityType){
         return null;
     }
-
-    /**
-     * 根据团队Id获取团队
-     * @param teamId
-     * @return
-     */
-    public UniversalResponseBody<Team> getTeamById(Integer teamId){
-        return null;
-    }
-
 }

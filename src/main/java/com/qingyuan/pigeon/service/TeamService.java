@@ -22,9 +22,17 @@ public interface TeamService {
     UniversalResponseBody<Team> createTeam(Team team, MultipartFile multipartFile);
 
     /**
-     * 获取团队成员
+     * 加入团队
+     * @param teamId
+     * @param userId
+     * @return
+     */
+    UniversalResponseBody<Team> applyTeam(Integer teamId,Integer userId);
+
+    /**
+     * 获得团队所有成员
      * @param teamId
      * @return
      */
-    UniversalResponseBody<List<User>> getTeamMembers(Integer teamId);
+    UniversalResponseBody<List<User>> getTeamUsers(Integer teamId);
 }

@@ -3,6 +3,8 @@ package com.qingyuan.pigeon.mapper;
 import com.qingyuan.pigeon.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * 对应数据库: user
  * 对应实体类:User
@@ -49,4 +51,10 @@ public interface UserMessageMapper {
      */
     int updateUserMessage(User user);
 
+    /**
+     * 查询团队的所有成员
+     * @param teamId
+     * @return
+     */
+    List<User> getUsersByTeamId(Integer teamId);
 }

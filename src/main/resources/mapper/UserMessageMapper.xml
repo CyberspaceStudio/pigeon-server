@@ -67,6 +67,7 @@
             </if>
         </trim>
     </insert>
+
     <update id="updateUserImageUrl">
         UPDATE user SET userImage_url = #{userImageUrl,jdbcType=VARCHAR}
         WHERE user_id  = #{userId,jdbcType=INTEGER}
@@ -75,12 +76,13 @@
     <select id="getUserByTel" parameterType="java.lang.String" resultMap="User">
         select user_id,user_name,user_tel,user_sex,userImage_url,pigeonEgg_count,user_pwd,user_introduction
         from pigeon.user
-        where user_tel = #{userTel,jdbcType=VARCHAR}
+        where user_tel = #{userTel,jdbcType=VARCHAR} limit 1
     </select>
+
     <select id="getUserById" resultType="com.qingyuan.pigeon.pojo.User" resultMap="User">
         select user_id,user_name,user_tel,user_sex,userImage_url,pigeonEgg_count,user_pwd,user_introduction
         from pigeon.user
-        where user_id = #{userId,jdbcType=INTEGER}
+        where user_id = #{userId,jdbcType=INTEGER} limit 1
     </select>
 
     <update id="updateUserMessage">
@@ -99,5 +101,11 @@
     </if>
     WHERE user_id =#{userId}
     </update>
+
+    <select id="getUsersByTeamId" parameterType="java.lang.Integer" resultMap="User">
+        select u.user_id,u.user_name,u.user_sex,u.user_tel,u.userImage_url,u.pigeonEgg_count,u.user_pwd,u.user_introduction
+        from `user` u, `team_member` tm
+        where tm.team_id = #{teamId,jdbcType=INTEGER} and u.user_id = tm.user_id
+    </select>
 
 </mapper>

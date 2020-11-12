@@ -2,16 +2,21 @@ package com.qingyuan.pigeon.service.impl;
 
 import com.qingyuan.pigeon.enums.ResponseResultEnum;
 import com.qingyuan.pigeon.mapper.TeamMapper;
+import com.qingyuan.pigeon.mapper.TeamMemberMapper;
+import com.qingyuan.pigeon.mapper.UserMessageMapper;
 import com.qingyuan.pigeon.pojo.Team;
+import com.qingyuan.pigeon.pojo.User;
 import com.qingyuan.pigeon.service.TeamService;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * 团队相关接口
@@ -19,7 +24,7 @@ import java.io.IOException;
  */
 @Service
 @Slf4j
-public class TeamServiceImpl  implements TeamService {
+public class TeamServiceImpl implements TeamService {
 
     /**
      * 存储团队头像的文件夹,团队头像命名请用teamId.png
@@ -32,6 +37,10 @@ public class TeamServiceImpl  implements TeamService {
 
     @Resource
     private TeamMapper teamMapper;
+    @Resource
+    private TeamMemberMapper teamMemberMapper;
+    @Resource
+    private UserMessageMapper userMessageMapper;
 
     @Override
     public UniversalResponseBody<Team> createTeam(Team team, MultipartFile multipartFile) {
@@ -59,5 +68,38 @@ public class TeamServiceImpl  implements TeamService {
         }
 
         return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
+    }
+
+    @Override
+    @Transactional
+    public UniversalResponseBody<Team> applyTeam(Integer teamId, Integer userId) {
+        // 判断该用户是否是该团队成员
+        int count = teamMemberMapper.getUserNumberFromTeam(teamId, userId);
+        if (count > 0) {
+            return new UniversalResponseBody<>(ResponseResultEnum.TEAM_MEMBER_IS_EXISTED.getCode(), ResponseResultEnum.TEAM_MEMBER_IS_EXISTED.getMsg());
+        }
+
+        // 判断teamId的team的申请人数是否达到了上限
+        Team team = teamMapper.getTeamById(teamId);
+        if (team.getMemberCountMax() <= team.getTeamApplyCount()) {
+            return new UniversalResponseBody<>(ResponseResultEnum.TEAM_MEMBER_REACH_MAX.getCode(), ResponseResultEnum.TEAM_MEMBER_REACH_MAX.getMsg());
+        }
+
+        // 把该用户加入到该team中
+        int affectedRow = teamMemberMapper.addUser(teamId, userId);
+        team.setTeamApplyCount(team.getTeamApplyCount() + 1);
+        teamMapper.updateTeamApplyCount(team.getTeamId(), team.getTeamApplyCount());
+        if (affectedRow > 0) {
+            return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), team);
+        }
+
+        return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
+    }
+
+    @Override
+    public UniversalResponseBody<List<User>> getTeamUsers(Integer teamId) {
+        // 通过teamId来查找成员
+        List<User> users = userMessageMapper.getUsersByTeamId(teamId);
+        return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), users);
     }
 }

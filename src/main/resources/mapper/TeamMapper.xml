@@ -8,17 +8,30 @@
         <result column="memberCount_max" property="memberCountMax" jdbcType="VARCHAR"/>
         <result column="team_introduction" property="teamIntroduction" jdbcType="VARCHAR"/>
         <result column="teamAvatar_url" property="teamAvatarUrl" jdbcType="VARCHAR"/>
+        <result column="teamApply_count" property="teamApplyCount" jdbcType="INTEGER"/>
     </resultMap>
 
     <insert id="createTeam" parameterType="Team" useGeneratedKeys="true" keyProperty="teamId">
         insert into pigeon.team
-        (team_id, team_name, activity_type, memberCount_max, team_introduction, teamAvatar_url)
-        values (#{teamId,jdbcType=INTEGER},#{teamName,jdbcType=VARCHAR},#{activityType,jdbcType=VARCHAR},#{memberCountMax,jdbcType=VARCHAR},#{teamIntroduction,jdbcType=VARCHAR},#{teamAvatarUrl,jdbcType=VARCHAR})
+        (team_id, team_name, activity_type, memberCount_max, team_introduction, teamAvatar_url, teamApply_count)
+        values (#{teamId,jdbcType=INTEGER},#{teamName,jdbcType=VARCHAR},#{activityType,jdbcType=VARCHAR},#{memberCountMax,jdbcType=VARCHAR},#{teamIntroduction,jdbcType=VARCHAR},#{teamAvatarUrl,jdbcType=VARCHAR},#{teamApplyCount,jdbcType=INTEGER})
     </insert>
 
     <update id="updateTeamAvatar">
         update pigeon.team
         set teamAvatar_url = #{avatarUrl,jdbcType=VARCHAR}
+        where team_id = #{teamId,jdbcType=INTEGER}
+    </update>
+
+    <select id="getTeamById" resultMap="Team">
+        select team_id, team_name, activity_type, memberCount_max, team_introduction, teamAvatar_url, teamApply_count
+        from pigeon.team
+        where team_id = #{teamId,jdbcType=INTEGER} limit 1
+    </select>
+
+    <update id="updateTeamApplyCount">
+        update pigeon.team
+        set teamApply_count = #{teamApplyCount,jdbcType=INTEGER}
         where team_id = #{teamId,jdbcType=INTEGER}
     </update>
 

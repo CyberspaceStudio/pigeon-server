@@ -47,7 +47,7 @@ public class TeamController {
      */
     @PostMapping("/apply")
     public UniversalResponseBody<Team> applyTeam(Integer teamId,Integer userId){
-        return null;
+        return teamService.applyTeam(teamId, userId);
     }
 
 
@@ -58,7 +58,7 @@ public class TeamController {
      */
     @GetMapping("/members")
     public UniversalResponseBody<List<User>> getTeamUsers(Integer teamId){
-        return null;
+        return teamService.getTeamUsers(teamId);
     }
 
 

@@ -2,6 +2,7 @@ package com.qingyuan.pigeon.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -44,12 +45,14 @@ public class Task {
      * 任务开始时间
      */
     @JsonFormat(locale = "yyyy-MM-dd HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date taskStartTime;
 
     /**
      * 任务结束时间
      */
     @JsonFormat(locale = "yyyy-MM-dd HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date taskEndTime;
 
     /**

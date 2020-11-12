@@ -32,7 +32,7 @@ public class TeamController {
      * 新建团队
      * @param team
      * @return
-     * @apiNote 此接口中teamImageUrl不用填写
+     * @apiNote 已上线,此接口中teamImageUrl不用填写
      */
     @PostMapping("/create")
     public UniversalResponseBody<Team> createTeam(Team team,MultipartFile multipartFile){
@@ -43,7 +43,7 @@ public class TeamController {
      * 加入团队
      * @param teamId
      * @param userId
-     * @return
+     * @return 已上线
      */
     @PostMapping("/apply")
     public UniversalResponseBody<Team> applyTeam(Integer teamId,Integer userId){
@@ -54,7 +54,7 @@ public class TeamController {
     /**
      * 获取团队成员
      * @param teamId
-     * @return
+     * @return 已上线
      */
     @GetMapping("/members")
     public UniversalResponseBody<List<User>> getTeamUsers(Integer teamId){
@@ -94,6 +94,27 @@ public class TeamController {
      */
     @GetMapping("/type")
     public UniversalResponseBody<List<Team>> getTeamsByType(Integer userId,String activityType){
+        return null;
+    }
+
+    /**
+     * 根据TeamId获取团队
+     * @param teamId
+     * @return
+     */
+    @GetMapping("/id")
+    public UniversalResponseBody<Team> getTeamById(Integer teamId){
+        return null;
+    }
+
+    /**
+     * 查询用户的所有团队
+     * @param userId
+     * @param teamId
+     * @return
+     */
+    @GetMapping("/user/id")
+    public UniversalResponseBody<List<Team>> getTeamsByUserId(Integer userId,Integer teamId){
         return null;
     }
 }

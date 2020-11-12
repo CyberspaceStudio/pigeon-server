@@ -71,7 +71,7 @@ public class TeamController {
      */
     @PostMapping("/admin")
     public UniversalResponseBody<List<User>> addTeamAdmin(Integer teamId,String userTel){
-        return null;
+        return teamService.addTeamAdmin(teamId, userTel);
     }
 
     /**

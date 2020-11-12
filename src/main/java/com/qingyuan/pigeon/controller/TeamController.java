@@ -96,4 +96,14 @@ public class TeamController {
     public UniversalResponseBody<List<Team>> getTeamsByType(Integer userId,String activityType){
         return null;
     }
+
+    /**
+     * 根据团队Id获取团队
+     * @param teamId
+     * @return
+     */
+    public UniversalResponseBody<Team> getTeamById(Integer teamId){
+        return null;
+    }
+
 }

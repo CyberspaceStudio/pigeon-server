@@ -1,12 +1,15 @@
 package com.qingyuan.pigeon.controller;
 
 import com.qingyuan.pigeon.pojo.Task;
+import com.qingyuan.pigeon.service.TaskService;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -19,6 +22,10 @@ import java.util.List;
 @RequestMapping("/task")
 public class TaskController {
 
+    @Resource
+    @Qualifier("TaskServiceImpl")
+    TaskService taskService;
+
 
     /**
      * 新增任务
@@ -28,7 +35,7 @@ public class TaskController {
      */
     @PostMapping("/add")
     public UniversalResponseBody<Task> addTask(Task task){
-        return null;
+        return taskService.addTask(task);
     }
 
     /**

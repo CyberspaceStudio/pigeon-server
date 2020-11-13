@@ -32,7 +32,7 @@ public class TeamController {
      * 新建团队
      * @param team
      * @return
-     * @apiNote 此接口中teamImageUrl不用填写
+     * @apiNote 已上线,此接口中teamImageUrl不用填写
      */
     @PostMapping("/create")
     public UniversalResponseBody<Team> createTeam(Team team,MultipartFile multipartFile){
@@ -43,22 +43,22 @@ public class TeamController {
      * 加入团队
      * @param teamId
      * @param userId
-     * @return
+     * @return 已上线
      */
     @PostMapping("/apply")
     public UniversalResponseBody<Team> applyTeam(Integer teamId,Integer userId){
-        return null;
+        return teamService.applyTeam(teamId, userId);
     }
 
 
     /**
      * 获取团队成员
      * @param teamId
-     * @return
+     * @return 已上线
      */
     @GetMapping("/members")
     public UniversalResponseBody<List<User>> getTeamUsers(Integer teamId){
-        return teamService.getTeamMembers(teamId);
+        return teamService.getTeamUsers(teamId);
     }
 
 
@@ -71,7 +71,7 @@ public class TeamController {
      */
     @PostMapping("/admin")
     public UniversalResponseBody<List<User>> addTeamAdmin(Integer teamId,String userTel){
-        return null;
+        return teamService.addTeamAdmin(teamId, userTel);
     }
 
     /**
@@ -90,10 +90,34 @@ public class TeamController {
      * 根据活动类型获取团队信息
      * @param userId
      * @param activityType 详情见活动类型字典数据
-     * @return
+     * @return 已上线
      */
     @GetMapping("/type")
     public UniversalResponseBody<List<Team>> getTeamsByType(Integer userId,String activityType){
-        return null;
+        return teamService.getTeamsByType(userId, activityType);
     }
+
+
+    /**
+     * 根据TeamId获取团队
+     * @param teamId
+     * @return 已上线 返回结果 成功(保证返回数据不为空) 失败
+     */
+    @GetMapping("/id")
+    public UniversalResponseBody<Team> getTeamById(Integer teamId){
+        return teamService.getTeamByTeamId(teamId);
+    }
+
+    /**
+     * 查询用户的所有团队
+     * @param userId
+     * @return
+     * @apiNote 返回结果 未参加任何团队 成功
+     */
+    @GetMapping("/user/id")
+    public UniversalResponseBody<List<Team>> getTeamsByUserId(Integer userId){
+        return teamService.getTeamsByUserId(userId);
+    }
+
+
 }

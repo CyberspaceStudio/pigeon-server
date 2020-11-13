@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qingyuan.pigeon.mapper.TeamMemberMapper">
+
+    <insert id="addUser">
+        insert into pigeon.team_member
+        (team_id, user_id)
+        values (#{teamId,jdbcType=INTEGER},#{userId,jdbcType=INTEGER})
+    </insert>
+
+    <select id="getUserNumberFromTeam" resultType="java.lang.Integer">
+        select count(user_id)
+        from pigeon.team_member
+        where team_id = #{teamId,jdbcType=INTEGER} and user_id = #{userId,jdbcType=INTEGER}
+    </select>
+</mapper>

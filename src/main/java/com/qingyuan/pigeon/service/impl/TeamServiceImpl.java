@@ -120,11 +120,7 @@ public class TeamServiceImpl implements TeamService {
         if (teamIds == null || teamIds.isEmpty()){
             return new UniversalResponseBody<>(ResponseResultEnum.USER_NOT_HAVE_TEAM.getCode(),ResponseResultEnum.USER_NOT_HAVE_TEAM.getMsg(),null);
         }
-        LinkedList<Team> teams = new LinkedList<>();
-        for (Integer teamId:
-             teamIds) {
-            teams.add(teamMapper.getTeamsByIdType(teamId,activityType));
-        }
+        List<Team> teams = teamMapper.getTeamsByType(teamIds, activityType);
         return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), teams);
     }
 

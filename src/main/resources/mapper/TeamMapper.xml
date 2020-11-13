@@ -67,6 +67,17 @@
             #{teamIds}
         </foreach>
     </select>
+    <select id="getTeamsByType" resultType="com.qingyuan.pigeon.pojo.Team">
+        select team_id, team_name, activity_type, memberCount_max, team_introduction, teamAvatar_url, teamApply_count
+        from pigeon.team
+        where team_id and activity_type in
+        <foreach collection="list" item="teamId" index="i" separator="," close=")" open="(">
+            #{teamId}
+            <foreach collection="list" open="(" close=")" separator="," index="j" item="activitType">
+                #{activityType}
+            </foreach>
+        </foreach>
+    </select>
 
     <update id="updateTeamApplyCount">
         update pigeon.team

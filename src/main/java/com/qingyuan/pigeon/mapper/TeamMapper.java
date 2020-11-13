@@ -71,6 +71,14 @@ public interface TeamMapper {
     Team getTeamsByIdType(Integer teamId, String activityType);
 
     /**
+     * 根据 teamId和 activityType实现集合查询
+     * @param teamId
+     * @param activityType
+     * @return
+     */
+    List<Team> getTeamsByType(LinkedList<Integer> teamId, String activityType);
+
+    /**
      * 添加管理员
      * @param teamId
      * @param userId

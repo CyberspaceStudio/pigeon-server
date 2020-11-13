@@ -34,7 +34,7 @@ public class TaskMember {
     /**
      * 用户状态id
      */
-    private Integer userTaskStatusId;
+    private String userTaskStatus;
 
     /**
      * 用户所得鸽子蛋数量

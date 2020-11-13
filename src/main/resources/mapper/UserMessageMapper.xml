@@ -69,7 +69,7 @@
     </insert>
 
     <update id="updateUserImageUrl">
-        UPDATE user SET userImage_url = #{userImageUrl,jdbcType=VARCHAR}
+        UPDATE pigeon.user SET userImage_url = #{userImageUrl,jdbcType=VARCHAR}
         WHERE user_id  = #{userId,jdbcType=INTEGER}
     </update>
 
@@ -86,26 +86,32 @@
     </select>
 
     <update id="updateUserMessage">
-    UPDATE user SET
-    <if test="userName!=null">
-        user_name =#{userName},
-    </if>
-    <if test="userTel!=null">
-        user_tel =#{userTel},
-    </if>
-    <if test="userSex!=null">
-        user_sex =#{userSex},
-    </if>
-    <if test="userIntroduction!=null">
-        user_introduction = #{userIntroduction}
-    </if>
-    WHERE user_id =#{userId}
+        UPDATE pigeon.user SET
+        <if test="userName!=null">
+            user_name =#{userName},
+        </if>
+        <if test="userTel!=null">
+            user_tel =#{userTel},
+        </if>
+        <if test="userSex!=null">
+            user_sex =#{userSex},
+        </if>
+        <if test="userIntroduction!=null">
+            user_introduction = #{userIntroduction}
+        </if>
+        WHERE user_id =#{userId}
     </update>
 
     <select id="getUsersByTeamId" parameterType="java.lang.Integer" resultMap="User">
         select u.user_id,u.user_name,u.user_sex,u.user_tel,u.userImage_url,u.pigeonEgg_count,u.user_pwd,u.user_introduction
-        from `user` u, `team_member` tm
+        from pigeon.user u, pigeon.team_member tm
         where tm.team_id = #{teamId,jdbcType=INTEGER} and u.user_id = tm.user_id
     </select>
+
+    <update id="updatePigeonEggCount">
+        update pigeon.user
+        set pigeonEgg_count = pigeonEgg_count + #{pigeonEggCount,jdbcType=INTEGER}
+        where user_id = #{userId,jdbcType=INTEGER}
+    </update>
 
 </mapper>

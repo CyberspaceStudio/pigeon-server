@@ -5,7 +5,7 @@ package com.qingyuan.pigeon.enums;
  * @author 24605
  */
 public enum UserTaskStatusEnum {
-    USER_APPKYED(0,"已报名"),
+    USER_APPLIED(0,"已报名"),
     USER_CHECKED(1,"已签到");
 
     /**
@@ -21,5 +21,9 @@ public enum UserTaskStatusEnum {
     UserTaskStatusEnum(Integer userTaskStatusId, String userTaskStatus) {
         this.userTaskStatusId = userTaskStatusId;
         this.userTaskStatus = userTaskStatus;
+    }
+
+    public String getMsg() {
+        return this.userTaskStatus;
     }
 }

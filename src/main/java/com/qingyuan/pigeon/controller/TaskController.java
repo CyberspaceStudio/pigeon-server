@@ -23,7 +23,7 @@ import java.util.List;
 public class TaskController {
 
     @Resource
-    @Qualifier("TaskServiceImpl")
+    @Qualifier("taskServiceImpl")
     TaskService taskService;
 
 
@@ -45,7 +45,7 @@ public class TaskController {
      */
     @GetMapping("/user")
     public UniversalResponseBody<List<Task>> getUserTasks(Integer userId){
-        return null;
+        return taskService.getUserTasks(userId);
     }
 
     /**
@@ -56,7 +56,7 @@ public class TaskController {
      */
     @PostMapping("/apply")
     public UniversalResponseBody<Task> applyTask(Integer userId,Integer taskId){
-        return null;
+        return taskService.applyTask(userId, taskId);
     }
 
     /**
@@ -69,6 +69,6 @@ public class TaskController {
      */
     @PostMapping("/checkin")
     public UniversalResponseBody<Task> taskCheckIn(Double checkLongitude,Double checkLatitude,Integer taskId,Integer userId){
-       return null;
+       return taskService.taskCheckIn(checkLongitude, checkLatitude, taskId, userId);
     }
 }

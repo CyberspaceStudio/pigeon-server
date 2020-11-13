@@ -1,6 +1,7 @@
 package com.qingyuan.pigeon.service.impl;
 
 import com.qingyuan.pigeon.enums.ResponseResultEnum;
+import com.qingyuan.pigeon.enums.UserAuthorityEnum;
 import com.qingyuan.pigeon.mapper.TeamMapper;
 import com.qingyuan.pigeon.mapper.TeamMemberMapper;
 import com.qingyuan.pigeon.mapper.UserMessageMapper;
@@ -43,11 +44,16 @@ public class TeamServiceImpl implements TeamService {
     private UserMessageMapper userMessageMapper;
 
     @Override
-    public UniversalResponseBody<Team> createTeam(Team team, MultipartFile multipartFile) {
+    @Transactional
+    public UniversalResponseBody<Team> createTeam(Team team, Integer userId, MultipartFile multipartFile) {
+        // 创建团队
         int affectedRow = teamMapper.createTeam(team);
         if (affectedRow < 1) {
             return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
         }
+
+        // 创建的用户权限升级为队长
+        teamMemberMapper.updateUserAuthority(userId, UserAuthorityEnum.TEAM_LEADER.getUserAuthorityId());
 
         String teamFileName = team.getTeamId() + ".png";
         String filePath = TEAM_AVATAR_DIR_PATH + teamFileName;

@@ -21,7 +21,7 @@ public class PasswordEncodeUtil {
      * @return
      * @throws NoSuchAlgorithmException
      */
-    public String encodeByMD5(String userPwd) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+    public static String encodeByMD5(String userPwd) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         // 确定计算方法
         MessageDigest md5 = MessageDigest.getInstance("MD5");
 

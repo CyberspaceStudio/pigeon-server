@@ -35,8 +35,8 @@ public class TeamController {
      * @apiNote 已上线,此接口中teamImageUrl不用填写
      */
     @PostMapping("/create")
-    public UniversalResponseBody<Team> createTeam(Team team,MultipartFile multipartFile){
-        return teamService.createTeam(team, multipartFile);
+    public UniversalResponseBody<Team> createTeam(Team team, Integer userId, MultipartFile multipartFile){
+        return teamService.createTeam(team, userId, multipartFile);
     }
 
     /**

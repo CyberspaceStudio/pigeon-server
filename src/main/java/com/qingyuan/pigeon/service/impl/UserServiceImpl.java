@@ -34,10 +34,6 @@ public class UserServiceImpl implements UserService {
     private RedisUtil redisUtil;
     @Resource
     private MessageUtil messageUtil;
-    @Resource
-    private PasswordEncodeUtil passwordEncodeUtil;
-    @Resource
-    private GenerateUsernameUtil generateUsernameUtil;
 
     private static final String USER_AVATAR_DIR_PATH = "/a-pigeon/image-pigeon/user-avatar/";
     private static  final String USER_IMAGE_URL = "https://minimalist.net.cn/image-pigeon/user-avatar/";
@@ -48,7 +44,7 @@ public class UserServiceImpl implements UserService {
         User userByTel = userMessageMapper.getUserByTel(userTel);
         try{
             // 输入的userPwd加密
-            String userPwdEncode = passwordEncodeUtil.encodeByMD5(userPwd);
+            String userPwdEncode = PasswordEncodeUtil.encodeByMD5(userPwd);
             System.out.println(userPwd + userTel);
             if (userByTel == null  || !userPwdEncode.equals(userByTel.getUserPwd())){
                 return new UniversalResponseBody<>(ResponseResultEnum.USER_LOGIN_ERROR.getCode(),ResponseResultEnum.USER_LOGIN_ERROR.getMsg());
@@ -107,10 +103,10 @@ public class UserServiceImpl implements UserService {
         user.setUserTel(userTel);
         user.setPigeonEggCount(0);
         user.setUserImageUrl(DEFAULT_USER_IMAGE_URL);
-        user.setUserName("pigeon_" + generateUsernameUtil.generateUsername());
+        user.setUserName("pigeon_" + GenerateUsernameUtil.generateUsername());
         try {
             //加密密码
-            user.setUserPwd(passwordEncodeUtil.encodeByMD5(userPwd));
+            user.setUserPwd(PasswordEncodeUtil.encodeByMD5(userPwd));
         } catch (Exception e) {
             return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
         }

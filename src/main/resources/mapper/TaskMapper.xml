@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.qingyuan.pigeon.mapper.TaskMapper">
+    <resultMap id="Task" type="com.qingyuan.pigeon.pojo.Task">
+        <id column="task_id" property="taskId" jdbcType="INTEGER"/>
+        <result column="task_name" property="taskName" jdbcType="VARCHAR"/>
+        <result column="team_id" property="teamId" jdbcType="INTEGER"/>
+        <result column="taskActivity_location" property="taskActivityLocation" jdbcType="VARCHAR"/>
+        <result column="memberCount_max" property="memberCountMax" jdbcType="INTEGER"/>
+        <result column="taskStart_time" property="taskStartTime" jdbcType="TIMESTAMP"/>
+        <result column="taskEnd_time" property="taskEndTime" jdbcType="TIMESTAMP"/>
+        <result column="task_status" property="taskStatus" jdbcType="VARCHAR"/>
+        <result column="check_longitude" property="checkLongitude" jdbcType="DECIMAL"/>
+        <result column="check_latitude" property="checkLatitude" jdbcType="DECIMAL"/>
+        <result column="activity_type" property="activityType" jdbcType="VARCHAR"/>
+        <result column="taskApply_count" property="taskApplyCount" jdbcType="INTEGER"/>
+        <result column="task_introduction" property="taskIntroduction" jdbcType="VARCHAR"/>
+    </resultMap>
 
     <insert id="insertTask" parameterType="Task" useGeneratedKeys="true" keyProperty="taskId">
         insert into pigeon.task
@@ -36,6 +51,9 @@
             <if test="activityType != null">
                 activity_type,
             </if>
+            <if test="taskIntroduction != null">
+                task_introduction,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
 
@@ -69,6 +87,45 @@
             <if test="activityType != null">
                 #{activityType,jdbcType=VARCHAR},
             </if>
+            <if test="taskIntroduction != null">
+                #{taskIntroduction,jdbcType=VARCHAR},
+            </if>
         </trim>
     </insert>
+
+    <select id="getUserTasks" parameterType="java.lang.Integer" resultMap="Task">
+        select t.activity_type,t.check_latitude,t.check_longitude,t.memberCount_max,t.taskActivity_location,t.taskApply_count,t.taskEnd_time,t.taskStart_time,t.task_id,t.task_name,t.task_status,t.team_id
+        from pigeon.task t, pigeon.task_member tm
+        where t.task_id = tm.task_id and tm.user_id = #{userId,jdbcType=INTEGER}
+    </select>
+
+    <select id="getTaskById" parameterType="java.lang.Integer" resultMap="Task">
+        select activity_type,check_latitude,check_longitude,memberCount_max,taskActivity_location,taskApply_count,taskEnd_time,taskStart_time,task_id,task_name,task_status,team_id
+        from pigeon.task
+        where task_id = #{taskId,jdbcType=INTEGER} limit 1
+    </select>
+
+    <insert id="addUserTask" parameterType="com.qingyuan.pigeon.pojo.DO.TaskMember">
+        insert into pigeon.task_member
+        (user_id, task_id, useCheck_longitude, userCheck_latitude, userTask_status, userPigeonEgg_count)
+        values (#{userId,jdbcType=INTEGER},#{taskId,jdbcType=INTEGER},#{useCheckLongitude,jdbcType=DECIMAL},#{userCheckLatitude,jdbcType=DECIMAL},#{userTaskStatus,jdbcType=VARCHAR},#{userPigeonEggCount,jdbcType=INTEGER})
+    </insert>
+
+    <update id="updateTaskApplyCount">
+        update pigeon.task
+        set taskApply_count = #{taskApplyCount,jdbcType=INTEGER}
+        where task_id = #{taskId,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateTaskMember" parameterType="com.qingyuan.pigeon.pojo.DO.TaskMember">
+        update pigeon.task_member
+        set useCheck_longitude = #{useCheckLongitude,jdbcType=DECIMAL}, userCheck_latitude = #{userCheckLatitude,jdbcType=DECIMAL}, userTask_status = #{userTaskStatus,jdbcType=VARCHAR}, userPigeonEgg_count = #{userPigeonEggCount,jdbcType=INTEGER}
+        where user_id = #{userId,jdbcType=INTEGER} and task_id = #{taskId,jdbcType=INTEGER}
+    </update>
+
+    <select id="getUserTaskStatus" resultType="java.lang.String">
+        select userTask_status
+        from pigeon.task_member
+        where task_id = #{taskId,jdbcType=INTEGER} and user_id = #{userId,jdbcType=INTEGER}
+    </select>
 </mapper>

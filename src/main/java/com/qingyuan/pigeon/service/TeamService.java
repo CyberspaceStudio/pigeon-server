@@ -19,7 +19,7 @@ public interface TeamService {
      * @param multipartFile
      * @return
      */
-    UniversalResponseBody<Team> createTeam(Team team, MultipartFile multipartFile);
+    UniversalResponseBody<Team> createTeam(Team team, Integer userId, MultipartFile multipartFile);
 
     /**
      * 加入团队

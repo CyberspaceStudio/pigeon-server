@@ -108,4 +108,10 @@
         where tm.team_id = #{teamId,jdbcType=INTEGER} and u.user_id = tm.user_id
     </select>
 
+    <update id="updatePigeonEggCount">
+        update pigeon.user
+        set pigeonEgg_count = pigeonEgg_count + #{pigeonEggCount,jdbcType=INTEGER}
+        where user_id = #{userId,jdbcType=INTEGER}
+    </update>
+
 </mapper>

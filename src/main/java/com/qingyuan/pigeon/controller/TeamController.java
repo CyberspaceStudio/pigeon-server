@@ -71,7 +71,7 @@ public class TeamController {
      */
     @PostMapping("/admin")
     public UniversalResponseBody<List<User>> addTeamAdmin(Integer teamId,String userTel){
-        return null;
+        return teamService.addTeamAdmin(teamId, userTel);
     }
 
     /**
@@ -90,31 +90,34 @@ public class TeamController {
      * 根据活动类型获取团队信息
      * @param userId
      * @param activityType 详情见活动类型字典数据
-     * @return
+     * @return 已上线
      */
     @GetMapping("/type")
     public UniversalResponseBody<List<Team>> getTeamsByType(Integer userId,String activityType){
-        return null;
+        return teamService.getTeamsByType(userId, activityType);
     }
+
 
     /**
      * 根据TeamId获取团队
      * @param teamId
-     * @return
+     * @return 已上线 返回结果 成功(保证返回数据不为空) 失败
      */
     @GetMapping("/id")
     public UniversalResponseBody<Team> getTeamById(Integer teamId){
-        return null;
+        return teamService.getTeamByTeamId(teamId);
     }
 
     /**
      * 查询用户的所有团队
      * @param userId
-     * @param teamId
      * @return
+     * @apiNote 返回结果 未参加任何团队 成功
      */
     @GetMapping("/user/id")
-    public UniversalResponseBody<List<Team>> getTeamsByUserId(Integer userId,Integer teamId){
-        return null;
+    public UniversalResponseBody<List<Team>> getTeamsByUserId(Integer userId){
+        return teamService.getTeamsByUserId(userId);
     }
+
+
 }

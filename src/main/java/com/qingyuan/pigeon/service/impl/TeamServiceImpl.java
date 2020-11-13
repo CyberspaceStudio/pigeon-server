@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -106,6 +107,67 @@ public class TeamServiceImpl implements TeamService {
     public UniversalResponseBody<List<User>> getTeamUsers(Integer teamId) {
         // 通过teamId来查找成员
         List<User> users = userMessageMapper.getUsersByTeamId(teamId);
-        return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), users);
+        if (users != null){
+            return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), users);
+        }
+        return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+
+    }
+
+    @Override
+    public UniversalResponseBody<List<Team>> getTeamsByType(Integer userId, String activityType) {
+        LinkedList<Integer> teamIds = teamMapper.getTeamsByUserId(userId);
+        if (teamIds == null || teamIds.isEmpty()){
+            return new UniversalResponseBody<>(ResponseResultEnum.USER_NOT_HAVE_TEAM.getCode(),ResponseResultEnum.USER_NOT_HAVE_TEAM.getMsg(),null);
+        }
+        LinkedList<Team> teams = new LinkedList<>();
+        for (Integer teamId:
+             teamIds) {
+            teams.add(teamMapper.getTeamsByIdType(teamId,activityType));
+        }
+        return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), teams);
+    }
+
+    @Override
+    public UniversalResponseBody<Team> getTeamByTeamId(Integer teamId) {
+        //根据团队id查询团队
+        Team team = teamMapper.getTeamById(teamId);
+        if (team != null){
+            return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), team);
+        }
+        return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+    }
+
+    @Override
+    public UniversalResponseBody<List<Team>> getTeamsByUserId(Integer userId) {
+        //查询用户的团队
+        List<Integer> teamIds = teamMapper.getTeamsByUserId(userId);
+        if (teamIds == null || teamIds.isEmpty()){
+            return new UniversalResponseBody<>(ResponseResultEnum.USER_NOT_HAVE_TEAM.getCode(),ResponseResultEnum.USER_NOT_HAVE_TEAM.getMsg(),null);
+        }
+        List<Team> teams = teamMapper.getTeamByIds(teamIds);
+        //如果进行到这一步，则说明teamIds不为空，肯定能查出对应的团队
+        //所以不用考虑返回结果为空的情况
+        return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), teams);
+    }
+
+    @Override
+    public UniversalResponseBody<List<User>> addTeamAdmin(Integer teamId, String userTel) {
+        User user = userMessageMapper.getUserByTel(userTel);
+        if (user == null){
+            return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+        }
+        Integer userAuthorityId = teamMapper.getUserAuthorityId(teamId, user.getUserId());
+        //查找结果为空则插入管理员信息并把 userAuthority的值设为
+        if (userAuthorityId == null){
+            teamMapper.addTeamAdmin(teamId, user.getUserId(), UserAuthorityEnum.TEAM_ADMIN.getUserAuthorityId());
+        } else if (userAuthorityId.equals(UserAuthorityEnum.TEAM_MEMBER.getUserAuthorityId())){
+            //查找结果为3代表管理员信息已存在，则更新为2
+            teamMapper.updateUserAuthorityId(teamId, user.getUserId(), UserAuthorityEnum.TEAM_ADMIN.getUserAuthorityId());
+        }
+        //以上所有步骤为添加管理员，接下来返回所有管理员信息
+        List<Integer> adminIds = teamMapper.getAdminIds();
+        List<User> adminsInformation = userMessageMapper.getUsersByUserId(adminIds);
+        return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), adminsInformation);
     }
 }

@@ -17,16 +17,18 @@
         values (#{teamId,jdbcType=INTEGER},#{teamName,jdbcType=VARCHAR},#{activityType,jdbcType=VARCHAR},#{memberCountMax,jdbcType=VARCHAR},#{teamIntroduction,jdbcType=VARCHAR},#{teamAvatarUrl,jdbcType=VARCHAR},#{teamApplyCount,jdbcType=INTEGER})
     </insert>
 
+    <insert id="addTeamAdmin">
+        insert into team_member
+        (team_id, user_id, userAuthority_id)
+        values (#{teamId, jdbcType=INTEGER}, #{userId, jdbcType=INTEGER}, #{userAuthority, jdbcType=INTEGER})
+    </insert>
+
     <update id="updateTeamAvatar">
         update pigeon.team
         set teamAvatar_url = #{avatarUrl,jdbcType=VARCHAR}
         where team_id = #{teamId,jdbcType=INTEGER}
     </update>
-    <select id="getTeamUserIds" resultType="java.lang.Integer">
-        select user_id
-        from pigeon.team_member
-        where team_id = #{teamId, jdbcType = INTEGER}
-    </select>
+
 
     <select id="getTeamById" resultMap="Team">
         select team_id, team_name, activity_type, memberCount_max, team_introduction, teamAvatar_url, teamApply_count
@@ -34,10 +36,48 @@
         where team_id = #{teamId,jdbcType=INTEGER} limit 1
     </select>
 
+    <select id="getTeamsByUserId" resultType="java.lang.Integer">
+        select team_id
+        from pigeon.team_member
+        where user_id = #{userId, jdbcType = INTEGER}
+    </select>
+
+    <select id="getTeamsByIdType" resultType="com.qingyuan.pigeon.pojo.Team">
+        select team_id, team_name, activity_type, memberCount_max, team_introduction, teamAvatar_url, teamApply_count
+        from pigeon.team
+        where activity_type = #{activityType, jdbcType=VARCHAR} and team_id = #{teamId,jdbcType=INTEGER}
+    </select>
+
+    <select id="getUserAuthorityId" resultType="java.lang.Integer">
+        select userAuthority_id
+        from pigeon.team_member
+        where user_id = #{userId, jdbcType=INTEGER} and team_id = #{teamId, jdbcType=INTEGER}
+    </select>
+
+    <select id="getAdminIds" resultType="java.lang.Integer">
+        select user_id
+        from pigeon.team_member
+    </select>
+
+    <select id="getTeamByIds" resultType="com.qingyuan.pigeon.pojo.Team">
+        select team_id, team_name, activity_type, memberCount_max, team_introduction, teamAvatar_url, teamApply_count
+        from pigeon.team
+        where team_id in
+        <foreach collection="list" open="(" close=")" separator="," index="i" item="teamIds">
+            #{teamIds}
+        </foreach>
+    </select>
+
     <update id="updateTeamApplyCount">
         update pigeon.team
         set teamApply_count = #{teamApplyCount,jdbcType=INTEGER}
         where team_id = #{teamId,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateUserAuthorityId">
+        update team_member
+        set userAuthority_id = #{userAuthorityId, jdbcType=INTEGER}
+        where team_id = #{teamId, jdbcType=INTEGER} and user_id = #{userId, jdbcType=INTEGER}
     </update>
 
 </mapper>

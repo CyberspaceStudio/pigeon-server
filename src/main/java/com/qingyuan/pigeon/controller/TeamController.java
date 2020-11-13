@@ -31,6 +31,8 @@ public class TeamController {
     /**
      * 新建团队
      * @param team
+     * @param userId
+     * @param multipartFile
      * @return
      * @apiNote 已上线,此接口中teamImageUrl不用填写
      */
@@ -67,7 +69,7 @@ public class TeamController {
      * @param teamId
      * @param userTel
      * @return
-     * @apiNote 此接口在添加完成管理员后会将所有管理员的用户信息返回
+     * @apiNote 已上线 此接口在添加完成管理员后会将所有管理员的用户信息返回
      */
     @PostMapping("/admin")
     public UniversalResponseBody<List<User>> addTeamAdmin(Integer teamId,String userTel){
@@ -112,7 +114,7 @@ public class TeamController {
      * 查询用户的所有团队
      * @param userId
      * @return
-     * @apiNote 返回结果 未参加任何团队 成功
+     * @apiNote 已上线 返回结果 未参加任何团队 成功
      */
     @GetMapping("/user/id")
     public UniversalResponseBody<List<Team>> getTeamsByUserId(Integer userId){

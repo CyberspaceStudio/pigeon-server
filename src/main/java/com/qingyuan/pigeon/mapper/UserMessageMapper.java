@@ -66,4 +66,12 @@ public interface UserMessageMapper {
      * @return
      */
     int updatePigeonEggCount(@Param("userId") Integer userId, @Param("pigeonEggCount") Integer pigeonEggCount);
+
+
+    /**
+     * 批量查询用户信息
+     * @param adminIds
+     * @return
+     */
+    List<User> getUsersByUserId(List<Integer> adminIds);
 }

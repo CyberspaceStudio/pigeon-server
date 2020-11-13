@@ -76,11 +76,11 @@ public interface TeamMapper {
      * 跟新已有管理员信息
      * @param teamId
      * @param userId
-     * @param userAuthority
+     * @param userAuthorityId
      * @return
      * @apiNote 此接口在添加完成管理员后会将所有管理员的用户信息返回
      */
-    int updateTeamAdmin(Integer teamId, Integer userId,Integer userAuthority);
+    int updateUserAuthorityId(Integer teamId, Integer userId, Integer userAuthorityId);
 
     /**
      * 根据用户ID和团队ID查找 userAuthority
@@ -88,7 +88,7 @@ public interface TeamMapper {
      * @param userId
      * @return
      */
-   UserAuthorityEnum getUserAuthority(Integer teamId, Integer userId);
+   Integer getUserAuthorityId(Integer teamId, Integer userId);
 
     /**
      * 返回管理员的ID

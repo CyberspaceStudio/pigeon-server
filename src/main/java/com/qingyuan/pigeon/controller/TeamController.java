@@ -90,7 +90,7 @@ public class TeamController {
      * 根据活动类型获取团队信息
      * @param userId
      * @param activityType 详情见活动类型字典数据
-     * @return
+     * @return 已上线
      */
     @GetMapping("/type")
     public UniversalResponseBody<List<Team>> getTeamsByType(Integer userId,String activityType){
@@ -101,7 +101,7 @@ public class TeamController {
     /**
      * 根据TeamId获取团队
      * @param teamId
-     * @return 返回结果 成功(保证返回数据不为空) 失败
+     * @return 已上线 返回结果 成功(保证返回数据不为空) 失败
      */
     @GetMapping("/id")
     public UniversalResponseBody<Team> getTeamById(Integer teamId){

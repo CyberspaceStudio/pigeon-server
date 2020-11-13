@@ -105,7 +105,8 @@ public class TeamServiceImpl implements TeamService {
         if (users != null){
             return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), users);
         }
-        return new UniversalResponseBody<>(ResponseResultEnum.RESULT_IS_NULL.getCode(),ResponseResultEnum.RESULT_IS_NULL.getMsg(),null);
+        return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+
     }
 
     @Override
@@ -117,7 +118,7 @@ public class TeamServiceImpl implements TeamService {
         List<Team> teams = new LinkedList<>();
         for (Integer teamId:
              teamIds) {
-            teams.add(teamMapper.getTeamsByIdType(teamId, activityType));
+            teams.add(teamMapper.getTeamsByIdType(teamId,activityType));
         }
         return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), teams);
     }
@@ -155,31 +156,21 @@ public class TeamServiceImpl implements TeamService {
         if (user == null){
             return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
         }
-        UserAuthorityEnum userAuthorityEnum = teamMapper.getUserAuthority(teamId, user.getUserId());
-        /**
-         * 查找结果为空则插入管理员信息并把 userAuthority的值设为2
-         */
-        if (userAuthorityEnum == null){
-            int userAuthority = 2;
-            teamMapper.addTeamAdmin(teamId, user.getUserId(), userAuthority);
+        Integer userAuthorityId = teamMapper.getUserAuthorityId(teamId, user.getUserId());
+        //查找结果为空则插入管理员信息并把 userAuthority的值设为
+        if (userAuthorityId == null){
+            teamMapper.addTeamAdmin(teamId, user.getUserId(), UserAuthorityEnum.TEAM_ADMIN.getUserAuthorityId());
+        } else if (userAuthorityId.equals(UserAuthorityEnum.TEAM_MEMBER.getUserAuthorityId())){
+            //查找结果为3代表管理员信息已存在，则更新为2
+            teamMapper.updateUserAuthorityId(teamId, user.getUserId(), UserAuthorityEnum.TEAM_ADMIN.getUserAuthorityId());
         }
-        /**
-         * 查找结果为3代表管理员信息已存在，则更新为2
-         */
-        if (userAuthorityEnum.getUserAuthorityId() == 3){
-            int userAuthority = 2;
-            teamMapper.updateTeamAdmin(teamId, user.getUserId(), userAuthority);
-        }
-        /**
-         *以上所有步骤为添加管理员，接下来返回所有管理员信息
-         */
+        //以上所有步骤为添加管理员，接下来返回所有管理员信息
         List<Integer> adminIds = teamMapper.getAdminIds();
         List<User> adminsInformation = new LinkedList<>();
         for (Integer adminId:
              adminIds) {
             adminsInformation.add(userMessageMapper.getUserById(adminId));
         }
-
         return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), adminsInformation);
     }
 }

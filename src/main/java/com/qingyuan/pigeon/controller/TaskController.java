@@ -23,7 +23,7 @@ import java.util.List;
 public class TaskController {
 
     @Resource
-    @Qualifier("TaskServiceImpl")
+    @Qualifier("taskServiceImpl")
     TaskService taskService;
 
 

@@ -16,7 +16,6 @@ public enum ResponseResultEnum {
     PARAM_IS_INVALID(0, "参数无效"),
     PARAM_IS_BLANK(0, "参数为空"),
     PARAM_TYPE_BIND_ERROR(0, "参数类型错误"),
-    RESULT_IS_NULL(2,"查询结果为空"),
     /**
      * 登录注册错误
      */

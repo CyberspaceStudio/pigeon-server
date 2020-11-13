@@ -26,4 +26,12 @@ public interface TeamMemberMapper {
      * @return
      */
     int getUserNumberFromTeam(@Param("teamId") Integer teamId, @Param("userId") Integer userId);
+
+    /**
+     * 更新成员权限
+     * @param userId
+     * @param auth
+     * @return
+     */
+    int updateUserAuthority(@Param("userId") Integer userId, @Param("auth") Integer auth);
 }

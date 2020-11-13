@@ -31,7 +31,7 @@ public class TaskController {
      * 新增任务
      * @param task
      * @return
-     * @apiNote taskId以及taskStatus不用填写
+     * @apiNote 已上线 taskId以及taskStatus不用填写
      */
     @PostMapping("/add")
     public UniversalResponseBody<Task> addTask(Task task){
@@ -41,22 +41,22 @@ public class TaskController {
     /**
      * 查询用户的所有任务
      * @param userId
-     * @return
+     * @return 已上线
      */
     @GetMapping("/user")
     public UniversalResponseBody<List<Task>> getUserTasks(Integer userId){
-        return null;
+        return taskService.getUserTasks(userId);
     }
 
     /**
      * 报名任务
      * @param userId
      * @param taskId
-     * @return
+     * @return 已上线
      */
     @PostMapping("/apply")
     public UniversalResponseBody<Task> applyTask(Integer userId,Integer taskId){
-        return null;
+        return taskService.applyTask(userId, taskId);
     }
 
     /**
@@ -65,10 +65,10 @@ public class TaskController {
      * @param checkLatitude 签到纬度
      * @param taskId 任务id
      * @param userId 用户id
-     * @return
+     * @return 已上线
      */
     @PostMapping("/checkin")
     public UniversalResponseBody<Task> taskCheckIn(Double checkLongitude,Double checkLatitude,Integer taskId,Integer userId){
-       return null;
+       return taskService.taskCheckIn(checkLongitude, checkLatitude, taskId, userId);
     }
 }

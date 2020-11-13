@@ -29,7 +29,13 @@ public enum ResponseResultEnum {
      * 团队相关错误
      */
     TEAM_MEMBER_REACH_MAX(0, "团队人数达到上限"),
-    TEAM_MEMBER_IS_EXISTED(0, "团队已存在该成员");
+    TEAM_MEMBER_IS_EXISTED(0, "团队已存在该成员"),
+    /**
+     * 任务相关错误
+     */
+    TASK_MEMBER_REACH_MAX(0, "任务人数已达上限"),
+    NOT_IN_CHECK_LOCATION(0, "不在签到范围内"),
+    CHECK_IN_ALREADY(0, "您已签到过，不能重复签到");
 
 
     /**

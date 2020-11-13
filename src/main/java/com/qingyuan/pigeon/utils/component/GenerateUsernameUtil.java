@@ -18,7 +18,7 @@ public class GenerateUsernameUtil {
      *
      * @return
      */
-    public String generateUsername() {
+    public static String generateUsername() {
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
         for (int i = 0; i < 8; i++) {

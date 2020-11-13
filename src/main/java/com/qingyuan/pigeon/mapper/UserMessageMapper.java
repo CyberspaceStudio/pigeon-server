@@ -57,4 +57,11 @@ public interface UserMessageMapper {
      * @return
      */
     List<User> getUsersByTeamId(Integer teamId);
+
+    /**
+     * 根据 userId 实现集合查询
+     * @param userIds
+     * @return
+     */
+    List<User> getUsersByUserId(List<Integer> userIds);
 }

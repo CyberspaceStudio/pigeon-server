@@ -108,4 +108,13 @@
         where tm.team_id = #{teamId,jdbcType=INTEGER} and u.user_id = tm.user_id
     </select>
 
+    <select id="getUsersByUserId" resultType="com.qingyuan.pigeon.pojo.User">
+        select user_id,user_name,user_tel,user_sex,userImage_url,pigeonEgg_count,user_pwd,user_introduction
+        from pigeon.user
+        where user_id in
+        <foreach collection="list" open="(" close=")" separator="," item="userIds" index="i">
+            #{userIds}
+        </foreach>
+    </select>
+
 </mapper>

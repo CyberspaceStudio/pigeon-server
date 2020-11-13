@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -41,6 +42,13 @@ public interface TeamMapper {
     Team getTeamById(Integer teamId);
 
     /**
+     * 根据 teamIds 实现集合查询
+     * @param teamIds
+     * @return
+     */
+    List<Team> getTeamByIds(List<Integer> teamIds);
+
+    /**
      * 更新团队申请人数
      * @param teamApplyCount
      * @return
@@ -52,7 +60,7 @@ public interface TeamMapper {
      * @param userId
      * @return
      */
-    List<Integer> getTeamsByUserId(Integer userId);
+    LinkedList<Integer> getTeamsByUserId(Integer userId);
 
     /**
      * 根据活动类型获取团队信息

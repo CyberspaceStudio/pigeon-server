@@ -111,11 +111,11 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public UniversalResponseBody<List<Team>> getTeamsByType(Integer userId, String activityType) {
-        List<Integer> teamIds = teamMapper.getTeamsByUserId(userId);
+        LinkedList<Integer> teamIds = teamMapper.getTeamsByUserId(userId);
         if (teamIds == null || teamIds.isEmpty()){
             return new UniversalResponseBody<>(ResponseResultEnum.USER_NOT_HAVE_TEAM.getCode(),ResponseResultEnum.USER_NOT_HAVE_TEAM.getMsg(),null);
         }
-        List<Team> teams = new LinkedList<>();
+        LinkedList<Team> teams = new LinkedList<>();
         for (Integer teamId:
              teamIds) {
             teams.add(teamMapper.getTeamsByIdType(teamId,activityType));
@@ -140,11 +140,7 @@ public class TeamServiceImpl implements TeamService {
         if (teamIds == null || teamIds.isEmpty()){
             return new UniversalResponseBody<>(ResponseResultEnum.USER_NOT_HAVE_TEAM.getCode(),ResponseResultEnum.USER_NOT_HAVE_TEAM.getMsg(),null);
         }
-        List<Team> teams = new LinkedList<>();
-        for (Integer teamId: teamIds
-             ) {
-            teams.add(teamMapper.getTeamById(teamId));
-        }
+        List<Team> teams = teamMapper.getTeamByIds(teamIds);
         //如果进行到这一步，则说明teamIds不为空，肯定能查出对应的团队
         //所以不用考虑返回结果为空的情况
         return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), teams);
@@ -166,11 +162,7 @@ public class TeamServiceImpl implements TeamService {
         }
         //以上所有步骤为添加管理员，接下来返回所有管理员信息
         List<Integer> adminIds = teamMapper.getAdminIds();
-        List<User> adminsInformation = new LinkedList<>();
-        for (Integer adminId:
-             adminIds) {
-            adminsInformation.add(userMessageMapper.getUserById(adminId));
-        }
+        List<User> adminsInformation = userMessageMapper.getUsersByUserId(adminIds);
         return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), adminsInformation);
     }
 }

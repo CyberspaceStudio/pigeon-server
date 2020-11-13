@@ -80,4 +80,9 @@ public class Task {
      * 任务报名人数
      */
     private Integer taskApplyCount;
+
+    /**
+     * 任务详情
+     */
+    private String taskIntroduction;
 }

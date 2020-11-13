@@ -2,6 +2,7 @@ package com.qingyuan.pigeon.mapper;
 
 import com.qingyuan.pigeon.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -59,9 +60,18 @@ public interface UserMessageMapper {
     List<User> getUsersByTeamId(Integer teamId);
 
     /**
-     * 根据 userId 实现集合查询
-     * @param userIds
+     * 更新用户鸽子蛋数量
+     * @param userId
+     * @param pigeonEggCount
      * @return
      */
-    List<User> getUsersByUserId(List<Integer> userIds);
+    int updatePigeonEggCount(@Param("userId") Integer userId, @Param("pigeonEggCount") Integer pigeonEggCount);
+
+
+    /**
+     * 批量查询用户信息
+     * @param adminIds
+     * @return
+     */
+    List<User> getUsersByUserId(List<Integer> adminIds);
 }

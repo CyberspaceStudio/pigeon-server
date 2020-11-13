@@ -1,6 +1,8 @@
 package com.qingyuan.pigeon.utils.component;
 
 import com.alibaba.fastjson.JSON;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.redis.core.GeoOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 

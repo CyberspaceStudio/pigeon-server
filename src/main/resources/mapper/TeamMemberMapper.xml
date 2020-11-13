@@ -13,4 +13,10 @@
         from pigeon.team_member
         where team_id = #{teamId,jdbcType=INTEGER} and user_id = #{userId,jdbcType=INTEGER}
     </select>
+
+    <update id="updateUserAuthority">
+        update pigeon.team_member
+        set userAuthority_id = #{auth,jdbcType=INTEGER}
+        where user_id = #{userId,jdbcType=INTEGER}
+    </update>
 </mapper>

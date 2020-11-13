@@ -17,6 +17,12 @@
         values (#{teamId,jdbcType=INTEGER},#{teamName,jdbcType=VARCHAR},#{activityType,jdbcType=VARCHAR},#{memberCountMax,jdbcType=VARCHAR},#{teamIntroduction,jdbcType=VARCHAR},#{teamAvatarUrl,jdbcType=VARCHAR},#{teamApplyCount,jdbcType=INTEGER})
     </insert>
 
+    <insert id="addTeamAdmin">
+        insert into pigeon.team_menber
+        (team_id, user_id, userAuthority)
+        values (#{teamId, jdbcType=INTEGER}, #{userId, jdbcType=INTEGER}, #{userAuthority, jdbcType=INTEGER})
+    </insert>
+
     <update id="updateTeamAvatar">
         update pigeon.team
         set teamAvatar_url = #{avatarUrl,jdbcType=VARCHAR}
@@ -46,11 +52,25 @@
         from pigeon.team
         where activity_type = #{activityType, jdbcType=VARCHAR}
     </select>
+    <select id="getUserAuthority" resultType="com.qingyuan.pigeon.enums.UserAuthorityEnum">
+        select userAuthority
+        from pigeon.team_member
+        where user_id = #{userId, jdbcType=INTEGER}, team_id = #{teamId, jdbcType=INTEGER}
+    </select>
+    <select id="getAdminIds" resultType="java.lang.Integer">
+        select user_id
+        from pigeon.team_member
+    </select>
 
     <update id="updateTeamApplyCount">
         update pigeon.team
         set teamApply_count = #{teamApplyCount,jdbcType=INTEGER}
         where team_id = #{teamId,jdbcType=INTEGER}
+    </update>
+    <update id="updateTeamAdmin">
+        update team_menber
+        set userAuthority = #{userAuthority, jdbcType=INTEGER}
+        where team_id = #{teamId, jdbcType=INTEGER}, user_id = #{userId, jdbcType=INTEGER}
     </update>
 
 </mapper>

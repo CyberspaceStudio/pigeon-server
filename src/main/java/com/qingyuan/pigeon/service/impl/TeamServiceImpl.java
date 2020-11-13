@@ -1,6 +1,7 @@
 package com.qingyuan.pigeon.service.impl;
 
 import com.qingyuan.pigeon.enums.ResponseResultEnum;
+import com.qingyuan.pigeon.enums.UserAuthorityEnum;
 import com.qingyuan.pigeon.mapper.TeamMapper;
 import com.qingyuan.pigeon.mapper.TeamMemberMapper;
 import com.qingyuan.pigeon.mapper.UserMessageMapper;
@@ -146,5 +147,39 @@ public class TeamServiceImpl implements TeamService {
         //如果进行到这一步，则说明teamIds不为空，肯定能查出对应的团队
         //所以不用考虑返回结果为空的情况
         return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), teams);
+    }
+
+    @Override
+    public UniversalResponseBody<List<User>> addTeamAdmin(Integer teamId, String userTel) {
+        User user = userMessageMapper.getUserByTel(userTel);
+        if (user == null){
+            return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+        }
+        UserAuthorityEnum userAuthorityEnum = teamMapper.getUserAuthority(teamId, user.getUserId());
+        /**
+         * 查找结果为空则插入管理员信息并把 userAuthority的值设为2
+         */
+        if (userAuthorityEnum == null){
+            int userAuthority = 2;
+            teamMapper.addTeamAdmin(teamId, user.getUserId(), userAuthority);
+        }
+        /**
+         * 查找结果为3代表管理员信息已存在，则更新为2
+         */
+        if (userAuthorityEnum.getUserAuthorityId() == 3){
+            int userAuthority = 2;
+            teamMapper.updateTeamAdmin(teamId, user.getUserId(), userAuthority);
+        }
+        /**
+         *以上所有步骤为添加管理员，接下来返回所有管理员信息
+         */
+        List<Integer> adminIds = teamMapper.getAdminIds();
+        List<User> adminsInformation = new LinkedList<>();
+        for (Integer adminId:
+             adminIds) {
+            adminsInformation.add(userMessageMapper.getUserById(adminId));
+        }
+
+        return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), adminsInformation);
     }
 }

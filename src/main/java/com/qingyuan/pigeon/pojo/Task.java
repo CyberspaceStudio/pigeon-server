@@ -15,7 +15,6 @@ import java.util.Date;
 @Data
 public class Task {
 
-
     /**
      * 任务id(数据库自动递增生成)
      */

@@ -128,4 +128,15 @@
         from pigeon.task_member
         where task_id = #{taskId,jdbcType=INTEGER} and user_id = #{userId,jdbcType=INTEGER}
     </select>
+    <select id="getTeamsTask" resultType="com.qingyuan.pigeon.pojo.Task">
+        select activity_type,check_latitude,check_longitude,memberCount_max,taskActivity_location,taskApply_count,taskEnd_time,taskStart_time,task_id,task_name,task_status,team_id
+        from pigeon.task
+        where team_id = #{teamId}
+    </select>
+    <select id="getTeamsTaskUnExp" resultType="com.qingyuan.pigeon.pojo.Task">
+        select activity_type,check_latitude,check_longitude,memberCount_max,taskActivity_location,taskApply_count,taskEnd_time,taskStart_time,task_id,task_name,task_status,team_id
+        from pigeon.task
+        where team_id = #{teamId} and task_status = "已创建"
+    </select>
+
 </mapper>

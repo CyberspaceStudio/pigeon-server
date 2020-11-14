@@ -1,7 +1,12 @@
 package com.qingyuan.pigeon.mapper;
 
+import com.qingyuan.pigeon.pojo.Task;
+import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 /**
  * @Author: qyl
@@ -34,4 +39,18 @@ public interface TeamMemberMapper {
      * @return
      */
     int updateUserAuthority(@Param("userId") Integer userId, @Param("auth") Integer auth);
+
+    /**
+     * 获取用户所在团队
+     * @param userId
+     * @return
+     */
+    List<Integer> getUserTeam(Integer userId);
+
+    /**
+     * 获取用户指定所在团队
+     * @param userId
+     * @return
+     */
+    Integer getUserTeamForOne(Integer userId, Integer teamId);
 }

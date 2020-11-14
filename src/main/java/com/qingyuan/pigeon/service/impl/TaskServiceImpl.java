@@ -3,6 +3,7 @@ package com.qingyuan.pigeon.service.impl;
 import com.qingyuan.pigeon.enums.ResponseResultEnum;
 import com.qingyuan.pigeon.enums.UserTaskStatusEnum;
 import com.qingyuan.pigeon.mapper.TaskMapper;
+import com.qingyuan.pigeon.mapper.TeamMemberMapper;
 import com.qingyuan.pigeon.mapper.UserMessageMapper;
 import com.qingyuan.pigeon.pojo.DO.TaskMember;
 import com.qingyuan.pigeon.pojo.Task;
@@ -26,6 +27,8 @@ public class TaskServiceImpl implements TaskService {
     private TaskMapper taskMapper;
     @Resource
     private UserMessageMapper userMessageMapper;
+    @Resource
+    private TeamMemberMapper teamMemberMapper;
 
     @Override
     @Transactional
@@ -104,6 +107,44 @@ public class TaskServiceImpl implements TaskService {
             return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), task);
         }
 
+        return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+    }
+
+    @Override
+    public UniversalResponseBody<List<Task>> getTeamsTask(Integer teamId) {
+        List<Task> teamTasks = taskMapper.getTeamsTask(teamId);
+        if (teamTasks != null){
+            return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), teamTasks);
+        }
+        return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+    }
+
+    @Override
+    public UniversalResponseBody<List<Task>> getTeamsTaskUnExp(Integer teamId) {
+        List<Task> teamTasks = taskMapper.getTeamsTaskUnExp(teamId);
+        if (teamTasks != null){
+            return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), teamTasks);
+        }
+        return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+    }
+
+    @Override
+    public UniversalResponseBody<List<Task>> getUserTeamTasks(Integer userId, Integer teamId) {
+        Integer teamIdForOne = teamMemberMapper.getUserTeamForOne(userId, teamId);
+        List<Task> teamTasks = taskMapper.getTeamsTask(teamIdForOne);
+        if (teamTasks != null){
+            return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), teamTasks);
+        }
+        return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+    }
+
+    @Override
+    public UniversalResponseBody<List<Task>> getUserTeamTasksUnExp(Integer userId, Integer teamId) {
+        Integer teamIdForOne = teamMemberMapper.getUserTeamForOne(userId, teamId);
+        List<Task> teamTasks = taskMapper.getTeamsTaskUnExp(teamIdForOne);
+        if (teamTasks != null){
+            return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), teamTasks);
+        }
         return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
     }
 }

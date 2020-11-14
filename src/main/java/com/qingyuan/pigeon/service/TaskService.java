@@ -2,6 +2,7 @@ package com.qingyuan.pigeon.service;
 
 import com.qingyuan.pigeon.pojo.Task;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
@@ -42,4 +43,36 @@ public interface TaskService {
      * @return
      */
     UniversalResponseBody<Task> taskCheckIn(Double checkLongitude,Double checkLatitude,Integer taskId,Integer userId);
+
+    /**
+     * 获取团队的所有任务
+     * @param teamId
+     * @return
+     */
+    UniversalResponseBody<List<Task>> getTeamsTask(Integer teamId);
+
+    /**
+     * 获取团队的所有任务
+     * @param teamId
+     * @return
+     * @apiNote 除去已过期任务
+     */
+    UniversalResponseBody<List<Task>> getTeamsTaskUnExp(Integer teamId);
+
+    /**
+     * 获取用户在该团队的所有任务
+     * @param userId
+     * @param teamId
+     * @return
+     */
+    UniversalResponseBody<List<Task>> getUserTeamTasks(Integer userId,Integer teamId);
+
+    /**
+     * 获取用户在该团队的有效所有任务
+     * @param userId
+     * @param teamId
+     * @return
+     * @apiNote 除去已过期任务
+     */
+    UniversalResponseBody<List<Task>> getUserTeamTasksUnExp(Integer userId,Integer teamId);
 }

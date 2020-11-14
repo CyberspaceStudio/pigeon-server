@@ -2,6 +2,7 @@ package com.qingyuan.pigeon.mapper;
 
 import com.qingyuan.pigeon.pojo.DO.TaskMember;
 import com.qingyuan.pigeon.pojo.Task;
+import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -63,4 +64,20 @@ public interface TaskMapper {
      * @return
      */
     String getUserTaskStatus(@Param("userId") Integer userId, @Param("taskId") Integer taskId);
+
+    /**
+     * 获取团队的所有任务
+     * @param teamId
+     * @return
+     */
+    List<Task> getTeamsTask(Integer teamId);
+
+    /**
+     * 获取团队的所有任务
+     * @param teamId
+     * @return
+     * @apiNote 除去已过期任务
+     */
+    List<Task> getTeamsTaskUnExp(Integer teamId);
+
 }

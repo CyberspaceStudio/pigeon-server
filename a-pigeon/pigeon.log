@@ -81,3 +81,11 @@ Caused by: java.net.SocketTimeoutException: Read timed out
 	... 18 common frames omitted
 
 2020-11-14 17:49:19.051  WARN 4760 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m2s648ms270µs400ns).
+2020-11-15 19:10:13.675  INFO 264 --- [main] c.q.pigeon.PigeonApplicationTests        : Starting PigeonApplicationTests on DESKTOP-TCVN29S with PID 264 (started by 24605 in D:\JavaProject\pigeon_server)
+2020-11-15 19:10:13.676  INFO 264 --- [main] c.q.pigeon.PigeonApplicationTests        : No active profile set, falling back to default profiles: default
+2020-11-15 19:10:16.525  INFO 264 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-11-15 19:10:16.530  INFO 264 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-11-15 19:10:16.773  INFO 264 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 53ms. Found 0 Redis repository interfaces.
+2020-11-15 19:10:22.013  INFO 264 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-15 19:10:23.011  INFO 264 --- [main] c.q.pigeon.PigeonApplicationTests        : Started PigeonApplicationTests in 10.422 seconds (JVM running for 16.197)
+2020-11-15 19:10:29.079  INFO 264 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'

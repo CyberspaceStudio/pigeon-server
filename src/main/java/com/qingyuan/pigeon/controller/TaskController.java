@@ -73,7 +73,7 @@ public class TaskController {
     }
 
     /**
-     * 获取用户在该团队的有效所有任务
+     * 获取用户在该团队的所有有效任务
      * @param userId
      * @param teamId
      * @return
@@ -85,7 +85,7 @@ public class TaskController {
     }
 
     /**
-     * 获取团队的所有任务
+     * 获取团队的所有有效任务
      * @param teamId
      * @return
      * @apiNote 除去已过期任务

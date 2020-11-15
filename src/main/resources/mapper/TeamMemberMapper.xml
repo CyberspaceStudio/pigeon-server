@@ -13,6 +13,16 @@
         from pigeon.team_member
         where team_id = #{teamId,jdbcType=INTEGER} and user_id = #{userId,jdbcType=INTEGER}
     </select>
+    <select id="getUserTeam" resultType="java.lang.Integer">
+        select team_id
+        from pigeon.team_member
+        where user_id = #{userId}
+    </select>
+    <select id="getUserTeamForOne" resultType="java.lang.Integer">
+        select team_id
+        from pigeon.team_member
+        where user_id = #{userId} and team_id = #{teamId}
+    </select>
 
     <update id="updateUserAuthority">
         update pigeon.team_member

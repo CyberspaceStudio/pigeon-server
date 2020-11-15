@@ -71,4 +71,48 @@ public class TaskController {
     public UniversalResponseBody<Task> taskCheckIn(Double checkLongitude,Double checkLatitude,Integer taskId,Integer userId){
        return taskService.taskCheckIn(checkLongitude, checkLatitude, taskId, userId);
     }
+
+    /**
+     * 获取用户在该团队的所有有效任务
+     * @param userId
+     * @param teamId
+     * @return
+     * @apiNote 除去已过期任务
+     */
+    @GetMapping("/team-user/unexpired")
+    public UniversalResponseBody<List<Task>> getUserTeamTasksUnExp(Integer userId,Integer teamId){
+        return taskService.getUserTeamTasksUnExp(userId, teamId);
+    }
+
+    /**
+     * 获取团队的所有有效任务
+     * @param teamId
+     * @return
+     * @apiNote 除去已过期任务
+     */
+    @GetMapping("/team/unexpired")
+    public UniversalResponseBody<List<Task>> getTeamsTaskUnExp(Integer teamId){
+        return taskService.getTeamsTaskUnExp(teamId);
+    }
+
+    /**
+     * 获取用户在该团队的所有任务
+     * @param userId
+     * @param teamId
+     * @return
+     */
+    @GetMapping("/team-user")
+    public UniversalResponseBody<List<Task>> getUserTeamTasks(Integer userId,Integer teamId){
+        return taskService.getUserTeamTasks(userId, teamId);
+    }
+
+    /**
+     * 获取团队的所有任务
+     * @param teamId
+     * @return
+     */
+    @GetMapping("/team")
+    public UniversalResponseBody<List<Task>> getTeamsTask(Integer teamId){
+        return taskService.getTeamsTask(teamId);
+    }
 }

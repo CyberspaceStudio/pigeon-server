@@ -154,7 +154,7 @@ public class TeamServiceImpl implements TeamService {
             return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
         }
         Integer userAuthorityId = teamMapper.getUserAuthorityId(teamId, user.getUserId());
-        //查找结果为空则插入管理员信息并把 userAuthority的值设为
+        //查找结果为空则插入管理员信息并把 userAuthority的值设为2
         if (userAuthorityId == null){
             teamMapper.addTeamAdmin(teamId, user.getUserId(), UserAuthorityEnum.TEAM_ADMIN.getUserAuthorityId());
         } else if (userAuthorityId.equals(UserAuthorityEnum.TEAM_MEMBER.getUserAuthorityId())){

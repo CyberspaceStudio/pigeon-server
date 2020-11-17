@@ -7,7 +7,8 @@
         <result column="team_id" property="teamId" jdbcType="INTEGER"/>
         <result column="taskActivity_location" property="taskActivityLocation" jdbcType="VARCHAR"/>
         <result column="memberCount_max" property="memberCountMax" jdbcType="INTEGER"/>
-        <result column="checkInStart_time" property="checkInStartTime" jdbcType="TIMESTAMP"/>
+        <result column="taskStart_ime" property="taskStartTime" jdbcType="TIMESTAMP"/>
+        <result column="taskEnd_time" property="taskEndTime" jdbcType="TIMESTAMP"/>
         <result column="task_status" property="taskStatus" jdbcType="VARCHAR"/>
         <result column="check_longitude" property="checkLongitude" jdbcType="DECIMAL"/>
         <result column="check_latitude" property="checkLatitude" jdbcType="DECIMAL"/>
@@ -32,8 +33,11 @@
             <if test="memberCountMax != null">
                 memberCount_max,
             </if>
-            <if test="checkInStartTime != null">
-                checkInStart_time,
+            <if test="taskEndTime != null">
+                taskEnd_time,
+            </if>
+            <if test="taskStartTime != null">
+                taskStart_time,
             </if>
             <if test="taskStatus != null">
                 task_status,
@@ -65,8 +69,11 @@
             <if test="memberCountMax != null">
                 #{memberCountMax,jdbcType=INTEGER},
             </if>
-            <if test="checkInStartTime != null">
-                #{checkInStartTime,jdbcType=TIMESTAMP},
+            <if test="taskEndTime != null">
+                #{taskEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="taskStartTime != null">
+                #{taskStart_time,jdbcType=TIMESTAMP},
             </if>
             <if test="taskStatus != null">
                 #{taskStatus,jdbcType=VARCHAR},

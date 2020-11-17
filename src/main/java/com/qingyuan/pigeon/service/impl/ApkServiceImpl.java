@@ -14,17 +14,17 @@ import java.io.*;
 @Service
 public class ApkServiceImpl implements ApkService {
 
-    private static final String filename = "pigeon.apk";
+    private static final String filename = "pigeon-#{version}.apk";
     private static final String path = "/a-pigeon/apk/";
 
     @Override
     public void download(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         File file = new File(path, filename);
-        
+
         if (file.exists()) {
             response.setContentType("application/force-download");
-            response.addHeader("Content-Disposition","attachment;fileame="+filename);
+            response.addHeader("Content-Disposition","attachment;filename="+filename);
 
             byte[] buffer = new byte[1024];
             FileInputStream fis = null;

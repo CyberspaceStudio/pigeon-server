@@ -10,12 +10,6 @@ import lombok.Data;
 public class Apk {
 
     /**
-     * 版本号id
-     * @ignore
-     */
-    private Integer versionId;
-
-    /**
      * 版本号
      */
     private String version;

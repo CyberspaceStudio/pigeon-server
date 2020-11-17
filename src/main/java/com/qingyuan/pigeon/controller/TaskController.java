@@ -82,7 +82,7 @@ public class TaskController {
      */
     @PostMapping("/checkout")
     public UniversalResponseBody<Task> taskCheckOut(Double checkLongitude,Double checkLatitude,Integer taskId,Integer userId){
-        return taskService.taskCheckIn(checkLongitude, checkLatitude, taskId, userId);
+        return taskService.taskCheckOut(checkLongitude, checkLatitude, taskId, userId);
     }
 
 

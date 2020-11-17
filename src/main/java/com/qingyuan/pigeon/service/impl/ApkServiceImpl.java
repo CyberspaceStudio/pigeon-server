@@ -21,10 +21,10 @@ public class ApkServiceImpl implements ApkService {
     public void download(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         File file = new File(path, filename);
-
+        
         if (file.exists()) {
             response.setContentType("application/force-download");
-            response.addHeader("Content-Disposition","attachment;fileName="+filename);
+            response.addHeader("Content-Disposition","attachment;fileame="+filename);
 
             byte[] buffer = new byte[1024];
             FileInputStream fis = null;

@@ -73,11 +73,20 @@ public interface TaskMapper {
     List<Task> getTeamsTask(Integer teamId);
 
     /**
-     * 获取团队的所有任务
+     * 获取团队的该状态所有任务
      * @param teamId
      * @return
      * @apiNote 除去已过期任务
      */
-    List<Task> getTeamsTaskUnExp(Integer teamId);
+    List<Task> getTeamsTaskByStatus(Integer teamId,String taskStatus);
+
+    /**
+     * 获取团队的除去该状态所有任务
+     * @param teamId
+     * @param taskStatus
+     * @return
+     */
+    List<Task> getTeamsTaskExcStatus(Integer teamId,String taskStatus);
+
 
 }

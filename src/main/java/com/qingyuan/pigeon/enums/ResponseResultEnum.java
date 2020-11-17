@@ -35,7 +35,8 @@ public enum ResponseResultEnum {
      */
     TASK_MEMBER_REACH_MAX(0, "任务人数已达上限"),
     NOT_IN_CHECK_LOCATION(0, "不在签到范围内"),
-    CHECK_IN_ALREADY(0, "您已签到过，不能重复签到");
+    CHECK_IN_ALREADY(0, "您已签到过，不能重复签到"),
+    CHECK_OUT_ALREADY(0, "您已签退过，不能重复签退");
 
 
     /**

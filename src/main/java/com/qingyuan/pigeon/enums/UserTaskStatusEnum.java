@@ -6,7 +6,8 @@ package com.qingyuan.pigeon.enums;
  */
 public enum UserTaskStatusEnum {
     USER_APPLIED(0,"已报名"),
-    USER_CHECKED(1,"已签到");
+    USER_CHECK_IN(1,"已签到"),
+    USER_CHECK_OUT(2, "已签退");
 
     /**
      * 用户活动状态id

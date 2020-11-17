@@ -24,7 +24,7 @@ public class TaskController {
 
     @Resource
     @Qualifier("taskServiceImpl")
-    TaskService taskService;
+    private TaskService taskService;
 
 
     /**
@@ -71,6 +71,20 @@ public class TaskController {
     public UniversalResponseBody<Task> taskCheckIn(Double checkLongitude,Double checkLatitude,Integer taskId,Integer userId){
        return taskService.taskCheckIn(checkLongitude, checkLatitude, taskId, userId);
     }
+
+    /**
+     * 任务签退
+     * @param checkLongitude
+     * @param checkLatitude
+     * @param taskId
+     * @param userId
+     * @return
+     */
+    @PostMapping("/checkout")
+    public UniversalResponseBody<Task> taskCheckOut(Double checkLongitude,Double checkLatitude,Integer taskId,Integer userId){
+        return taskService.taskCheckIn(checkLongitude, checkLatitude, taskId, userId);
+    }
+
 
     /**
      * 获取用户在该团队的所有有效任务

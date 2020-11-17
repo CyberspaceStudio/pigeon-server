@@ -22,4 +22,20 @@ public enum TaskStatusEnum {
         this.taskStatusId = taskStatusId;
         this.taskStatus = taskStatus;
     }
+
+    public Integer getTaskStatusId() {
+        return taskStatusId;
+    }
+
+    public void setTaskStatusId(Integer taskStatusId) {
+        this.taskStatusId = taskStatusId;
+    }
+
+    public String getTaskStatus() {
+        return taskStatus;
+    }
+
+    public void setTaskStatus(String taskStatus) {
+        this.taskStatus = taskStatus;
+    }
 }

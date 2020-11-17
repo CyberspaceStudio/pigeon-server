@@ -41,18 +41,11 @@ public class Task {
     private String taskActivityLocation;
 
     /**
-     * 任务开始时间
+     * 签到开始时间
      */
     @JsonFormat(locale = "yyyy-MM-dd HH:mm")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-    private Date taskStartTime;
-
-    /**
-     * 任务结束时间
-     */
-    @JsonFormat(locale = "yyyy-MM-dd HH:mm")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-    private Date taskEndTime;
+    private Date checkInStartTime;
 
     /**
      * 任务状态(此项在插入数据库时会默认 已创建)

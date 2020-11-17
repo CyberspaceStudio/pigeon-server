@@ -8,8 +8,8 @@ package com.qingyuan.pigeon.enums;
  **/
 public enum  ActivityTypeEnum {
 
-    RUN(0,"跑步"),
-    STUDY(1,"自习");
+    RUN(0,"跑步",1.0),
+    STUDY(1,"自习",0.5);
 
     /**
      * 活动类型
@@ -20,6 +20,12 @@ public enum  ActivityTypeEnum {
      * 活动类型id
      */
     private Integer activityTypeId;
+
+
+    /**
+     * 活动鸽子蛋倍率
+     */
+    private Double pigeonEggTimesRate;
 
 
     public String getActivityType() {
@@ -38,8 +44,17 @@ public enum  ActivityTypeEnum {
         this.activityTypeId = activityTypeId;
     }
 
-    ActivityTypeEnum(Integer activityTypeId,String activityType) {
-        this. activityType = activityType;
+    public Double getPigeonEggTimesRate() {
+        return pigeonEggTimesRate;
+    }
+
+    public void setPigeonEggTimesRate(Double pigeonEggTimesRate) {
+        this.pigeonEggTimesRate = pigeonEggTimesRate;
+    }
+
+    ActivityTypeEnum(Integer activityTypeId,String activityType, Double pigeonEggTimesRate) {
+        this.activityType = activityType;
         this.activityTypeId = activityTypeId;
+        this.pigeonEggTimesRate = pigeonEggTimesRate;
     }
 }

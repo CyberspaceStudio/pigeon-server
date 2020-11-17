@@ -13,11 +13,8 @@ public enum TaskStatusEnum {
      * 签退时间: 任务结束后30分钟之内
      * 过期时间: 任务结束后30分钟
      */
-    TASK_CREATED(0,"可以报名"),
-    TASK_NO_CHECK_IN_TIME(1,"可以签到"),
-    TASK_(2,"任务正在进行"),
-    TASK_NO_CHECK_OUT_TIME(3,"可以签退"),
-    TASK_EXPIRED(4,"已结束");
+    TASK_CREATED(0,"已创建"),
+    TASK_EXPIRED(1,"已结束");
 
     /**
      * 活动状态对应的id

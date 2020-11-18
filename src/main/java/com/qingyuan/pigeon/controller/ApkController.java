@@ -32,17 +32,18 @@ public class ApkController {
      */
     @PostMapping("/upload")
     public UniversalResponseBody<String> uploadApk(MultipartFile multipartFile,String version){
-        return null;
+        return apkService.uploadApk(multipartFile, version);
     }
 
     /**
      * 获取最新版本号
+     * @param version
      * @return
      * @apiNote 返回为false代表是最新版本 返回为true代表有最新版本
      */
     @GetMapping("/version")
-    public UniversalResponseBody<Boolean> getVersionLatest(){
-        return null;
+    public UniversalResponseBody<Boolean> getVersionLatest(String version){
+        return apkService.getVersionLatest(version);
     }
 
     /**

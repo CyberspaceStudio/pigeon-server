@@ -11,6 +11,7 @@ import com.qingyuan.pigeon.pojo.Task;
 import com.qingyuan.pigeon.service.TaskService;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import com.qingyuan.pigeon.utils.component.GeoDistUtil;
+import com.qingyuan.pigeon.utils.component.TimeUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,6 +61,11 @@ public class TaskServiceImpl implements TaskService {
             return new UniversalResponseBody<>(ResponseResultEnum.TASK_MEMBER_REACH_MAX.getCode(),ResponseResultEnum.TASK_MEMBER_REACH_MAX.getMsg());
         }
 
+        // 判断是否在任务报名时间内
+        if (!TimeUtil.isApplyTime(task.getTaskStartTime(), new Date())) {
+            return new UniversalResponseBody<>(ResponseResultEnum.NOT_AT_APPLY_TIME.getCode(), ResponseResultEnum.NOT_AT_APPLY_TIME.getMsg());
+        }
+
         // 将该用户加入到任务中
         TaskMember taskMember = new TaskMember();
         taskMember.setTaskId(taskId);
@@ -87,6 +93,12 @@ public class TaskServiceImpl implements TaskService {
         }
 
         Task task = taskMapper.getTaskById(taskId);
+
+        // 判断用户是否在签到时间范围内
+        if (!TimeUtil.isCheckInTime(task.getTaskStartTime(), new Date())) {
+            return new UniversalResponseBody<>(ResponseResultEnum.NOT_AT_CHECK_IN_TIME.getCode(), ResponseResultEnum.NOT_AT_CHECK_IN_TIME.getMsg());
+        }
+
         // 判断用户签到是否在任务地点的50m范围内
         if (GeoDistUtil.getDistance(task.getCheckLongitude(), task.getCheckLatitude(), checkLongitude, checkLatitude) > 50){
             return new UniversalResponseBody<>(ResponseResultEnum.NOT_IN_CHECK_LOCATION.getCode(), ResponseResultEnum.NOT_IN_CHECK_LOCATION.getMsg());
@@ -155,8 +167,14 @@ public class TaskServiceImpl implements TaskService {
             return new UniversalResponseBody<>(ResponseResultEnum.CHECK_OUT_ALREADY.getCode(), ResponseResultEnum.CHECK_OUT_ALREADY.getMsg());
         }
 
-        // 判断用户是否在签退范围内
         Task task = taskMapper.getTaskById(taskId);
+
+        // 判断用户是否在签退时间范围内
+        if (!TimeUtil.isCheckOutTime(task.getTaskEndTime(), new Date())) {
+            return new UniversalResponseBody<>(ResponseResultEnum.NOT_AT_CHECK_OUT_TIME.getCode(), ResponseResultEnum.NOT_AT_CHECK_OUT_TIME.getMsg());
+        }
+
+        // 判断用户是否在签退范围内
         if (GeoDistUtil.getDistance(task.getCheckLongitude(), task.getCheckLatitude(), checkLongitude, checkLatitude) > 50){
             return new UniversalResponseBody<>(ResponseResultEnum.NOT_IN_CHECK_LOCATION.getCode(), ResponseResultEnum.NOT_IN_CHECK_LOCATION.getMsg());
         }

@@ -1,5 +1,6 @@
 package com.qingyuan.pigeon.mapper;
 
+import com.qingyuan.pigeon.pojo.Apk;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -9,5 +10,16 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ApkMapper {
 
+    /**
+     * 获取apk的版本号
+     * @return
+     */
+    String getVersion();
 
+    /**
+     * 插入apk信息
+     * @param apk
+     * @return
+     */
+    int insertApk(Apk apk);
 }

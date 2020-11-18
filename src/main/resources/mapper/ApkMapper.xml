@@ -17,6 +17,6 @@
     <insert id="insertApk" parameterType="Apk" useGeneratedKeys="true" keyProperty="versionId">
         insert into pigeon.apk_version
         (version, version_id, version_path)
-        values (#{version,jdbcType=VARCHAR},#{versionId,jdbcType="INTEGER"},#{versionPath,jdbcType="VARCHAR"})
+        values (#{version,jdbcType=VARCHAR},#{versionId,jdbcType=INTEGER},#{versionPath,jdbcType=VARCHAR})
     </insert>
 </mapper>

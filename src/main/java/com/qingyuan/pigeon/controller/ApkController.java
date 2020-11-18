@@ -2,6 +2,7 @@ package com.qingyuan.pigeon.controller;
 
 import com.qingyuan.pigeon.service.ApkService;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * app版本接口
  * @Author: qyl
  * @Date: 2020/11/16 20:33
  */
@@ -22,6 +24,7 @@ import java.io.IOException;
 public class ApkController {
 
     @Resource
+    @Qualifier("apkServiceImpl")
     private ApkService apkService;
 
     /**
@@ -52,12 +55,9 @@ public class ApkController {
      * @param response
      */
     @GetMapping("/download")
-    public void downloadApk(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            apkService.download(request, response);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void downloadApk(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        apkService.download(request, response);
+
     }
 
 }

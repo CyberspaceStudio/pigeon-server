@@ -116,4 +116,16 @@ public class UserController {
     public UniversalResponseBody checkVerificationCode(String userTel,String code) {
         return userService.checkVerificationCode(userTel, code);
     }
+
+
+    /**
+     * 用户每日签到
+     * @param userId
+     * @return
+     * @apiNote 返回的是用户此次签到获得的鸽子蛋数量
+     */
+    @PostMapping("/check-in")
+    public UniversalResponseBody<Integer> userCheckIn(Integer userId){
+        return null;
+    }
 }

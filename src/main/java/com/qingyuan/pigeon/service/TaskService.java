@@ -75,4 +75,14 @@ public interface TaskService {
      * @apiNote 除去已过期任务
      */
     UniversalResponseBody<List<Task>> getUserTeamTasksUnExp(Integer userId,Integer teamId);
+
+    /**
+     * 任务签退
+     * @param checkLongitude 签退经度
+     * @param checkLatitude 签退纬度
+     * @param taskId
+     * @param userId
+     * @return
+     */
+    UniversalResponseBody<Task> taskCheckOut(Double checkLongitude,Double checkLatitude,Integer taskId,Integer userId);
 }

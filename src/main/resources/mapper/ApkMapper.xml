@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qingyuan.pigeon.mapper.ApkMapper">
+
+    <resultMap id="Apk" type="com.qingyuan.pigeon.pojo.Apk">
+        <id column="version_id" property="versionId" jdbcType="INTEGER" />
+        <result column="version" property="version" jdbcType="VARCHAR" />
+        <result column="version_path" property="versionPath" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getVersion" resultType="java.lang.String">
+        select version
+        from pigeon.apk_version
+        order by version_id desc limit 1
+    </select>
+
+    <insert id="insertApk" parameterType="Apk" useGeneratedKeys="true" keyProperty="versionId">
+        insert into pigeon.apk_version
+        (version, version_id, version_path)
+        values (#{version,jdbcType=VARCHAR},#{versionId,jdbcType=INTEGER},#{versionPath,jdbcType=VARCHAR})
+    </insert>
+</mapper>

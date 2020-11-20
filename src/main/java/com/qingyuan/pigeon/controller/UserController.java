@@ -126,9 +126,9 @@ public class UserController {
      * 用户每日签到
      * @param userId
      * @return
-     * @apiNote 返回的是用户此次签到获得的鸽子蛋数量
+     * @apiNote 已上线,返回的是用户此次签到获得的鸽子蛋数量
      */
-    @PostMapping("/check-in")
+    @PostMapping("/daily-check/in")
     public UniversalResponseBody<Integer> userCheckIn(Integer userId){
         return checkInService.userCheckIn(userId);
     }
@@ -137,9 +137,9 @@ public class UserController {
      * 用户本月签到状况
      * @param userId
      * @return
-     * @apiNote 此接口返回的data是boolean数组(下标从1开始，结束下标为当月的天数)
+     * @apiNote 已上线,此接口返回的data是boolean数组(下标从1开始，结束下标为当月的天数)
      */
-    @GetMapping("/check-in/detail")
+    @GetMapping("/daily-check/detail")
     public UniversalResponseBody<Boolean[]> userCheckInInfo(Integer userId){
         return checkInService.userCheckInInfo(userId);
     }

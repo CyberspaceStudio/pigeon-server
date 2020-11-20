@@ -53,7 +53,6 @@ public class ApkServiceImpl implements ApkService {
                     os.write(buffer, 0, i);
                     i = bis.read(buffer);
                 }
-                System.out.println("SUCCESS");
             } catch (Exception e) {
                 e.printStackTrace();
             }  finally {
@@ -88,7 +87,6 @@ public class ApkServiceImpl implements ApkService {
         if (i > 0) {
             return new UniversalResponseBody<String>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), filePath);
         }
-
         return new UniversalResponseBody<String>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
     }
 

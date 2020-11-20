@@ -2,6 +2,7 @@ package com.qingyuan.pigeon.controller;
 
 import com.qingyuan.pigeon.pojo.PO.TokenPO;
 import com.qingyuan.pigeon.pojo.User;
+import com.qingyuan.pigeon.service.CheckInService;
 import com.qingyuan.pigeon.service.UserService;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,6 +24,9 @@ public class UserController {
     @Resource
     @Qualifier("userServiceImpl")
     private UserService userService;
+
+    @Resource
+    private CheckInService checkInService;
 
     /**
      * 用户注册
@@ -122,10 +126,22 @@ public class UserController {
      * 用户每日签到
      * @param userId
      * @return
-     * @apiNote 返回的是用户此次签到获得的鸽子蛋数量
+     * @apiNote 已上线,返回的是用户此次签到获得的鸽子蛋数量
      */
-    @PostMapping("/check-in")
+    @PostMapping("/daily-check/in")
     public UniversalResponseBody<Integer> userCheckIn(Integer userId){
-        return null;
+        return checkInService.userCheckIn(userId);
     }
+
+    /**
+     * 用户本月签到状况
+     * @param userId
+     * @return
+     * @apiNote 已上线,此接口返回的data是boolean数组(下标从1开始，结束下标为当月的天数)
+     */
+    @GetMapping("/daily-check/detail")
+    public UniversalResponseBody<Boolean[]> userCheckInInfo(Integer userId){
+        return checkInService.userCheckInInfo(userId);
+    }
+    
 }

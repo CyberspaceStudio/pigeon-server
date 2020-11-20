@@ -2,11 +2,18 @@ package com.qingyuan.pigeon.utils.component;
 
 import com.alibaba.fastjson.JSON;
 import org.springframework.data.geo.Distance;
+import org.springframework.data.redis.connection.BitFieldSubCommands;
 import org.springframework.data.redis.core.GeoOperations;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import javax.xml.crypto.Data;
+import java.awt.image.Kernel;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -112,5 +119,30 @@ public class RedisUtil{
         }
         return result;
     }
+
+    /**
+     * 用户签到
+     */
+    public Boolean setBit(String key, long offset, boolean value) {
+        return stringRedisTemplate.opsForValue().setBit(key, offset, value);
+    }
+
+    /**
+     * 查看签到状态
+     */
+    public Boolean getBit(String key, int offset) {
+        return stringRedisTemplate.opsForValue().getBit(key, offset);
+    }
+
+    /**
+     * redis的bitField命令
+     */
+    public List<Long> bitField(String key, int limit, int offset) {
+        return stringRedisTemplate.execute(
+                (RedisCallback<List<Long>>) con->con.bitField(key.getBytes(),
+                        BitFieldSubCommands.create().get(BitFieldSubCommands.BitFieldType.unsigned(limit)).valueAt(offset))
+        );
+    }
+
 }
 

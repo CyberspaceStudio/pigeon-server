@@ -1,5 +1,7 @@
 package com.qingyuan.pigeon.enums;
 
+import com.qingyuan.pigeon.utils.UniversalResponseBody;
+
 /**
  * 返回结果数据字典
  *
@@ -36,7 +38,12 @@ public enum ResponseResultEnum {
     TASK_MEMBER_REACH_MAX(0, "任务人数已达上限"),
     NOT_IN_CHECK_LOCATION(0, "不在签到范围内"),
     CHECK_IN_ALREADY(0, "您已签到过，不能重复签到"),
-    CHECK_OUT_ALREADY(0, "您已签退过，不能重复签退");
+    CHECK_OUT_ALREADY(0, "您已签退过，不能重复签退"),
+    NOT_AT_CHECK_IN_TIME(0, "未到签到时间或签到时间已过"),
+    NOT_AT_CHECK_OUT_TIME(0, "未到签退时间或签退时间已过"),
+    NOT_AT_APPLY_TIME(0, "未到报名时间或报名时间已过"),
+    FILE_IO_EXCEPTION(0,"服务器文件错误"),
+    DUPLICATE_CHECK_IN(0,"今天已签到");
 
 
     /**

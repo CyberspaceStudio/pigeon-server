@@ -1,32 +1,8 @@
-2020-11-17 19:10:37.126  INFO 14640 --- [main] c.q.pigeon.PigeonApplicationTests        : Starting PigeonApplicationTests on DESKTOP-TCVN29S with PID 14640 (started by 24605 in D:\JavaProject\pigeon_server)
-2020-11-17 19:10:37.155  INFO 14640 --- [main] c.q.pigeon.PigeonApplicationTests        : No active profile set, falling back to default profiles: default
-2020-11-17 19:10:41.303  INFO 14640 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2020-11-17 19:10:41.306  INFO 14640 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2020-11-17 19:10:41.385  INFO 14640 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 43ms. Found 0 Redis repository interfaces.
-2020-11-17 19:10:47.037  INFO 14640 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-11-17 19:10:48.397  INFO 14640 --- [main] c.q.pigeon.PigeonApplicationTests        : Started PigeonApplicationTests in 12.499 seconds (JVM running for 17.086)
-2020-11-17 19:10:58.539  INFO 14640 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2020-11-17 20:02:30.798  INFO 13160 --- [main] c.q.pigeon.PigeonApplicationTests        : Starting PigeonApplicationTests on DESKTOP-TCVN29S with PID 13160 (started by 24605 in D:\JavaProject\pigeon_server)
-2020-11-17 20:02:30.800  INFO 13160 --- [main] c.q.pigeon.PigeonApplicationTests        : No active profile set, falling back to default profiles: default
-2020-11-17 20:02:33.136  INFO 13160 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2020-11-17 20:02:33.140  INFO 13160 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2020-11-17 20:02:33.221  INFO 13160 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57ms. Found 0 Redis repository interfaces.
-2020-11-17 20:02:36.216  INFO 13160 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-11-17 20:02:37.012  INFO 13160 --- [main] c.q.pigeon.PigeonApplicationTests        : Started PigeonApplicationTests in 6.805 seconds (JVM running for 8.989)
-2020-11-17 20:02:41.953  INFO 13160 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2020-11-17 20:29:30.445  INFO 5200 --- [main] c.q.pigeon.PigeonApplicationTests        : Starting PigeonApplicationTests on DESKTOP-TCVN29S with PID 5200 (started by 24605 in D:\JavaProject\pigeon_server)
-2020-11-17 20:29:30.447  INFO 5200 --- [main] c.q.pigeon.PigeonApplicationTests        : No active profile set, falling back to default profiles: default
-2020-11-17 20:29:31.740  INFO 5200 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2020-11-17 20:29:31.745  INFO 5200 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2020-11-17 20:29:31.797  INFO 5200 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 28ms. Found 0 Redis repository interfaces.
-2020-11-17 20:29:34.453  INFO 5200 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-11-17 20:29:35.219  INFO 5200 --- [main] c.q.pigeon.PigeonApplicationTests        : Started PigeonApplicationTests in 5.237 seconds (JVM running for 7.171)
-2020-11-17 20:29:40.151  INFO 5200 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2020-11-17 20:32:43.213  INFO 15640 --- [main] c.q.pigeon.PigeonApplicationTests        : Starting PigeonApplicationTests on DESKTOP-TCVN29S with PID 15640 (started by 24605 in D:\JavaProject\pigeon_server)
-2020-11-17 20:32:43.216  INFO 15640 --- [main] c.q.pigeon.PigeonApplicationTests        : No active profile set, falling back to default profiles: default
-2020-11-17 20:32:44.530  INFO 15640 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2020-11-17 20:32:44.534  INFO 15640 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2020-11-17 20:32:44.583  INFO 15640 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24ms. Found 0 Redis repository interfaces.
-2020-11-17 20:32:47.225  INFO 15640 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-11-17 20:32:47.970  INFO 15640 --- [main] c.q.pigeon.PigeonApplicationTests        : Started PigeonApplicationTests in 5.327 seconds (JVM running for 7.153)
-2020-11-17 20:32:53.283  INFO 15640 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-20 16:04:42.825  INFO 12512 --- [main] c.q.pigeon.PigeonApplicationTests        : Starting PigeonApplicationTests on DESKTOP-TCVN29S with PID 12512 (started by 24605 in D:\JavaProject\pigeon_server)
+2020-11-20 16:04:42.858  INFO 12512 --- [main] c.q.pigeon.PigeonApplicationTests        : No active profile set, falling back to default profiles: default
+2020-11-20 16:04:48.148  INFO 12512 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-11-20 16:04:48.151  INFO 12512 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-11-20 16:04:48.280  INFO 12512 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 93ms. Found 0 Redis repository interfaces.
+2020-11-20 16:04:52.843  INFO 12512 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-20 16:04:53.829  INFO 12512 --- [main] c.q.pigeon.PigeonApplicationTests        : Started PigeonApplicationTests in 12.151 seconds (JVM running for 16.363)
+2020-11-20 16:04:59.469  INFO 12512 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'

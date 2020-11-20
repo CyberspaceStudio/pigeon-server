@@ -6,9 +6,7 @@ import com.power.doc.model.ApiConfig;
 import com.power.doc.model.ApiDataDictionary;
 import com.power.doc.model.ApiErrorCodeDictionary;
 import com.power.doc.model.ApiReqHeader;
-import com.qingyuan.pigeon.enums.ActivityTypeEnum;
-import com.qingyuan.pigeon.enums.ResponseResultEnum;
-import com.qingyuan.pigeon.enums.UserAuthorityEnum;
+import com.qingyuan.pigeon.enums.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -57,7 +55,13 @@ class PigeonApplicationTests {
                         .setDescField("userAuthority"),//字段码
                 ApiDataDictionary.dict().setTitle("活动类型").setEnumClass(ActivityTypeEnum.class)
                         .setCodeField("activityTypeId") //字典码值字段名
-                        .setDescField("activityType")
+                        .setDescField("activityType"),
+                ApiDataDictionary.dict().setTitle("任务状态").setEnumClass(TaskStatusEnum.class)
+                        .setCodeField("taskStatusId") //字典码值字段名
+                        .setDescField("taskStatus"),
+                ApiDataDictionary.dict().setTitle("用户在任务中的状态").setEnumClass(UserTaskStatusEnum.class)
+                        .setCodeField("userTaskStatusId") //字典码值字段名
+                        .setDescField("userTaskStatus")
         );
 
 

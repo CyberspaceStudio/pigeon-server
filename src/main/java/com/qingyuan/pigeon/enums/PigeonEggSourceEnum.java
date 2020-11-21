@@ -7,7 +7,7 @@ package com.qingyuan.pigeon.enums;
  * @create: 2020-11-18 20:09
  **/
 public enum PigeonEggSourceEnum {
-    TASK_CHECK_IN(0,"任务签到"),
+    TASK_CHECK_IN(0,"完成任务"),
     DAYIY_CHECK_IN(1,"每日签到"),
     CONTINUOUS_CHECK_IN(2,"特殊日期签到");
 

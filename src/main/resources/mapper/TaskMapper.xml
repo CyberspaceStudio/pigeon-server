@@ -93,6 +93,12 @@
         </trim>
     </insert>
 
+    <update id="updateTaskStatus" parameterType="java.lang.Integer">
+        update pigeon.task
+        set task_status = #{tastStatus,jdbcType=VARCHAR}
+        where task_id = #{taskId,jdbcType=VARCHAR}
+    </update>
+
     <select id="getUserTasks" parameterType="java.lang.Integer" resultMap="Task">
         select t.activity_type,t.check_latitude,t.check_longitude,t.memberCount_max,t.taskActivity_location,t.taskApply_count,t.checkInStart_time,t.task_id,t.task_name,t.task_status,t.team_id
         from pigeon.task t, pigeon.task_member tm

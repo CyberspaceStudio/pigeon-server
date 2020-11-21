@@ -1,5 +1,6 @@
 package com.qingyuan.pigeon.service.impl;
 
+import com.qingyuan.pigeon.config.OrderDelayUtil;
 import com.qingyuan.pigeon.enums.ResponseResultEnum;
 import com.qingyuan.pigeon.enums.TaskStatusEnum;
 import com.qingyuan.pigeon.enums.UserTaskStatusEnum;
@@ -11,7 +12,6 @@ import com.qingyuan.pigeon.pojo.Task;
 import com.qingyuan.pigeon.service.TaskService;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import com.qingyuan.pigeon.utils.component.GeoDistUtil;
-import com.qingyuan.pigeon.utils.component.TimeUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +25,7 @@ import java.util.List;
  */
 @Service
 public class TaskServiceImpl implements TaskService {
+    private OrderDelayUtil orderDelayUtil;
 
     @Resource
     private TaskMapper taskMapper;
@@ -38,11 +39,13 @@ public class TaskServiceImpl implements TaskService {
     public UniversalResponseBody<Task> addTask(Task task) {
         //新增任务
         int count = taskMapper.insertTask(task);
+        OrderDelayUtil.AddTaskDelay(task.getTaskId(),task.getTaskEndTime());
         if(count > 0){
             return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(),task);
         }else{
             return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
         }
+
     }
 
     @Override
@@ -59,11 +62,6 @@ public class TaskServiceImpl implements TaskService {
         Task task = taskMapper.getTaskById(taskId);
         if (task.getMemberCountMax() <= task.getTaskApplyCount()) {
             return new UniversalResponseBody<>(ResponseResultEnum.TASK_MEMBER_REACH_MAX.getCode(),ResponseResultEnum.TASK_MEMBER_REACH_MAX.getMsg());
-        }
-
-        // 判断是否在任务报名时间内
-        if (!TimeUtil.isApplyTime(task.getTaskStartTime(), new Date())) {
-            return new UniversalResponseBody<>(ResponseResultEnum.NOT_AT_APPLY_TIME.getCode(), ResponseResultEnum.NOT_AT_APPLY_TIME.getMsg());
         }
 
         // 将该用户加入到任务中
@@ -93,12 +91,6 @@ public class TaskServiceImpl implements TaskService {
         }
 
         Task task = taskMapper.getTaskById(taskId);
-
-        // 判断用户是否在签到时间范围内
-        if (!TimeUtil.isCheckInTime(task.getTaskStartTime(), new Date())) {
-            return new UniversalResponseBody<>(ResponseResultEnum.NOT_AT_CHECK_IN_TIME.getCode(), ResponseResultEnum.NOT_AT_CHECK_IN_TIME.getMsg());
-        }
-
         // 判断用户签到是否在任务地点的50m范围内
         if (GeoDistUtil.getDistance(task.getCheckLongitude(), task.getCheckLatitude(), checkLongitude, checkLatitude) > 50){
             return new UniversalResponseBody<>(ResponseResultEnum.NOT_IN_CHECK_LOCATION.getCode(), ResponseResultEnum.NOT_IN_CHECK_LOCATION.getMsg());
@@ -167,14 +159,8 @@ public class TaskServiceImpl implements TaskService {
             return new UniversalResponseBody<>(ResponseResultEnum.CHECK_OUT_ALREADY.getCode(), ResponseResultEnum.CHECK_OUT_ALREADY.getMsg());
         }
 
-        Task task = taskMapper.getTaskById(taskId);
-
-        // 判断用户是否在签退时间范围内
-        if (!TimeUtil.isCheckOutTime(task.getTaskEndTime(), new Date())) {
-            return new UniversalResponseBody<>(ResponseResultEnum.NOT_AT_CHECK_OUT_TIME.getCode(), ResponseResultEnum.NOT_AT_CHECK_OUT_TIME.getMsg());
-        }
-
         // 判断用户是否在签退范围内
+        Task task = taskMapper.getTaskById(taskId);
         if (GeoDistUtil.getDistance(task.getCheckLongitude(), task.getCheckLatitude(), checkLongitude, checkLatitude) > 50){
             return new UniversalResponseBody<>(ResponseResultEnum.NOT_IN_CHECK_LOCATION.getCode(), ResponseResultEnum.NOT_IN_CHECK_LOCATION.getMsg());
         }

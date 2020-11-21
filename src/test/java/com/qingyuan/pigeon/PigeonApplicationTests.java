@@ -7,6 +7,8 @@ import com.power.doc.model.ApiDataDictionary;
 import com.power.doc.model.ApiErrorCodeDictionary;
 import com.power.doc.model.ApiReqHeader;
 import com.qingyuan.pigeon.enums.*;
+
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -15,6 +17,7 @@ class PigeonApplicationTests {
 
     @Test
     void contextLoads() {
+
     }
 
     //生成API-H5文档

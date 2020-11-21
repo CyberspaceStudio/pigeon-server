@@ -2,7 +2,6 @@ package com.qingyuan.pigeon.mapper;
 
 import com.qingyuan.pigeon.pojo.DO.TaskMember;
 import com.qingyuan.pigeon.pojo.Task;
-import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -20,6 +19,15 @@ public interface TaskMapper {
      * @return
      */
     int insertTask(Task task);
+
+    /**
+     * 更新任务状态
+     * @param taskId
+     * @param taskStatus
+     * @return
+     */
+    int updateTaskStatus(@Param("taskId") Integer taskId,@Param("taskStatus") String taskStatus);
+
 
     /**
      * 查询用户所有任务

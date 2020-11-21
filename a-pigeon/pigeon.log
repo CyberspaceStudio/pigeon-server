@@ -6,3 +6,27 @@
 2020-11-20 16:04:52.843  INFO 12512 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
 2020-11-20 16:04:53.829  INFO 12512 --- [main] c.q.pigeon.PigeonApplicationTests        : Started PigeonApplicationTests in 12.151 seconds (JVM running for 16.363)
 2020-11-20 16:04:59.469  INFO 12512 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-20 17:27:48.840  INFO 17680 --- [main] c.q.pigeon.PigeonApplicationTests        : Starting PigeonApplicationTests on DESKTOP-3L1QH0G with PID 17680 (started by Dell in D:\java_code\pigeon-server)
+2020-11-20 17:27:48.851  INFO 17680 --- [main] c.q.pigeon.PigeonApplicationTests        : No active profile set, falling back to default profiles: default
+2020-11-20 17:27:50.143  INFO 17680 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-11-20 17:27:50.146  INFO 17680 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-11-20 17:27:50.195  INFO 17680 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19ms. Found 0 Redis repository interfaces.
+2020-11-20 17:27:52.687  INFO 17680 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-20 17:27:53.335  INFO 17680 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2020-11-20 17:27:53.355  INFO 17680 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2020-11-20 17:27:53.355  INFO 17680 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.0 created.
+2020-11-20 17:27:53.356  INFO 17680 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2020-11-20 17:27:53.357  INFO 17680 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.0) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2020-11-20 17:27:53.357  INFO 17680 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2020-11-20 17:27:53.358  INFO 17680 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.0
+2020-11-20 17:27:53.358  INFO 17680 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@1224e1b6
+2020-11-20 17:27:53.427  INFO 17680 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2020-11-20 17:27:53.428  INFO 17680 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2020-11-20 17:27:53.440  INFO 17680 --- [main] c.q.pigeon.PigeonApplicationTests        : Started PigeonApplicationTests in 5.061 seconds (JVM running for 6.793)

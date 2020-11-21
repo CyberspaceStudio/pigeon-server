@@ -9,7 +9,7 @@ package com.qingyuan.pigeon.enums;
 public enum PigeonEggSourceEnum {
     TASK_CHECK_IN(0,"任务签到"),
     DAYIY_CHECK_IN(1,"每日签到"),
-    CONTINUOUS_CHECK_IN(2,"连续签到");
+    CONTINUOUS_CHECK_IN(2,"特殊日期签到");
 
     /**
      * 鸽子蛋来源id

@@ -14,7 +14,7 @@ public enum TaskStatusEnum {
      * 过期时间: 任务结束后30分钟
      */
     TASK_CREATED(0,"已创建"),
-    TASK_EXPIRED(1,"已结束");
+    TASK_EXPIRED(1,"已过期");
 
     /**
      * 活动状态对应的id

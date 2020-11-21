@@ -73,7 +73,7 @@
                 #{taskEndTime,jdbcType=TIMESTAMP},
             </if>
             <if test="taskStartTime != null">
-                #{taskStart_time,jdbcType=TIMESTAMP},
+                #{taskStartTime,jdbcType=TIMESTAMP},
             </if>
             <if test="taskStatus != null">
                 #{taskStatus,jdbcType=VARCHAR},
@@ -93,27 +93,23 @@
         </trim>
     </insert>
 
-    <update id="updateTaskStatus" parameterType="java.lang.Integer">
-        update pigeon.task
-        set task_status = #{tastStatus,jdbcType=VARCHAR}
-        where task_id = #{taskId,jdbcType=VARCHAR}
-    </update>
+
 
     <select id="getUserTasks" parameterType="java.lang.Integer" resultMap="Task">
-        select t.activity_type,t.check_latitude,t.check_longitude,t.memberCount_max,t.taskActivity_location,t.taskApply_count,t.checkInStart_time,t.task_id,t.task_name,t.task_status,t.team_id
+        select t.task_id, t.task_name,t.team_id, t.taskActivity_location, t.memberCount_max, t.taskStart_time, t.taskEnd_time,t.task_status, t.check_longitude, t.check_latitude, t.activity_type, t.taskApply_count, t.task_introduction
         from pigeon.task t, pigeon.task_member tm
         where t.task_id = tm.task_id and tm.user_id = #{userId,jdbcType=INTEGER}
     </select>
 
     <select id="getTaskById" parameterType="java.lang.Integer" resultMap="Task">
-        select activity_type,check_latitude,check_longitude,memberCount_max,taskActivity_location,taskApply_count,checkInStart_time,task_id,task_name,task_status,team_id
+        select task_id, task_name, team_id, taskActivity_location, memberCount_max, taskStart_time, taskEnd_time, task_status, check_longitude, check_latitude, activity_type, taskApply_count, task_introduction
         from pigeon.task
         where task_id = #{taskId,jdbcType=INTEGER} limit 1
     </select>
 
     <insert id="addUserTask" parameterType="com.qingyuan.pigeon.pojo.DO.TaskMember">
-        insert into pigeon.task_member
-        (user_id, task_id, checkIn_longitude, checkIn_latitude, checkIn_time, checkOut_time, userTask_status, userPigeonEgg_count, checkOut_longitude, checkOut_latitude)
+        insert into task_member
+        (user_id, task_id, checkIn_longitude, checkIn_latitude, userTask_status, userPigeonEgg_count, checkIn_time, checkOut_time, checkOut_longitude, checkOut_latitude)
         values (#{userId,jdbcType=INTEGER},#{taskId,jdbcType=INTEGER},#{checkInLongitude,jdbcType=DECIMAL},#{checkInLatitude,jdbcType=DECIMAL},#{checkInTime,jdbcType=TIMESTAMP},#{checkOutTime,jdbcType=TIMESTAMP},#{userTaskStatus,jdbcType=VARCHAR},#{userPigeonEggCount,jdbcType=INTEGER},#{checkOutLongitude,jdbcType=DECIMAL},#{checkOutLatitude,jdbcType=DECIMAL})
     </insert>
 
@@ -153,6 +149,11 @@
         </set>
         where user_id = #{userId,jdbcType=INTEGER} and task_id = #{taskId,jdbcType=INTEGER}
     </update>
+    <update id="updateTaskStatus">
+        update pigeon.task
+        set task_status = #{taskStatus,jdbcType=VARCHAR}
+        where task_id = #{taskId,jdbcType=INTEGER}
+    </update>
 
     <select id="getUserTaskStatus" resultType="java.lang.String">
         select userTask_status
@@ -161,19 +162,19 @@
     </select>
 
     <select id="getTeamsTask" resultType="com.qingyuan.pigeon.pojo.Task">
-        select activity_type,check_latitude,check_longitude,memberCount_max,taskActivity_location,taskApply_count,checkInStart_time,task_id,task_name,task_status,team_id
+        select task_id, task_name, team_id, taskActivity_location, memberCount_max, taskStart_time, taskEnd_time, task_status, check_longitude, check_latitude, activity_type, taskApply_count, task_introduction
         from pigeon.task
         where team_id = #{teamId}
     </select>
 
     <select id="getTeamsTaskByStatus" resultType="com.qingyuan.pigeon.pojo.Task">
-        select activity_type,check_latitude,check_longitude,memberCount_max,taskActivity_location,taskApply_count,checkInStart_time,task_id,task_name,task_status,team_id
+        select task_id, task_name, team_id, taskActivity_location, memberCount_max, taskStart_time, taskEnd_time, task_status, check_longitude, check_latitude, activity_type, taskApply_count, task_introduction
         from pigeon.task
         where team_id = #{teamId} and task_status = #{taskStatus,jdbcType=VARCHAR}
     </select>
 
     <select id="getTeamsTaskExcStatus" resultType="com.qingyuan.pigeon.pojo.Task">
-        select activity_type,check_latitude,check_longitude,memberCount_max,taskActivity_location,taskApply_count,checkInStart_time,task_id,task_name,task_status,team_id
+        select task_id, task_name, team_id, taskActivity_location, memberCount_max, taskStart_time, taskEnd_time, task_status, check_longitude, check_latitude, activity_type, taskApply_count, task_introduction
         from pigeon.task
         where team_id = #{teamId} and task_status != #{taskStatus,jdbcType=VARCHAR}
     </select>

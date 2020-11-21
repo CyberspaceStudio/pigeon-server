@@ -1,6 +1,6 @@
 package com.qingyuan.pigeon.service.impl;
 
-import com.qingyuan.pigeon.config.OrderDelayUtil;
+import com.alibaba.fastjson.JSON;
 import com.qingyuan.pigeon.enums.ResponseResultEnum;
 import com.qingyuan.pigeon.enums.TaskStatusEnum;
 import com.qingyuan.pigeon.enums.UserTaskStatusEnum;
@@ -12,6 +12,7 @@ import com.qingyuan.pigeon.pojo.Task;
 import com.qingyuan.pigeon.service.TaskService;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import com.qingyuan.pigeon.utils.component.GeoDistUtil;
+import com.qingyuan.pigeon.utils.component.RedisUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +26,6 @@ import java.util.List;
  */
 @Service
 public class TaskServiceImpl implements TaskService {
-    private OrderDelayUtil orderDelayUtil;
 
     @Resource
     private TaskMapper taskMapper;
@@ -33,20 +33,24 @@ public class TaskServiceImpl implements TaskService {
     private UserMessageMapper userMessageMapper;
     @Resource
     private TeamMemberMapper teamMemberMapper;
+    @Resource
+    private RedisUtil redisUtil;
 
     @Override
     @Transactional
     public UniversalResponseBody<Task> addTask(Task task) {
         //新增任务
         int count = taskMapper.insertTask(task);
-        //将任务添加到延时队列
-        OrderDelayUtil.AddTaskDelay(task.getTaskId(),task.getTaskEndTime());
+        //将任务加入redis并设置过期时间
+        //计算距离过期的秒数
+        int expiredTime = (int) ((task.getTaskEndTime().getTime()- System.currentTimeMillis())/1000);
+        //redis key 为 task-taskId value为对象的json格式 过期时间
+        redisUtil.getAndSetByTime("task-"+task.getTaskId(), JSON.toJSONString(task),expiredTime);
         if(count > 0){
             return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(),task);
         }else{
             return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
         }
-
     }
 
     @Override

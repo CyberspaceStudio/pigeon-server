@@ -3,6 +3,7 @@ package com.qingyuan.pigeon;
 
 import org.mybatis.spring.annotation.MapperScan;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PigeonApplication {
 
     public static void main(String[] args) throws Exception {
+        SpringApplication.run(PigeonApplication.class,args);
     }
 
 }

@@ -39,6 +39,7 @@ public class TaskServiceImpl implements TaskService {
     public UniversalResponseBody<Task> addTask(Task task) {
         //新增任务
         int count = taskMapper.insertTask(task);
+        //将任务添加到延时队列
         OrderDelayUtil.AddTaskDelay(task.getTaskId(),task.getTaskEndTime());
         if(count > 0){
             return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(),task);

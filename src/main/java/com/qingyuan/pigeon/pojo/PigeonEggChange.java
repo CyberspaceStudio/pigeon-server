@@ -23,7 +23,7 @@ public class PigeonEggChange {
     /**
      * 用户id
      */
-    private Integer UserId;
+    private Integer userId;
 
     /**
      * 鸽子蛋来源

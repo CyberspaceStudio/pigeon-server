@@ -13,7 +13,12 @@ import java.util.Date;
  * @create: 2020-11-18 20:14
  **/
 @Data
-public class PigeonEggSource {
+public class PigeonEggChange {
+
+    /**
+     * 变化id
+     */
+    private Integer changeId;
 
     /**
      * 用户id

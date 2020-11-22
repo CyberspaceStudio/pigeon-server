@@ -119,4 +119,15 @@ public class TeamController {
     }
 
 
+    /**
+     * 删除团队成员
+     * @param userId
+     * @param teamId
+     * @return
+     * @apiNote 成员退出团队和管理员删除队员调用此接口
+     */
+   @DeleteMapping("/user/id")
+    public UniversalResponseBody<User> deleteTeamMember(Integer userId,Integer teamId){
+        return null;
+   }
 }

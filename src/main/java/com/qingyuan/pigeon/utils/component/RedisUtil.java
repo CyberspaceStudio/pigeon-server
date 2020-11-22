@@ -54,10 +54,10 @@ public class RedisUtil{
      * @param value
      * @return
      */
-    public boolean setValueByTime(String key, String value) {
+    public boolean setValueByTime(String key, String value,long time) {
         boolean result = false;
         try {
-            stringRedisTemplate.opsForValue().set(key, value,5*60, TimeUnit.SECONDS);
+            stringRedisTemplate.opsForValue().set(key, value,time, TimeUnit.SECONDS);
             result = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,23 +74,6 @@ public class RedisUtil{
         return stringRedisTemplate.opsForValue().get(key);
     }
 
-    /**
-     * 更新缓存并设置过期时间(单位:秒)
-     * @param key
-     * @param value
-     * @param times
-     * @return
-     */
-    public boolean getAndSetByTime(String key, String value,Integer times) {
-        boolean result = false;
-        try {
-            stringRedisTemplate.opsForValue().set(key, value,times, TimeUnit.SECONDS);
-            result = true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
 
     /**
      * 更新缓存
@@ -98,7 +81,7 @@ public class RedisUtil{
     public boolean getAndSet(String key, String value) {
         boolean result = false;
         try {
-            stringRedisTemplate.opsForValue().set(key, value);
+            stringRedisTemplate.opsForValue().getAndSet(key, value);
             result = true;
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,5 +1,6 @@
 package com.qingyuan.pigeon.mapper;
 
+import com.qingyuan.pigeon.annoation.RedisCache;
 import com.qingyuan.pigeon.pojo.DO.TaskMember;
 import com.qingyuan.pigeon.pojo.Task;
 import org.apache.ibatis.annotations.Param;
@@ -34,6 +35,7 @@ public interface TaskMapper {
      * @param userId
      * @return
      */
+    @RedisCache(prefix = "task", key = "user")
     List<Task> getUserTasks(Integer userId);
 
     /**

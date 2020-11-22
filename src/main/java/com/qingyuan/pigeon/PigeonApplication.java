@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.qingyuan.pigeon.mapper")
 public class PigeonApplication {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         SpringApplication.run(PigeonApplication.class,args);
     }
 

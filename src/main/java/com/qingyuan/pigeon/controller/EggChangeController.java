@@ -5,6 +5,7 @@ import com.qingyuan.pigeon.service.EggChangeService;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,7 +43,7 @@ public class EggChangeController {
      * @param changeTime
      * @return
      */
-    @GetMapping("/add")
+    @PostMapping("/add")
     public UniversalResponseBody<PigeonEggChange> addEggChange(Integer userId, Integer changeCount, String pigeonEggSource,
                                                                    Date changeTime){
         return eggChangeService.addEggChange(userId,changeCount,pigeonEggSource,changeTime);

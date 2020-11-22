@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qingyuan.pigeon.mapper.EggChangeMapper">
+    <resultMap id="pigeonEggChange" type="com.qingyuan.pigeon.pojo.PigeonEggChange">
+        <id column="change_id" property="changeId" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="pigeonEgg_source" property="pigeonEggSource" jdbcType="VARCHAR"/>
+        <result column="change_count" property="changeCount" jdbcType="INTEGER"/>
+        <result column="change_time" property="changeTime" jdbcType="DATETIME"/>
+    </resultMap>
+    <insert id="addEggChange" useGeneratedKeys="true" keyProperty="changeId">
+        insert into pigeon.pigeon_egg_change(
+            user_id, pigeonEgg_source, change_count, change_time
+        )
+        values (
+            #{userId}, #{pigeonEggSource}, #{changeCount}, #{changeTime}
+        )
+    </insert>
+    <select id="getEggChangeById" resultType="com.qingyuan.pigeon.pojo.PigeonEggChange">
+        select change_id, user_id, pigeonEgg_source, change_count, change_time
+        from pigeon.pigeon_egg_change
+        where user_id = #{userId}
+    </select>
+
+</mapper>

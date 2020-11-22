@@ -1,5 +1,6 @@
 package com.qingyuan.pigeon.service.impl;
 
+import com.qingyuan.pigeon.annoation.RedisCache;
 import com.qingyuan.pigeon.enums.ResponseResultEnum;
 import com.qingyuan.pigeon.mapper.UserMessageMapper;
 import com.qingyuan.pigeon.pojo.PO.TokenPO;
@@ -66,7 +67,7 @@ public class UserServiceImpl implements UserService {
         randomInt += 100000;
         String verifyCode  = String.valueOf(randomInt);
         try{
-            if(!redisUtil.getAndSetByTime("user-verifyCode-"+userTel, verifyCode,5*60)){
+            if(!redisUtil.setValueByTime("user-verifyCode-"+userTel, verifyCode,5*60)){
                 return new UniversalResponseBody<String>(ResponseResultEnum.FAILED.getCode(), ResponseResultEnum.FAILED.getMsg());
             }
             if(messageUtil.sendVerifyCode(userTel,verifyCode)){
@@ -134,7 +135,7 @@ public class UserServiceImpl implements UserService {
     public UniversalResponseBody<User> getUserMessageByTel(String userTel) {
         User user = userMessageMapper.getUserByTel(userTel);
         if (user != null){
-            return new UniversalResponseBody<User>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(),user);
+            return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(),user);
         }else{
             return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
         }

@@ -1,11 +1,13 @@
 package com.qingyuan.pigeon.controller;
 
+import com.qingyuan.pigeon.annoation.RedisCache;
 import com.qingyuan.pigeon.pojo.PO.TokenPO;
 import com.qingyuan.pigeon.pojo.User;
 import com.qingyuan.pigeon.service.CheckInService;
 import com.qingyuan.pigeon.service.UserService;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 

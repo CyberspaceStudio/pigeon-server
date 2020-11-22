@@ -45,7 +45,7 @@ public class TaskServiceImpl implements TaskService {
         //计算距离过期的秒数
         int expiredTime = (int) ((task.getTaskEndTime().getTime()- System.currentTimeMillis())/1000);
         //redis key 为 task-taskId value为对象的json格式 过期时间
-        redisUtil.getAndSetByTime("task-"+task.getTaskId(), JSON.toJSONString(task),expiredTime);
+        redisUtil.setValueByTime("task-"+task.getTaskId(), JSON.toJSONString(task),expiredTime);
         if(count > 0){
             return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(),task);
         }else{

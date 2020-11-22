@@ -1,5 +1,6 @@
 package com.qingyuan.pigeon.mapper;
 
+import com.qingyuan.pigeon.annoation.RedisCache;
 import com.qingyuan.pigeon.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -26,6 +27,7 @@ public interface UserMessageMapper {
      * @param userTel
      * @return
      */
+    @RedisCache(prefix = "user-by-tel", key = "#userTel")
     User getUserByTel(String userTel);
 
 
@@ -57,6 +59,7 @@ public interface UserMessageMapper {
      * @param teamId
      * @return
      */
+    @RedisCache(prefix = "team-user-list", key = "#teamId")
     List<User> getUsersByTeamId(Integer teamId);
 
     /**

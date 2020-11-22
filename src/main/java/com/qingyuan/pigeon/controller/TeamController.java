@@ -4,10 +4,7 @@ import com.qingyuan.pigeon.pojo.Team;
 import com.qingyuan.pigeon.pojo.User;
 import com.qingyuan.pigeon.service.TeamService;
 import com.qingyuan.pigeon.utils.UniversalResponseBody;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -37,7 +34,7 @@ public class TeamController {
      * @apiNote 已上线,此接口中teamImageUrl不用填写
      */
     @PostMapping("/create")
-    public UniversalResponseBody<Team> createTeam(Team team, Integer userId, MultipartFile multipartFile){
+    public UniversalResponseBody<Team> createTeam(@PathVariable Team team, Integer userId, MultipartFile multipartFile){
         return teamService.createTeam(team, userId, multipartFile);
     }
 
@@ -122,4 +119,15 @@ public class TeamController {
     }
 
 
+    /**
+     * 删除团队成员
+     * @param userId
+     * @param teamId
+     * @return
+     * @apiNote 成员退出团队和管理员删除队员调用此接口
+     */
+   @DeleteMapping("/user/id")
+    public UniversalResponseBody<User> deleteTeamMember(Integer userId,Integer teamId){
+        return null;
+   }
 }

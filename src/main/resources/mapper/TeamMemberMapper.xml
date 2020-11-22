@@ -29,4 +29,8 @@
         set userAuthority_id = #{auth,jdbcType=INTEGER}
         where user_id = #{userId,jdbcType=INTEGER}
     </update>
+
+    <delete id="deleteTeamMember">
+        delete from pigeon.team_member where user_id=#{userId} and team_id=#{teamId}
+    </delete>
 </mapper>

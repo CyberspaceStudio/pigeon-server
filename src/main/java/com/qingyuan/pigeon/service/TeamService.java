@@ -68,4 +68,6 @@ public interface TeamService {
      * @apiNote 此接口在添加完成管理员后会将所有管理员的用户信息返回
      */
     UniversalResponseBody<List<User>> addTeamAdmin(Integer teamId,String userTel);
+
+    UniversalResponseBody<User> deleteTeamMember(Integer userId, Integer teamId);
 }

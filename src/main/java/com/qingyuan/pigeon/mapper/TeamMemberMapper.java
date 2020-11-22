@@ -53,4 +53,12 @@ public interface TeamMemberMapper {
      * @return
      */
     Integer getUserTeamForOne(Integer userId, Integer teamId);
+
+    /**
+     * 删除团队成员
+     * @param userId
+     * @param teamId
+     * @return
+     */
+    Integer deleteTeamMember(@Param("userId") Integer userId, @Param("teamId") Integer teamId);
 }

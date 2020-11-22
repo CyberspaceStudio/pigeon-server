@@ -128,6 +128,6 @@ public class TeamController {
      */
    @DeleteMapping("/user/id")
     public UniversalResponseBody<User> deleteTeamMember(Integer userId,Integer teamId){
-        return null;
+        return teamService.deleteTeamMember(userId,teamId);
    }
 }

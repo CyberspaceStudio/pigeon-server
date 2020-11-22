@@ -166,4 +166,21 @@ public class TeamServiceImpl implements TeamService {
         List<User> adminsInformation = userMessageMapper.getUsersByUserId(adminIds);
         return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), adminsInformation);
     }
+                                                                                                                                                                                  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    @Override
+    public UniversalResponseBody<User> deleteTeamMember(Integer userId, Integer teamId) {
+        User user = userMessageMapper.getUserById(userId);
+        if(user == null){
+            //不存在该成员
+            return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg(),null);
+        }
+        Integer res = teamMemberMapper.deleteTeamMember(userId,teamId);
+        if(res==1){
+            //删除该成员成功
+            return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(),user);
+        }
+        //删除成员失败，（该成员不在该团队）
+        return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg(),user);
+
+    }
 }

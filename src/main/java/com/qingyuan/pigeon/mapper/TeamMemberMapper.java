@@ -50,6 +50,7 @@ public interface TeamMemberMapper {
     /**
      * 获取用户指定所在团队
      * @param userId
+     * @param teamId
      * @return
      */
     Integer getUserTeamForOne(Integer userId, Integer teamId);

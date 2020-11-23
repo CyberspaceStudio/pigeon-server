@@ -27,11 +27,13 @@ public enum ResponseResultEnum {
     VERITY_CODE_EXPIRED_OR_INCORRECT(0, "验证码不正确或已失效"),
     USER_IS_EXISTED(0, "用户已存在"),
     USER_NOT_HAVE_TEAM(0,"未参加任何团队"),
+    USER_NOT_EXIST(0,"用户不存在"),
     /**
      * 团队相关错误
      */
     TEAM_MEMBER_REACH_MAX(0, "团队人数达到上限"),
     TEAM_MEMBER_IS_EXISTED(0, "团队已存在该成员"),
+    TEAM_NOT_EXIST(0,"团队不存在"),
     /**
      * 任务相关错误
      */

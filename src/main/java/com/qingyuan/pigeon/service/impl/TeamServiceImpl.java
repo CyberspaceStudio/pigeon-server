@@ -108,7 +108,7 @@ public class TeamServiceImpl implements TeamService {
         // 通过teamId来查找成员
         List<User> users = userMessageMapper.getUsersByTeamId(teamId);
         if (users != null){
-            return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(), ResponseResultEnum.SUCCESS.getMsg(), users);
+            return new UniversalResponseBody<>(ResponseResultEnum.TEAM_NOT_EXIST.getCode(), ResponseResultEnum.TEAM_NOT_EXIST.getMsg(), users);
         }
         return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
 
@@ -131,7 +131,7 @@ public class TeamServiceImpl implements TeamService {
         if (team != null){
             return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), team);
         }
-        return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+        return new UniversalResponseBody<>(ResponseResultEnum.TEAM_NOT_EXIST.getCode(),ResponseResultEnum.TEAM_NOT_EXIST.getMsg());
     }
 
     @Override
@@ -151,7 +151,7 @@ public class TeamServiceImpl implements TeamService {
     public UniversalResponseBody<List<User>> addTeamAdmin(Integer teamId, String userTel) {
         User user = userMessageMapper.getUserByTel(userTel);
         if (user == null){
-            return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg());
+            return new UniversalResponseBody<>(ResponseResultEnum.USER_NOT_EXIST.getCode(),ResponseResultEnum.USER_NOT_EXIST.getMsg());
         }
         Integer userAuthorityId = teamMapper.getUserAuthorityId(teamId, user.getUserId());
         //查找结果为空则插入管理员信息并把 userAuthority的值设为2
@@ -166,13 +166,12 @@ public class TeamServiceImpl implements TeamService {
         List<User> adminsInformation = userMessageMapper.getUsersByUserId(adminIds);
         return new UniversalResponseBody<>(ResponseResultEnum.SUCCESS.getCode(),ResponseResultEnum.SUCCESS.getMsg(), adminsInformation);
     }
-                                                                                                                                                                                  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     @Override
     public UniversalResponseBody<User> deleteTeamMember(Integer userId, Integer teamId) {
         User user = userMessageMapper.getUserById(userId);
         if(user == null){
             //不存在该成员
-            return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg(),null);
+            return new UniversalResponseBody<>(ResponseResultEnum.USER_NOT_EXIST.getCode(),ResponseResultEnum.USER_NOT_EXIST.getMsg(),null);
         }
         Integer res = teamMemberMapper.deleteTeamMember(userId,teamId);
         if(res==1){
@@ -181,6 +180,5 @@ public class TeamServiceImpl implements TeamService {
         }
         //删除成员失败，（该成员不在该团队）
         return new UniversalResponseBody<>(ResponseResultEnum.FAILED.getCode(),ResponseResultEnum.FAILED.getMsg(),user);
-
     }
 }

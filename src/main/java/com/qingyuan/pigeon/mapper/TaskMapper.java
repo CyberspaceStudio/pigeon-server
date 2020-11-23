@@ -35,7 +35,7 @@ public interface TaskMapper {
      * @param userId
      * @return
      */
-    @RedisCache(prefix = "task", key = "user")
+    @RedisCache(prefix = "task", key = "#userId")
     List<Task> getUserTasks(Integer userId);
 
     /**

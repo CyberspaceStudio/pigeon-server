@@ -6,7 +6,7 @@
         <result column="user_id" property="userId" jdbcType="INTEGER"/>
         <result column="pigeonEgg_source" property="pigeonEggSource" jdbcType="VARCHAR"/>
         <result column="change_count" property="changeCount" jdbcType="INTEGER"/>
-        <result column="change_time" property="changeTime" jdbcType="DATETIME"/>
+        <result column="change_time" property="changeTime" jdbcType="TIMESTAMP"/>
     </resultMap>
     <insert id="addEggChange" useGeneratedKeys="true" keyProperty="changeId">
         insert into pigeon.pigeon_egg_change(

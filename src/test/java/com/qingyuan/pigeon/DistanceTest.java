@@ -1,6 +1,5 @@
 package com.qingyuan.pigeon;
 
-import com.qingyuan.pigeon.job.OrderDelayDto;
 import com.qingyuan.pigeon.utils.component.GeoDistUtil;
 import org.junit.jupiter.api.Test;
 
